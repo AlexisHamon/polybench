@@ -29,30 +29,30 @@ compute_mean_exec_time()
     while read n; do
 	expr="$expr+$n";
     done < avg.out;
-    time=`echo "scale=8;$expr)/3" | bc`;
-    tmp=`echo "$time" | cut -d '.' -f 1`;
+    time=$(echo "scale=8;$expr)/3" | bc);
+    tmp=$(echo "$time" | cut -d '.' -f 1);
     if [ -z "$tmp" ]; then
 	time="0$time";
     fi;
-    val1=`cat avg.out | head -n 1`;
-    val2=`cat avg.out | head -n 2 | tail -n 1`;
-    val3=`cat avg.out | head -n 3 | tail -n 1`;
-    val11=`echo "a=$val1 - $time;if(0>a)a*=-1;a" | bc 2>&1`;
-    test_err=`echo "$val11" | grep error`;
+    val1=$(cat avg.out | head -n 1);
+    val2=$(cat avg.out | head -n 2 | tail -n 1);
+    val3=$(cat avg.out | head -n 3 | tail -n 1);
+    val11=$(echo "a=$val1 - $time;if(0>a)a*=-1;a" | bc 2>&1);
+    test_err=$(echo "$val11" | grep error);
     if ! [ -z "$test_err" ]; then
 	echo "[ERROR] Program output does not match expected single-line with time.";
 	echo "[ERROR] The program must be a PolyBench, compiled with -DPOLYBENCH_TIME";
 	exit 1;
     fi;
-    val12=`echo "a=$val2 - $time;if(0>a)a*=-1;a" | bc`;
-    val13=`echo "a=$val3 - $time;if(0>a)a*=-1;a" | bc`;
-    myvar=`echo "$val11 $val12 $val13" | awk '{ if ($1 > $2) { if ($1 > $3) print $1; else print $3; } else { if ($2 > $3) print $2; else print $3; } }'`;
-    variance=`echo "scale=5;($myvar/$time)*100" | bc`;
-    tmp=`echo "$variance" | cut -d '.' -f 1`;
+    val12=$(echo "a=$val2 - $time;if(0>a)a*=-1;a" | bc);
+    val13=$(echo "a=$val3 - $time;if(0>a)a*=-1;a" | bc);
+    myvar=$(echo "$val11 $val12 $val13" | awk '{ if ($1 > $2) { if ($1 > $3) print $1; else print $3; } else { if ($2 > $3) print $2; else print $3; } }');
+    variance=$(echo "scale=5;($myvar/$time)*100" | bc);
+    tmp=$(echo "$variance" | cut -d '.' -f 1);
     if [ -z "$tmp" ]; then
 	variance="0$variance";
     fi;
-    compvar=`echo "$variance $VARIANCE_ACCEPTED" | awk '{ if ($1 < $2) print "ok"; else print "error"; }'`;
+    compvar=$(echo "$variance $VARIANCE_ACCEPTED" | awk '{ if ($1 < $2) print "ok"; else print "error"; }');
     if [ "$compvar" = "error" ]; then
 	echo "[WARNING] Variance is above thresold, unsafe performance measurement";
 	echo "        => max deviation=$variance%, tolerance=$VARIANCE_ACCEPTED%";
