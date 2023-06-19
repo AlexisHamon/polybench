@@ -28,7 +28,7 @@ stencils/jacobi-1d/jacobi-1d.c \
 stencils/jacobi-2d/jacobi-2d.c \
 stencils/seidel-2d/seidel-2d.c"
 
-for file in $TEST; do
+for file in $TESTS; do
 	printf "%s" "$file"
 	./unit_test "$file"
 done
