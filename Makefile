@@ -14,8 +14,6 @@ all_unit_tests: all_unit_tests.sh
 	echo "#! " /bin/sh > $@
 	cat $< >> $@
 	chmod ugo+x $@
-	./test
-
 
 clean:
 	rm -f time_benchmark unit_test all_unit_tests
