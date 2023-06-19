@@ -31,6 +31,6 @@ stencils/seidel-2d/seidel-2d.c"
 # stencils/adi/adi.c \
 
 for file in $TESTS; do
-	printf "%s" "$file"
+	printf "%s\n" "$file"
 	./unit_test "$file"
 done
