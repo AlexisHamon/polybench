@@ -1,7 +1,7 @@
 all: time_benchmark unit_test all_unit_tests
 
 unit_test: unit_test.sh
-	echo "#! " /bin/sh > $@
+	echo "#! " /bin/bash > $@
 	cat $< >> $@
 	chmod ugo+x $@
 

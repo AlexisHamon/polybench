@@ -32,5 +32,5 @@ stencils/seidel-2d/seidel-2d.c"
 
 for file in $TESTS; do
 	printf "%s\n" "$file"
-	./unit_test "$file"
+	./unit_test "$file" --silent --atile --nounrolljam 
 done

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PLUTO_PATH=$(realpath "../pluto")
 POLYBENCH_PATH=$PWD
@@ -16,7 +16,7 @@ cp "$file" "$dir"bench.c
 exe_ref="$dir"bench_ref
 exe_pluto="$dir"bench_pluto
 
-(cd "$dir" &&  polycc --silent --tile --nounrolljam bench.c -o bench_pluto.c)
+(cd "$dir" &&  polycc "${@:2}" bench.c -o bench_pluto.c)
 
 
 gcc -O3 -lm -I utilities -I "$dirname" utilities/polybench.c "$dir"bench_pluto.c -DPOLYBENCH_DUMP_ARRAYS -DDIV0=8 -DDIV1=32 -DDIV2=64 -o "$exe_pluto"
