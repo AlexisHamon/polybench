@@ -29,9 +29,9 @@ $exe_pluto 2> "$exe_pluto".out
 
 
 if ! cmp "$exe_ref".out "$exe_pluto".out; then
-    printf "\e[31mFailed\e[0m %s" "$file"!
+    printf " [\e[31mFailed\e[0m] %s\n" "$file"!
     exit 0
 else
-    printf "\e[32mPassed\e[0m"
+    printf " [\e[32mPassed\e[0m]\n"
     exit 1
 fi
