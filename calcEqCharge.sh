@@ -3,7 +3,7 @@
 # Chemin vers le fichier C à modifier
 fichier_c=$1
 
-# Votre code de modification
+# Les lignes de codes à ajouter
 Include='#include <stdio.h>\n\
 #include <sys/time.h>\n\
 #include "rtclock.h"\
@@ -139,6 +139,7 @@ if [ -f "$fichier_c" ]; then
     fi
 
     if [[ $accolade_count -eq 1 ]] && [[ $line == *"}"* ]]; then
+      #on ajoute les lignes de collecte des temps
       sed -i "$numligne a\\$collectiontemp" "$fichier_c"
       start_read=false
       accolade_count=0
@@ -162,19 +163,17 @@ if [ -f "$fichier_c" ]; then
     fi
     if [[ $line == *"{"* ]]; then
       accolade_count=$((accolade_count+1))
-    #   echo $accolade_count $numligne $line
 
     fi  
 
     if [[ $line == *"}"* ]]; then
       accolade_count=$((accolade_count-1))
-    #   echo $accolade_count $numligne $line
 
     fi
 
     if [[ $accolade_count -eq 0 ]] && [[ $line == *"}"* ]]; then
+      #on ajoute le code pour afficher les temps et les métriques
       numligne=$((numligne-1))
-      #on affiche la ligne de collecte des temps
 
       sed -i "$numligne a\\$affichage2" "$fichier_c"
       start_read=false
