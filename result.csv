@@ -1,0 +1,360 @@
+#gemm.c
+##TILE 
+Time thread no. 0: 0.222245s
+Time thread no. 1: 0.222289s
+Time thread no. 2: 0.222254s
+Time thread no. 3: 0.222249s
+Average time = 0.222259s - Max time = 0.222289s - Min time = 0.222245s - Min-Max distance = 0.02%
+Imbalance metric λ = 0.013409%
+Standart deviation σ = 0.000018
+Skew-ness g1 = 1.040646
+Kurtosis g2 = -0.755738
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.233655s
+Time thread no. 1: 0.233611s
+Time thread no. 2: 0.233657s
+Time thread no. 3: 0.233608s
+Average time = 0.233633s - Max time = 0.233657s - Min time = 0.233608s - Min-Max distance = 0.02%
+Imbalance metric λ = 0.010332%
+Standart deviation σ = 0.000023
+Skew-ness g1 = -0.004144
+Kurtosis g2 = -1.987755
+
+
+#gemver.c
+##TILE 
+Time thread no. 0: 0.011378s
+Time thread no. 1: 0.011373s
+Time thread no. 2: 0.011373s
+Time thread no. 3: 0.011376s
+Average time = 0.011375s - Max time = 0.011378s - Min time = 0.011373s - Min-Max distance = 0.04%
+Imbalance metric λ = 0.026724%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 0.362463
+Kurtosis g2 = -1.532322
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.011364s
+Time thread no. 1: 0.011357s
+Time thread no. 2: 0.011357s
+Time thread no. 3: 0.011358s
+Average time = 0.011359s - Max time = 0.011364s - Min time = 0.011357s - Min-Max distance = 0.06%
+Imbalance metric λ = 0.045127%
+Standart deviation σ = 0.000003
+Skew-ness g1 = 1.097958
+Kurtosis g2 = -0.715506
+
+
+#gesummv.c
+##TILE 
+Time thread no. 0: 0.002573s
+Time thread no. 1: 0.002574s
+Time thread no. 2: 0.002573s
+Time thread no. 3: 0.002577s
+Average time = 0.002574s - Max time = 0.002577s - Min time = 0.002573s - Min-Max distance = 0.16%
+Imbalance metric λ = 0.106506%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 0.886157
+Kurtosis g2 = -0.925287
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.002704s
+Time thread no. 1: 0.002706s
+Time thread no. 2: 0.002706s
+Time thread no. 3: 0.002703s
+Average time = 0.002705s - Max time = 0.002706s - Min time = 0.002703s - Min-Max distance = 0.11%
+Imbalance metric λ = 0.048486%
+Standart deviation σ = 0.000001
+Skew-ness g1 = -0.299699
+Kurtosis g2 = -1.581486
+
+
+#symm.c
+##TILE 
+Time thread no. 0: 0.072943s
+Time thread no. 1: 0.072942s
+Time thread no. 2: 0.072942s
+Time thread no. 3: 0.072942s
+Average time = 0.072942s - Max time = 0.072943s - Min time = 0.072942s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.000981%
+Standart deviation σ = 0.000000
+Skew-ness g1 = 1.154701
+Kurtosis g2 = -0.666667
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.071846s
+Time thread no. 1: 0.071845s
+Time thread no. 2: 0.071845s
+Time thread no. 3: 0.071845s
+Average time = 0.071845s - Max time = 0.071846s - Min time = 0.071845s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.000996%
+Standart deviation σ = 0.000000
+Skew-ness g1 = 1.154701
+Kurtosis g2 = -0.666667
+
+
+#syr2k.c
+##TILE 
+Time thread no. 0: 0.326569s
+Time thread no. 1: 0.326622s
+Time thread no. 2: 0.326621s
+Time thread no. 3: 0.326569s
+Average time = 0.326595s - Max time = 0.326622s - Min time = 0.326569s - Min-Max distance = 0.02%
+Imbalance metric λ = 0.008194%
+Standart deviation σ = 0.000026
+Skew-ness g1 = 0.000463
+Kurtosis g2 = -1.999301
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.296715s
+Time thread no. 1: 0.296711s
+Time thread no. 2: 0.296711s
+Time thread no. 3: 0.296711s
+Average time = 0.296712s - Max time = 0.296715s - Min time = 0.296711s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.000964%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 1.154701
+Kurtosis g2 = -0.666667
+
+
+#syrk.c
+##TILE 
+Time thread no. 0: 0.146626s
+Time thread no. 1: 0.146627s
+Time thread no. 2: 0.146625s
+Time thread no. 3: 0.146667s
+Average time = 0.146636s - Max time = 0.146667s - Min time = 0.146625s - Min-Max distance = 0.03%
+Imbalance metric λ = 0.020893%
+Standart deviation σ = 0.000018
+Skew-ness g1 = 1.148306
+Kurtosis g2 = -0.671547
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.162408s
+Time thread no. 1: 0.162405s
+Time thread no. 2: 0.162405s
+Time thread no. 3: 0.162405s
+Average time = 0.162406s - Max time = 0.162408s - Min time = 0.162405s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.001321%
+Standart deviation σ = 0.000001
+Skew-ness g1 = 1.154701
+Kurtosis g2 = -0.666667
+
+
+#trmm.c
+##TILE 
+Time thread no. 0: 0.155649s
+Time thread no. 1: 0.155705s
+Time thread no. 2: 0.155695s
+Time thread no. 3: 0.155657s
+Average time = 0.155677s - Max time = 0.155705s - Min time = 0.155649s - Min-Max distance = 0.04%
+Imbalance metric λ = 0.018340%
+Standart deviation σ = 0.000024
+Skew-ness g1 = 0.024596
+Kurtosis g2 = -1.863786
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.170816s
+Time thread no. 1: 0.170814s
+Time thread no. 2: 0.170814s
+Time thread no. 3: 0.170816s
+Average time = 0.170815s - Max time = 0.170816s - Min time = 0.170814s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.000558%
+Standart deviation σ = 0.000001
+Skew-ness g1 = 0.000000
+Kurtosis g2 = -2.000000
+
+
+#2mm.c
+##TILE 
+Time thread no. 0: 0.314310s
+Time thread no. 1: 0.314391s
+Time thread no. 2: 0.314307s
+Time thread no. 3: 0.314407s
+Average time = 0.314353s - Max time = 0.314407s - Min time = 0.314307s - Min-Max distance = 0.03%
+Imbalance metric λ = 0.016932%
+Standart deviation σ = 0.000046
+Skew-ness g1 = 0.044184
+Kurtosis g2 = -1.937462
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.174023s
+Time thread no. 1: 0.174026s
+Time thread no. 2: 0.174025s
+Time thread no. 3: 0.174022s
+Average time = 0.174024s - Max time = 0.174026s - Min time = 0.174022s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.001062%
+Standart deviation σ = 0.000002
+Skew-ness g1 = -0.059873
+Kurtosis g2 = -1.725221
+
+
+#3mm.c
+##TILE 
+Time thread no. 0: 0.308314s
+Time thread no. 1: 0.308314s
+Time thread no. 2: 0.308322s
+Time thread no. 3: 0.308324s
+Average time = 0.308319s - Max time = 0.308324s - Min time = 0.308314s - Min-Max distance = 0.00%
+Imbalance metric λ = 0.001779%
+Standart deviation σ = 0.000005
+Skew-ness g1 = 0.064332
+Kurtosis g2 = -1.914689
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.326160s
+Time thread no. 1: 0.326205s
+Time thread no. 2: 0.326220s
+Time thread no. 3: 0.326224s
+Average time = 0.326202s - Max time = 0.326224s - Min time = 0.326160s - Min-Max distance = 0.02%
+Imbalance metric λ = 0.006615%
+Standart deviation σ = 0.000025
+Skew-ness g1 = -0.908978
+Kurtosis g2 = -0.891991
+
+
+#atax.c
+##TILE 
+Time thread no. 0: 0.005446s
+Time thread no. 1: 0.005449s
+Time thread no. 2: 0.005449s
+Time thread no. 3: 0.005447s
+Average time = 0.005448s - Max time = 0.005449s - Min time = 0.005446s - Min-Max distance = 0.06%
+Imbalance metric λ = 0.022977%
+Standart deviation σ = 0.000001
+Skew-ness g1 = -0.289526
+Kurtosis g2 = -1.623778
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.005555s
+Time thread no. 1: 0.005553s
+Time thread no. 2: 0.005552s
+Time thread no. 3: 0.005555s
+Average time = 0.005554s - Max time = 0.005555s - Min time = 0.005552s - Min-Max distance = 0.06%
+Imbalance metric λ = 0.024684%
+Standart deviation σ = 0.000001
+Skew-ness g1 = -0.182567
+Kurtosis g2 = -1.730189
+
+
+#bicg.c
+##TILE 
+Time thread no. 0: 0.005521s
+Time thread no. 1: 0.005518s
+Time thread no. 2: 0.005517s
+Time thread no. 3: 0.005517s
+Average time = 0.005518s - Max time = 0.005521s - Min time = 0.005517s - Min-Max distance = 0.07%
+Imbalance metric λ = 0.050766%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 0.979380
+Kurtosis g2 = -0.829222
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.005473s
+Time thread no. 1: 0.005470s
+Time thread no. 2: 0.005469s
+Time thread no. 3: 0.005468s
+Average time = 0.005470s - Max time = 0.005473s - Min time = 0.005468s - Min-Max distance = 0.09%
+Imbalance metric λ = 0.055572%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 0.731220
+Kurtosis g2 = -0.971101
+
+
+#doitgen.c
+##TILE 
+Time thread no. 0: 0.011358s
+Time thread no. 1: 0.011356s
+Time thread no. 2: 0.011356s
+Time thread no. 3: 0.011357s
+Average time = 0.011357s - Max time = 0.011358s - Min time = 0.011356s - Min-Max distance = 0.02%
+Imbalance metric λ = 0.011022%
+Standart deviation σ = 0.000001
+Skew-ness g1 = 0.404522
+Kurtosis g2 = -1.420418
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.009611s
+Time thread no. 1: 0.009610s
+Time thread no. 2: 0.009614s
+Time thread no. 3: 0.009610s
+Average time = 0.009611s - Max time = 0.009614s - Min time = 0.009610s - Min-Max distance = 0.04%
+Imbalance metric λ = 0.027287%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 0.957549
+Kurtosis g2 = -0.851271
+
+
+#mvt.c
+##TILE 
+Time thread no. 0: 0.005564s
+Time thread no. 1: 0.005565s
+Time thread no. 2: 0.005565s
+Time thread no. 3: 0.005568s
+Average time = 0.005566s - Max time = 0.005568s - Min time = 0.005564s - Min-Max distance = 0.07%
+Imbalance metric λ = 0.043909%
+Standart deviation σ = 0.000001
+Skew-ness g1 = 0.773118
+Kurtosis g2 = -0.862022
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.005629s
+Time thread no. 1: 0.005629s
+Time thread no. 2: 0.005629s
+Time thread no. 3: 0.005634s
+Average time = 0.005630s - Max time = 0.005634s - Min time = 0.005629s - Min-Max distance = 0.09%
+Imbalance metric λ = 0.066697%
+Standart deviation σ = 0.000002
+Skew-ness g1 = 1.154701
+Kurtosis g2 = -0.666667
+
+
+#durbin.c
+##TILE 
+Time thread no. 0: 0.011038s
+Time thread no. 1: 0.008596s
+Time thread no. 2: 0.008882s
+Time thread no. 3: 0.008537s
+Average time = 0.009263s - Max time = 0.011038s - Min time = 0.008537s - Min-Max distance = 22.66%
+Imbalance metric λ = 19.156822%
+Standart deviation σ = 0.001033
+Skew-ness g1 = 1.101320
+Kurtosis g2 = -0.711864
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.011832s
+Time thread no. 1: 0.009537s
+Time thread no. 2: 0.009593s
+Time thread no. 3: 0.009263s
+Average time = 0.010056s - Max time = 0.011832s - Min time = 0.009263s - Min-Max distance = 21.71%
+Imbalance metric λ = 17.658355%
+Standart deviation σ = 0.001033
+Skew-ness g1 = 1.102997
+Kurtosis g2 = -0.702252
+
+
+#gramschmidt.c
+##TILE 
+Time thread no. 0: 0.006153s
+Time thread no. 1: 0.005439s
+Time thread no. 2: 0.005424s
+Time thread no. 3: 0.005387s
+Average time = 0.005601s - Max time = 0.006153s - Min time = 0.005387s - Min-Max distance = 12.46%
+Imbalance metric λ = 9.869947%
+Standart deviation σ = 0.000320
+Skew-ness g1 = 1.142602
+Kurtosis g2 = -0.675629
+
+##ALGEBRIC TILE, 
+Time thread no. 0: 0.006046s
+Time thread no. 1: 0.005302s
+Time thread no. 2: 0.005285s
+Time thread no. 3: 0.005258s
+Average time = 0.005472s - Max time = 0.006046s - Min time = 0.005258s - Min-Max distance = 13.03%
+Imbalance metric λ = 10.476730%
+Standart deviation σ = 0.000331
+Skew-ness g1 = 1.146968
+Kurtosis g2 = -0.672516
+
+

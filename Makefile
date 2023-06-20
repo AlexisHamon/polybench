@@ -15,6 +15,16 @@ all_unit_tests: all_unit_tests.sh
 	cat $< >> $@
 	chmod ugo+x $@
 
+unit_charge: unit_charge.sh
+	echo "#! " /bin/bash > $@
+	cat $< >> $@
+	chmod ugo+x $@
+
+all_unit_charges: all_unit_charges.sh
+	echo "#! " /bin/sh > $@
+	cat $< >> $@
+	chmod ugo+x $@
+
 clean:
 	rm -f time_benchmark unit_test all_unit_tests
 	rm tmp/*
