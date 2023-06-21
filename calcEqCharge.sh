@@ -18,7 +18,9 @@ double t_start;\n\
 const int _ThreadCount = atoi(getenv("OMP_NUM_THREADS")); \
 double _time_threads[_ThreadCount];\n\
 /* initialisation du tableau des mesures à 0, afin de pouvoir cumuler */\
-for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; \n'
+for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; \
+/* temps d'\''exécution totale */\
+double tall_start=rtclock();\n'
 
 premierappelclock='\
 /* Premier appel à la fonction rtclock */\
@@ -26,7 +28,7 @@ t_start = rtclock();\n'
 
 ompparallel='/* Premier appel à la fonction rtclock */\
 t_start = rtclock();\
-/*On ajoute la clause "shared(_time_threads) firstprivate(t_start)"*/\
+/*On ajoute la clause "shared(_time_threads) firstprivate(t_start)" et le nowait*/\
 #pragma omp parallel shared(_time_threads) firstprivate(t_start)\
 {\n'
 
@@ -41,6 +43,7 @@ printf("%0.6lf \\n", _time_threads[i]);\
 affichage2='/* Il n'\''y a plus de boucles paralleles, on peut afficher et traiter les résultats du tableau _time_threads */\
  /* Mathis : exemple d'\''affichage (à revoir) : */ \
 double _AVERAGE=0, _MIN=999, _MAX=0, _ECART_TYPE=0,_G1=0,_G2=0; \
+tall_start=rtclock()-tall_start; \
 /*On affiche le temps de chaque thread*/ \
 for(int i=0;i<_ThreadCount;i++){ \
   printf(\"Time thread no. %d: %0.6lfs\\n\", i, _time_threads[i]); \
@@ -72,6 +75,9 @@ Plus la valeur de λ est faible, meilleur est l'\''équilibre de charge. \
   printf(\"Standart deviation σ = %0.6lf\\n\",_ECART_TYPE); \
  \
   /* \
+  skew-ness g1 and kurtosis g2\
+  g1 = E[((x-μ)/σ)^3]\
+  g2 = E[((x-μ)/σ)^4]-3\
   more g1 is near 0, more the distribution is symetric \
   more g2 is near 0, more the distribution is \"peaked\" \
   \
@@ -85,6 +91,7 @@ Plus la valeur de λ est faible, meilleur est l'\''équilibre de charge. \
   _G2=_G2-3; \
   printf(\"Skew-ness g1 = %0.6lf\\n\",_G1); \
   printf(\"Kurtosis g2 = %0.6lf\\n\",_G2); \
+  printf(\"Total time = %0.6lfs\\n\",tall_start); \
 '
 
 
@@ -110,7 +117,9 @@ if [ -f "$fichier_c" ]; then
   #On remplace #pragma omp parallel for ... par #pragma omp for ...
     sed -i 's/#pragma omp parallel for/#pragma omp for/g' "$fichier_c"
 
-
+  #On ajoute nowait à la fin de la ligne #pragma omp for ...
+    sed -i 's/#pragma omp for/#pragma omp for nowait/g' "$fichier_c"
+    
   #On collecte les temps à la fin de la section parallèle 
   #quand on attend la parenthèse fermante de la boucle for
   accolade_count=0
@@ -175,7 +184,7 @@ if [ -f "$fichier_c" ]; then
       #on ajoute le code pour afficher les temps et les métriques
       numligne=$((numligne-1))
 
-      sed -i "$numligne a\\$affichage2" "$fichier_c"
+      sed -i "$numligne a\\$affichage" "$fichier_c"
       start_read=false
       numligne=$((numligne+3))
     fi

@@ -34,11 +34,11 @@ echo "##TILE " >> result.csv
 $exe_pluto >> result.csv
 echo "" >> result.csv
 
-echo "##ALGEBRIC TILE, " >> result.csv
+echo "##ALGEBRIC TILE " >> result.csv
 $exe_pluto_a >> result.csv
 #on saute ue ligne
 echo "" >> result.csv
 echo "" >> result.csv
-
-
+echo "" >> result.csv
+echo "" 
 

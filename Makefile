@@ -1,4 +1,4 @@
-all: time_benchmark unit_test all_unit_tests
+all: time_benchmark unit_test all_unit_tests unit_charge all_unit_charges
 
 unit_test: unit_test.sh
 	echo "#! " /bin/bash > $@
