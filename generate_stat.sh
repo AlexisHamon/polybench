@@ -65,7 +65,7 @@ generate_tex_content() {
     \addplot[color=red, fill=red] coordinates {
       $algebraic_tile_data
     };
-    \addlegendentry{ALGEBRIC TILE}
+    \addlegendentry{ALGEBRAIC TILE}
 
     \end{axis}
   \end{tikzpicture}
@@ -94,7 +94,7 @@ EOF
 }
 
 
-# Calcul des statistiques
+# Calcul des métriques
 # Fonctions de calcul
 calculate_ecart_type() {
   local data=("$@")
@@ -220,7 +220,7 @@ END{
 }
 
 
-#pim = (max/avg - 1) * 100
+#Calcul Percent imbalance metric pim = (max/avg - 1) * 100
 calculate_pim() {
   max=$1
   avg=$2
@@ -246,25 +246,24 @@ init_tex
 for ((j=0; j<count; j++)); do
     i=$((j+1))
     # Lecture des données à partir de l'entrée standard
-    #r=2xcount+1
     r=$((2*i-1))
 
     file_name=$(grep -B 1 '##TILE' <<< $data_string| grep -v '##TILE' | sed -n "$r p")
     #on enlève les # dans le nom du fichier
     file_name="${file_name//#/}"
-    echo "file_name=$file_name"
 
     # Extraction des données TILE
     tile_data=$(grep -oP -m $i '(?<=##TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    echo "tile :$tile_data"
+    # echo "tile :$tile_data"
     # Extraction des données ALGEBRIC TILE
-    algebraic_tile_data=$(grep -oP -m $i '(?<=##ALGEBRIC TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    echo "algebraic tile :$algebraic_tile_data"
+    algebraic_tile_data=$(grep -oP -m $i '(?<=##ALGEBRAIC TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
+    # echo "algebraic tile :$algebraic_tile_data"
     #Extraction du temps d'exécution
     execution_time_tile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$r p")
     rank=$((r+1))
     execution_time_atile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$rank p")
-    echo "execution time :$execution_time_tile et $execution_time_atile"
+    # echo "execution time :$execution_time_tile et $execution_time_atile"
+
     # On transforme les données en coordonnées pour TikZ
     coordinates=()
     index=0
@@ -274,17 +273,17 @@ for ((j=0; j<count; j++)); do
         ((index++))
     done
 
-  coord_tile=$(IFS=' ' ; echo "${coordinates[*]}")
+    coord_tile=$(IFS=' ' ; echo "${coordinates[*]}")
 
-  coordinates=()
-  index=0
+    coordinates=()
+    index=0
 
-  for value in $algebraic_tile_data; do
-      coordinates+=("($index,$value)")
-      ((index++))
-  done
+    for value in $algebraic_tile_data; do
+        coordinates+=("($index,$value)")
+        ((index++))
+    done
 
-  coord_algebraic_tile=$(IFS=' ' ; echo "${coordinates[*]}")
+    coord_algebraic_tile=$(IFS=' ' ; echo "${coordinates[*]}")
 
 
     # Calcul des statistiques
@@ -305,24 +304,23 @@ for ((j=0; j<count; j++)); do
     apim=$(calculate_pim "${max[@]}" "${avg[@]}")
 
     # Affichage des statistiques
+    echo "Fichier : $file_name"
+    echo "ALGEBRAIC TILE"
     echo "Écart type : $astd_dev"
-    echo $tile_data
-  
-  
-#pour algebraic
-
-  echo "Skewness (g1) : $ag1"
-  echo "Kurtosis (g2) : $ag2"
-  echo "Percent Imbalance Metric (PIM) : $apim"
-  echo ""
-  echo "Écart type : $std_dev"
-  echo "Skewness (g1) : $g1"
-  echo "Kurtosis (g2) : $g2"
-  echo "Percent Imbalance Metric (PIM) : $pim"
+    echo "Skewness (g1) : $ag1"
+    echo "Kurtosis (g2) : $ag2"
+    echo "Percent Imbalance Metric (PIM) : $apim"
+    echo ""
+    echo "TILE"
+    echo "Écart type : $std_dev"
+    echo "Skewness (g1) : $g1"
+    echo "Kurtosis (g2) : $g2"
+    echo "Percent Imbalance Metric (PIM) : $pim"
+    echo ""
+    echo ""
 
 
   # Génération du fichier TeX
-  
   generate_tex_content "$file_name" "$file_name" "$coord_tile" "$coord_algebraic_tile" "$g1" "$g2" "$std_dev" "$pim" "$execution_time_tile" "$ag1" "$ag2" "$astd_dev" "$apim" "$execution_time_atile" 
   
 

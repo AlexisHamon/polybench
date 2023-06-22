@@ -124,11 +124,11 @@ if [ -f "$fichier_c" ]; then
     sed -i 's/#pragma omp for/#pragma omp for nowait/g' "$fichier_c"
     
   #On collecte les temps à la fin de la section parallèle 
-  #quand on attend la parenthèse fermante de la boucle for
+  #quand on attend la parenthèse fermante de la boucle omp for
   accolade_count=0
   start_read=false
   numligne=0
-  #on commence le read après la ligne #pragma omp parallel for
+  #on commence la lecture après la ligne #pragma omp parallel for
   while read -r line
   do
     numligne=$((numligne+1))

@@ -7,7 +7,7 @@
 ##Execution time 
 0.278277 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.222315 
 0.138619 
 0.143442 
@@ -26,7 +26,7 @@
 ##Execution time 
 0.012467 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.013404 
 0.011759 
 0.011682 
@@ -45,7 +45,7 @@
 ##Execution time 
 0.002756 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.002459 
 0.002642 
 0.002643 
@@ -64,7 +64,7 @@
 ##Execution time 
 3.385856 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.076532 
 0.072543 
 0.070738 
@@ -83,7 +83,7 @@
 ##Execution time 
 0.405662 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.236194 
 0.220163 
 0.227023 
@@ -102,7 +102,7 @@
 ##Execution time 
 0.241925 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.148888 
 0.150088 
 0.133813 
@@ -121,7 +121,7 @@
 ##Execution time 
 0.120002 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.115651 
 0.071412 
 0.118363 
@@ -140,7 +140,7 @@
 ##Execution time 
 0.405943 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.365331 
 0.237018 
 0.239464 
@@ -159,7 +159,7 @@
 ##Execution time 
 0.782992 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.362432 
 0.384658 
 0.419438 
@@ -178,7 +178,7 @@
 ##Execution time 
 0.007873 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.005226 
 0.004544 
 0.004942 
@@ -197,7 +197,7 @@
 ##Execution time 
 0.008133 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.006356 
 0.006104 
 0.006074 
@@ -216,7 +216,7 @@
 ##Execution time 
 0.247969 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.005183 
 0.005360 
 0.005343 
@@ -235,7 +235,7 @@
 ##Execution time 
 0.009933 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.007537 
 0.009050 
 0.008984 
@@ -254,7 +254,7 @@
 ##Execution time 
 0.003360 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.007413 
 0.004183 
 0.003695 
@@ -273,7 +273,7 @@
 ##Execution time 
 2.217181 
 
-##ALGEBRIC TILE 
+##ALGEBRAIC TILE 
 0.004655 
 0.004099 
 0.003809 
@@ -281,5 +281,43 @@
 ##Execution time 
 0.009210 
 
+
+
+
+
+#2mm.c
+##TILE 
+0.415226 
+0.367814 
+0.364741 
+0.357203 
+##Execution time 
+0.415267 
+
+##ALGEBRAIC TILE 
+0.186935 
+0.181784 
+0.179524 
+0.176917 
+##Execution time 
+0.188175 
+
+
+#2mm.c
+##TILE 
+0.465589 
+0.418188 
+0.406051 
+0.424091 
+##Execution time 
+0.465638 
+
+##ALGEBRAIC TILE 
+0.198066 
+0.199656 
+0.201006 
+0.222395 
+##Execution time 
+0.222832 
 
 

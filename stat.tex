@@ -685,7 +685,99 @@
     Kurtosis (g2) & -0.992678 & -1.46334 \\ 
     Écart type & 0.0561466 & 0.0561466 \\ 
     Percent Imbalance metric en \% & 3.78243 & 3.78243 \\ 
-    Temps d'exécution (s) &  0.009210 &  2.217181    \\ 
+    Temps d'exécution (s) &  0.009210        &  2.217181    \\ 
+    \hline
+  \end{tabular}
+\end{table}
+\newpage
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar,
+      bar width=0.5cm,
+      xlabel={Thread no.},
+      ylabel={Temps (s)},
+      ymin=0,
+      legend pos=north west
+    ]
+
+    % Données pour 2mm.c
+    \addplot[color=blue, fill=blue] coordinates {
+      (0,0.415226) (1,0.367814) (2,0.364741) (3,0.357203)
+    };
+    \addlegendentry{TILE}
+
+    \addplot[color=red, fill=red] coordinates {
+      (0,0.186935) (1,0.181784) (2,0.179524) (3,0.176917)
+    };
+    \addlegendentry{ALGEBRIC TILE}
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Temps d'exécution des threads pour le fichier 2mm.c}
+  \label{fig:2mm.c}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Statistiques pour le fichier 2mm.c}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    Statistique & Algebraic Tile & Tile \\ 
+    \hline
+    Skewness (g1) & 0.453558 & 1.05415 \\ 
+    Kurtosis (g2) & -1.11664 & -0.735103 \\ 
+    Écart type & 0.0228339 & 0.0228339 \\ 
+    Percent Imbalance metric en \% & 10.3602 & 10.3602 \\ 
+    Temps d'exécution (s) &  0.188175     &  0.415267    \\ 
+    \hline
+  \end{tabular}
+\end{table}
+\newpage
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar,
+      bar width=0.5cm,
+      xlabel={Thread no.},
+      ylabel={Temps (s)},
+      ymin=0,
+      legend pos=north west
+    ]
+
+    % Données pour 2mm.c
+    \addplot[color=blue, fill=blue] coordinates {
+      (0,0.465589) (1,0.418188) (2,0.406051) (3,0.424091)
+    };
+    \addlegendentry{TILE}
+
+    \addplot[color=red, fill=red] coordinates {
+      (0,0.198066) (1,0.199656) (2,0.201006) (3,0.222395)
+    };
+    \addlegendentry{ALGEBRIC TILE}
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Temps d'exécution des threads pour le fichier 2mm.c}
+  \label{fig:2mm.c}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Statistiques pour le fichier 2mm.c}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    Statistique & Algebraic Tile & Tile \\ 
+    \hline
+    Skewness (g1) & 1.11673 & 0.860702 \\ 
+    Kurtosis (g2) & -0.695334 & -0.850422 \\ 
+    Écart type & 0.0223904 & 0.0223904 \\ 
+    Percent Imbalance metric en \% & 8.66061 & 8.66061 \\ 
+    Temps d'exécution (s) &  0.222832 &  0.465638    \\ 
     \hline
   \end{tabular}
 \end{table}
