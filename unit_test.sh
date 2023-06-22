@@ -19,8 +19,8 @@ exe_pluto="$dir"bench_pluto
 (cd "$dir" &&  polycc "${@:2}" bench.c -o bench_pluto.c)
 
 
-gcc -O3 -lm -I utilities -I "$dirname" utilities/polybench.c "$dir"bench_pluto.c -DPOLYBENCH_DUMP_ARRAYS -DDIV0=8 -DDIV1=32 -DDIV2=64 -o "$exe_pluto"
-gcc -O0 -lm -I utilities -I "$dirname" utilities/polybench.c "$dir"bench.c -DPOLYBENCH_DUMP_ARRAYS -o "$exe_ref"
+gcc -O3 -fopenmp -I utilities -I "$dirname" utilities/polybench.c "$dir"bench_pluto.c -DPOLYBENCH_DUMP_ARRAYS -DDIV0=8 -DDIV1=32 -DDIV2=64  -lm -o "$exe_pluto" 
+gcc -O0 -fopenmp -I utilities -I "$dirname" utilities/polybench.c "$dir"bench.c -DPOLYBENCH_DUMP_ARRAYS  -lm -o "$exe_ref"
 
 cat /dev/null > "$exe_ref".out
 cat /dev/null > "$exe_pluto".out
