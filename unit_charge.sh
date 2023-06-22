@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#faire export OMP_NUM_THREADS=nombre de thread avant l'execution
 PLUTO_PATH=$(realpath "../pluto")
 POLYBENCH_PATH=$PWD
 export PATH="$PLUTO_PATH:$PATH"
