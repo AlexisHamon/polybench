@@ -36,9 +36,12 @@ collectiontemp='/*Collecte des temps de chaque thread */\
 _time_threads[omp_get_thread_num()] += rtclock() - t_start;\n}'
 
 affichage='/* Affichage des temps d'\''exécution */\
+tall_start=rtclock()-tall_start; \
 for(int i=0;i<_ThreadCount;i++){\
 printf("%0.6lf \\n", _time_threads[i]);\
-}\n'
+}\
+ printf("##Execution time \\n");\
+ printf("%0.6lf \\n", tall_start);\n'
 
 affichage2='/* Il n'\''y a plus de boucles paralleles, on peut afficher et traiter les résultats du tableau _time_threads */\
  /* Mathis : exemple d'\''affichage (à revoir) : */ \

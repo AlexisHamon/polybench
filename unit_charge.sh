@@ -36,9 +36,8 @@ echo "" >> result.csv
 
 echo "##ALGEBRIC TILE " >> result.csv
 $exe_pluto_a >> result.csv
-#on saute ue ligne
+#on saute des lignes
 echo "" >> result.csv
 echo "" >> result.csv
 echo "" >> result.csv
-echo "" 
 
