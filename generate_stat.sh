@@ -82,7 +82,7 @@ generate_tex_content() {
     \hline
     Skewness (g1) & $g1_atile & $g1_tile \\\ 
     Kurtosis (g2) & $g2_atile & $g2_tile \\\ 
-    Écart type & $std_dev_tile & $std_dev_tile \\\ 
+    Écart type & $std_dev_atile & $std_dev_tile \\\ 
     Percent Imbalance metric en \% & $pim_atile & $pim_tile \\\ 
     Temps d'exécution (s) & $exec_time_atile & $exec_time_tile \\\ 
     \hline
@@ -301,7 +301,7 @@ for ((j=0; j<count; j++)); do
     ag2=$(calculate_g2 "${algebraic_tile_data[@]}")
     amax=$(calculate_max "${algebraic_tile_data[@]}")
     aavg=$(calculate_avg "${algebraic_tile_data[@]}")
-    apim=$(calculate_pim "${max[@]}" "${avg[@]}")
+    apim=$(calculate_pim "${amax[@]}" "${aavg[@]}")
 
     # Affichage des statistiques
     echo "Fichier : $file_name"
@@ -327,3 +327,6 @@ for ((j=0; j<count; j++)); do
 done 
 
 end_tex
+
+# Génération du fichier PDF
+texi2dvi -I ./doc --pdf stat.tex -o stat.pdf --quiet

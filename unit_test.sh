@@ -3,6 +3,8 @@
 PLUTO_PATH=$(realpath "../pluto")
 POLYBENCH_PATH=$PWD
 export PATH="$PLUTO_PATH:$PATH"
+#On crée le dossier tmp s'il n'existe pas
+mkdir -p tmp
 
 file=$1
 dirname=$(dirname "$file")
