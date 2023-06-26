@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#faire export OMP_NUM_THREADS=nombre de thread avant l'execution
 PLUTO_PATH=$(realpath "../pluto")
 POLYBENCH_PATH=$PWD
 export PATH="$PLUTO_PATH:$PATH"
@@ -15,7 +15,7 @@ cp "$file" "$dir"bench.c
 
 exe_pluto="$dir"bench_pluto
 exe_pluto_a="$dir"bench_pluto_a
-#on execute l'executable polycc dans PLUTO_PATH  la commande : 
+#on execute l'executable polycc dans PLUTO_PATH 
 
 (cd "$dir" &&  "$PLUTO_PATH/polycc" "${@:2}" bench.c -o bench_pluto.c)
 (cd "$dir" &&  "$PLUTO_PATH/polycc" "${@:2}" --atile bench.c -o bench_pluto_a.c)
@@ -27,18 +27,16 @@ gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilitie
 
 cat /dev/null > "$exe_pluto".out
 #on écrit à la suite du fichier result.csv
-#On écrit le nom d fichier 
+#On écrit le nom du fichier 
 echo "#$r_basename" >> result.csv
 #On écrit le nom de la fonction
 echo "##TILE " >> result.csv
 $exe_pluto >> result.csv
 echo "" >> result.csv
 
-echo "##ALGEBRIC TILE " >> result.csv
+echo "##ALGEBRAIC TILE " >> result.csv
 $exe_pluto_a >> result.csv
-#on saute ue ligne
+#on saute 2 lignes
 echo "" >> result.csv
 echo "" >> result.csv
-echo "" >> result.csv
-echo "" 
 

@@ -1,6 +1,11 @@
 #!/bin/sh
 
-TESTS="linear-algebra/blas/syrk/syrk.c \
+TESTS="linear-algebra/blas/gemm/gemm.c \
+linear-algebra/blas/gemver/gemver.c \
+linear-algebra/blas/gesummv/gesummv.c \
+linear-algebra/blas/symm/symm.c \
+linear-algebra/blas/syr2k/syr2k.c \
+linear-algebra/blas/syrk/syrk.c \
 linear-algebra/blas/trmm/trmm.c \
 linear-algebra/kernels/2mm/2mm.c \
 linear-algebra/kernels/3mm/3mm.c \

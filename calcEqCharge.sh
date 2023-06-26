@@ -36,9 +36,12 @@ collectiontemp='/*Collecte des temps de chaque thread */\
 _time_threads[omp_get_thread_num()] += rtclock() - t_start;\n}'
 
 affichage='/* Affichage des temps d'\''exécution */\
+tall_start=rtclock()-tall_start; \
 for(int i=0;i<_ThreadCount;i++){\
 printf("%0.6lf \\n", _time_threads[i]);\
-}\n'
+}\
+ printf("##Execution time \\n");\
+ printf("%0.6lf \\n", tall_start);\n'
 
 affichage2='/* Il n'\''y a plus de boucles paralleles, on peut afficher et traiter les résultats du tableau _time_threads */\
  /* Mathis : exemple d'\''affichage (à revoir) : */ \
@@ -121,11 +124,11 @@ if [ -f "$fichier_c" ]; then
     sed -i 's/#pragma omp for/#pragma omp for nowait/g' "$fichier_c"
     
   #On collecte les temps à la fin de la section parallèle 
-  #quand on attend la parenthèse fermante de la boucle for
+  #quand on attend la parenthèse fermante de la boucle omp for
   accolade_count=0
   start_read=false
   numligne=0
-  #on commence le read après la ligne #pragma omp parallel for
+  #on commence la lecture après la ligne #pragma omp parallel for
   while read -r line
   do
     numligne=$((numligne+1))
