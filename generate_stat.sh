@@ -22,17 +22,24 @@ generate_tex_content() {
   local task_name=$2
   local tile_data=$3
   local algebraic_tile_data=$4
-  local g1_tile=$5
-  local g2_tile=$6
-  local std_dev_tile=$7
-  local pim_tile=$8
-  local exec_time_tile=$9
-    local g1_atile=${10}
-  local g2_atile=${11}
-  local std_dev_atile=${12}
-    local pim_atile=${13}
-  local exec_time_atile=${14}
+  local tile_data_dynamic=$5
+  local g1_tile=$6
+  local g2_tile=$7
+  local std_dev_tile=$8
+  local pim_tile=$9
+  local exec_time_tile=${10}
+    local g1_atile=${11}
+  local g2_atile=${12}
+  local std_dev_atile=${13}
+    local pim_atile=${14}
+  local exec_time_atile=${15}
+  local g1_tile_dynamic=${16}
+  local g2_tile_dynamic=${17}
+  local std_dev_tile_dynamic=${18}
+  local pim_tile_dynamic=${19}
+  local exec_time_tile_dynamic=${20}
 
+  echo "exec_time_tile_dynamic=$algebraic_tile_data"
     # echo "g1_tile=$g1_tile"
     # echo "g2_tile=$g2_tile"
     # echo "std_dev_tile=$std_dev_tile"
@@ -45,46 +52,87 @@ generate_tex_content() {
 
   cat >> "stat.tex" <<EOF
 \begin{figure}
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      ybar,
-      bar width=0.5cm,
-      xlabel={Thread no.},
-      ylabel={Temps (s)},
-      ymin=0,
-      legend pos=north west
-    ]
+\centering
 
-    % Données pour $task_name
-    \addplot[color=blue, fill=blue] coordinates {
-      $tile_data
-    };
-    \addlegendentry{TILE}
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.5cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=0,
+  legend pos=south west,
+  width=0.5\textwidth,
+  xtick=data
+]
 
-    \addplot[color=red, fill=red] coordinates {
-      $algebraic_tile_data
-    };
-    \addlegendentry{ALGEBRAIC TILE}
+% Données pour le premier graphique (à gauche)
+\addplot[color=blue, fill=blue] coordinates {
+  $tile_data
+};
+\addlegendentry{Tile (static))}
 
-    \end{axis}
-  \end{tikzpicture}
-  \caption{Temps d'exécution des threads pour le fichier $task_name}
-  \label{fig:$task_name}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.5cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=0,
+  legend pos=south west,
+  width=0.5\textwidth,
+  xtick=data
+]
+
+% Données pour le deuxième graphique (au milieu)
+\addplot[color=red, fill=red] coordinates {
+  $tile_data_dynamic
+};
+\addlegendentry{Tile (dynamic)}
+
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.5cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=0,
+  legend pos=south west,
+  width=0.5\textwidth,
+  xtick=data
+]
+
+% Données pour le troisième graphique (à droite)
+\addplot[color=green, fill=green] coordinates {
+  $algebraic_tile_data
+};
+\addlegendentry{Algebraic tile (static)}
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Temps d'exécution des threads pour le fichier $task_name}
+\label{fig:graphes}
 \end{figure}
 
 \begin{table}[htbp]
   \centering
   \caption{Statistiques pour le fichier $task_name}
-  \begin{tabular}{|c|c|c|}
+  \begin{tabular}{|c|c|c|c|}
     \hline
-    Statistique & Algebraic Tile & Tile \\\ 
+    Statistique & Algebraic Tile & Tile (static) & Tile (dynamic) \\\ 
     \hline
-    Skewness (g1) & $g1_atile & $g1_tile \\\ 
-    Kurtosis (g2) & $g2_atile & $g2_tile \\\ 
-    Écart type & $std_dev_atile & $std_dev_tile \\\ 
-    Percent Imbalance metric en \% & $pim_atile & $pim_tile \\\ 
-    Temps d'exécution (s) & $exec_time_atile & $exec_time_tile \\\ 
+    Skewness (g1) & $g1_atile & $g1_tile & $g1_tile_dynamic \\\ 
+    Kurtosis (g2) & $g2_atile & $g2_tile & $g2_tile_dynamic \\\ 
+    Écart type & $std_dev_atile & $std_dev_tile & $std_dev_tile_dynamic\\\ 
+    Percent Imbalance metric en \% & $pim_atile & $pim_tile & $pim_tile_dynamic\\\ 
+    Temps moyen (s) & $exec_time_atile & $exec_time_tile & $exec_time_tile_dynamic \\\ 
     \hline
   \end{tabular}
 \end{table}
@@ -240,7 +288,7 @@ np_data_string="${data_string%"${data_string##*[![:space:]]}"}"  # Supprime les 
 #on remplace les \n par des espaces
 np_data_string="${np_data_string//$'\n'/ }"
 
-count=$(grep -c '#TILE' <<< "$data_string")
+count=$(grep -c '##ALGEBRAIC TILE ' <<< "$data_string")
 echo "count=$count"
 init_tex 
 for ((j=0; j<count; j++)); do
@@ -248,32 +296,49 @@ for ((j=0; j<count; j++)); do
     # Lecture des données à partir de l'entrée standard
     r=$((2*i-1))
 
-    file_name=$(grep -B 1 '##TILE' <<< $data_string| grep -v '##TILE' | sed -n "$r p")
+    file_name=$(grep -B 1 '##TILE static' <<< $data_string| grep -v '##TILE' | sed -n "$r p")
     #on enlève les # dans le nom du fichier
     file_name="${file_name//#/}"
 
     # Extraction des données TILE
-    tile_data=$(grep -oP -m $i '(?<=##TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
+    tile_data_static=$(grep -oP -m $i '(?<=##TILE static\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
+    echo "tile :$tile_data_static"
+    tile_data_dynamic=$(grep -oP -m $i '(?<=##TILE dynamic\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
+    echo "tile :$tile_data_dynamic"
     # echo "tile :$tile_data"
     # Extraction des données ALGEBRIC TILE
     algebraic_tile_data=$(grep -oP -m $i '(?<=##ALGEBRAIC TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    # echo "algebraic tile :$algebraic_tile_data"
+    echo "algebraic tile :$algebraic_tile_data"
     #Extraction du temps d'exécution
-    execution_time_tile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$r p")
-    rank=$((r+1))
-    execution_time_atile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$rank p")
-    # echo "execution time :$execution_time_tile et $execution_time_atile"
+    time_rank=$((3*i-2))
+    execution_time_tile_static=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
+    time_rank=$((time_rank+1))
+    execution_time_tile_dynamic=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
+    time_rank=$((time_rank+1))
+    execution_time_atile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
+    echo "execution time :$execution_time_tile_static et $execution_time_tile_dynamic et $execution_time_atile" 
 
     # On transforme les données en coordonnées pour TikZ
     coordinates=()
     index=0
 
-    for value in $tile_data; do
+    for value in $tile_data_static; do
         coordinates+=("($index,$value)")
         ((index++))
     done
 
-    coord_tile=$(IFS=' ' ; echo "${coordinates[*]}")
+    coord_tile_static=$(IFS=' ' ; echo "${coordinates[*]}")
+
+    coordinates=()
+    index=0
+
+    for value in $tile_data_dynamic; do
+        coordinates+=("($index,$value)")
+        ((index++))
+    done
+
+    coord_tile_dynamic=$(IFS=' ' ; echo "${coordinates[*]}")
+
 
     coordinates=()
     index=0
@@ -286,13 +351,22 @@ for ((j=0; j<count; j++)); do
     coord_algebraic_tile=$(IFS=' ' ; echo "${coordinates[*]}")
 
 
-    # Calcul des statistiques
-    std_dev=$(calculate_ecart_type "${tile_data[@]}")
-    g1=$(calculate_g1 "${tile_data[@]}")
-    g2=$(calculate_g2 "${tile_data[@]}")
-    max=$(calculate_max "${tile_data[@]}")
-    avg=$(calculate_avg "${tile_data[@]}")
+    # Calcul des statistiques pavage classique (static)
+    std_dev=$(calculate_ecart_type "${tile_data_static[@]}")
+    g1=$(calculate_g1 "${tile_data_static[@]}")
+    g2=$(calculate_g2 "${tile_data_static[@]}")
+    max=$(calculate_max "${tile_data_static[@]}")
+    avg=$(calculate_avg "${tile_data_static[@]}")
     pim=$(calculate_pim "${max[@]}" "${avg[@]}")
+
+    # Calcul des statistiques pavage classique (dynamic)
+    dstd_dev=$(calculate_ecart_type "${tile_data_dynamic[@]}")
+    dg1=$(calculate_g1 "${tile_data_dynamic[@]}")
+    dg2=$(calculate_g2 "${tile_data_dynamic[@]}")
+    dmax=$(calculate_max "${tile_data_dynamic[@]}")
+    davg=$(calculate_avg "${tile_data_dynamic[@]}")
+    dpim=$(calculate_pim "${dmax[@]}" "${davg[@]}")
+    
 
 
     # Calcul des statistiques algebraic
@@ -321,9 +395,9 @@ for ((j=0; j<count; j++)); do
 
 
   # Génération du fichier TeX
-  generate_tex_content "$file_name" "$file_name" "$coord_tile" "$coord_algebraic_tile" "$g1" "$g2" "$std_dev" "$pim" "$execution_time_tile" "$ag1" "$ag2" "$astd_dev" "$apim" "$execution_time_atile" 
+  generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$max" "$ag1" "$ag2" "$astd_dev" "$apim" "$amax" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$dmax"
   
-
+  echo "maxs : $max et $dmax et $amax"
 done 
 
 end_tex

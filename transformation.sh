@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Chemin vers le fichier C à modifier
-fichier_c=$1
+fichier_c=$2
 
 # Les lignes de codes à ajouter
 Include='#include <stdio.h>\n\
@@ -97,6 +97,23 @@ Plus la valeur de λ est faible, meilleur est l'\''équilibre de charge. \
   printf(\"Total time = %0.6lfs\\n\",tall_start); \
 '
 
+#On gère les options -d et -s
+dynamic=false
+static=false
+while getopts ":ds" opt; do
+  case $opt in
+    d)
+      dynamic=true
+      ;;
+    s)
+      static=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
 
 # Vérification si le fichier C existe
 if [ -f "$fichier_c" ]; then
@@ -120,8 +137,18 @@ if [ -f "$fichier_c" ]; then
   #On remplace #pragma omp parallel for ... par #pragma omp for ...
     sed -i 's/#pragma omp parallel for/#pragma omp for/g' "$fichier_c"
 
-  #On ajoute nowait à la fin de la ligne #pragma omp for ...
-    sed -i 's/#pragma omp for/#pragma omp for nowait/g' "$fichier_c"
+  # #On ajoute nowait à la fin de la ligne #pragma omp for ...
+  #   sed -i 's/#pragma omp for/#pragma omp for nowait/g' "$fichier_c"
+
+  #Si l'option -d est activée on ajoute schedule(dynamic) après #pragma omp for
+  if [[ $dynamic = true ]]; then
+    sed -i 's/#pragma omp for/#pragma omp for schedule(dynamic) nowait/g' "$fichier_c"
+  fi
+  
+  #Si l'option -s est activée on ajoute schedule(static) après #pragma omp for
+  if [[ $static = true ]]; then
+    sed -i 's/#pragma omp for nowait/#pragma omp for schedule(static) nowait/g' "$fichier_c"
+  fi
     
   #On collecte les temps à la fin de la section parallèle 
   #quand on attend la parenthèse fermante de la boucle omp for
