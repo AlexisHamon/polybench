@@ -20,7 +20,7 @@ cp "$file" "$dir"bench.c
 exe_ref="$dir"bench_ref
 exe_pluto="$dir"bench_pluto
 
-(cd "$dir" &&  polycc "${@:2}" bench.c -o bench_pluto.c)
+log=$(cd "$dir" &&  polycc "${@:2}" bench.c -o bench_pluto.c)
 
 cat /dev/null > "$exe_ref"
 cat /dev/null > "$exe_pluto"
@@ -34,9 +34,8 @@ $exe_pluto 2> "$exe_pluto".out
 
 
 if ! cmp "$exe_ref".out "$exe_pluto".out; then
-    printf " [\e[31mFailed\e[0m] %s\n" "$file"!
+    echo "$log"
     exit 1
 else
-    printf " [\e[32mPassed\e[0m]\n"
     exit 0
 fi

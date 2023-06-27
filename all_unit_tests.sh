@@ -32,5 +32,12 @@ stencils/seidel-2d/seidel-2d.c"
 
 for file in $TESTS; do
 	printf "%s\n" "$file"
-	./unit_test "$file"  "${@:1}"
+	log=$(./unit_test "$file" "${@:1}")
+	
+	if ! $log; then
+		printf " [\e[31mFailed\e[0m]\n"
+		echo "$log"
+	else
+		printf " [\e[32mPassed\e[0m]\n"
+	fi
 done
