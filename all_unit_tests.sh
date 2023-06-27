@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 TESTS="linear-algebra/blas/gemm/gemm.c \
 linear-algebra/blas/gemver/gemver.c \
@@ -32,5 +32,5 @@ stencils/seidel-2d/seidel-2d.c"
 
 for file in $TESTS; do
 	printf "%s\n" "$file"
-	./unit_test "$file" --silent --atile --nounrolljam 
+	./unit_test "$file"  "${@:1}"
 done
