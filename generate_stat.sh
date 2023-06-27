@@ -38,7 +38,9 @@ generate_tex_content() {
   local std_dev_tile_dynamic=${18}
   local pim_tile_dynamic=${19}
   local exec_time_tile_dynamic=${20}
-
+  local lower_bound=${21}
+  local lower_boud_dynamic=${22}
+  local lower_bound_atile=${23}
   echo "exec_time_tile_dynamic=$algebraic_tile_data"
     # echo "g1_tile=$g1_tile"
     # echo "g2_tile=$g2_tile"
@@ -57,20 +59,20 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.5cm,
+  bar width=0.1cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=0,
+  ymin=$lower_bound,
   legend pos=south west,
-  width=0.5\textwidth,
-  xtick=data
+  width=0.45\textwidth,
+  xtick distance=4
 ]
 
 % Données pour le premier graphique (à gauche)
 \addplot[color=blue, fill=blue] coordinates {
   $tile_data
 };
-\addlegendentry{Tile (static))}
+\addlegendentry{Tile (static)}
 
 \end{axis}
 \end{tikzpicture}
@@ -78,13 +80,13 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.5cm,
+  bar width=0.1cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=0,
+  ymin=$lower_bound_dynamic,
   legend pos=south west,
-  width=0.5\textwidth,
-  xtick=data
+  width=0.45\textwidth,
+  xtick distance=4
 ]
 
 % Données pour le deuxième graphique (au milieu)
@@ -99,13 +101,13 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.5cm,
+  bar width=0.1cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=0,
+  ymin=$lower_bound_atile,
   legend pos=south west,
-  width=0.5\textwidth,
-  xtick=data
+  width=0.45\textwidth,
+  xtick distance=4
 ]
 
 % Données pour le troisième graphique (à droite)
@@ -356,6 +358,7 @@ for ((j=0; j<count; j++)); do
     g1=$(calculate_g1 "${tile_data_static[@]}")
     g2=$(calculate_g2 "${tile_data_static[@]}")
     max=$(calculate_max "${tile_data_static[@]}")
+    min=$(calculate_min "${tile_data_static[@]}")
     avg=$(calculate_avg "${tile_data_static[@]}")
     pim=$(calculate_pim "${max[@]}" "${avg[@]}")
 
@@ -364,6 +367,7 @@ for ((j=0; j<count; j++)); do
     dg1=$(calculate_g1 "${tile_data_dynamic[@]}")
     dg2=$(calculate_g2 "${tile_data_dynamic[@]}")
     dmax=$(calculate_max "${tile_data_dynamic[@]}")
+    dmin=$(calculate_min "${tile_data_dynamic[@]}")
     davg=$(calculate_avg "${tile_data_dynamic[@]}")
     dpim=$(calculate_pim "${dmax[@]}" "${davg[@]}")
     
@@ -374,6 +378,7 @@ for ((j=0; j<count; j++)); do
     ag1=$(calculate_g1 "${algebraic_tile_data[@]}")
     ag2=$(calculate_g2 "${algebraic_tile_data[@]}")
     amax=$(calculate_max "${algebraic_tile_data[@]}")
+    amin=$(calculate_min "${algebraic_tile_data[@]}")
     aavg=$(calculate_avg "${algebraic_tile_data[@]}")
     apim=$(calculate_pim "${amax[@]}" "${aavg[@]}")
 
@@ -392,10 +397,13 @@ for ((j=0; j<count; j++)); do
     echo "Percent Imbalance Metric (PIM) : $pim"
     echo ""
     echo ""
-
+  # lowerb est le 90% du min
+  lowerb=$(echo "scale=2; $min*0.8" | bc)
+  lowerbd=$(echo "scale=2; $dmin*0.8" | bc)
+  lowerba=$(echo "scale=2; $amin*0.8" | bc)
 
   # Génération du fichier TeX
-  generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$max" "$ag1" "$ag2" "$astd_dev" "$apim" "$amax" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$dmax"
+  generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$max" "$ag1" "$ag2" "$astd_dev" "$apim" "$amax" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$dmax" "$lowerb" "$lowerbd" "$lowerba"
   
   echo "maxs : $max et $dmax et $amax"
 done 
