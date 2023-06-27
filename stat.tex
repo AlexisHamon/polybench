@@ -175,4 +175,178 @@
 \end{table}
 \newpage
 
+\begin{figure}
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=.007083,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le premier graphique (à gauche)
+\addplot[color=blue, fill=blue] coordinates {
+  (0,0.008860) (1,0.008872) (2,0.008857) (3,0.008869) (4,0.008857) (5,0.008869) (6,0.008854) (7,0.008879) (8,0.008858) (9,0.008871) (10,0.008883) (11,0.008871) (12,0.008858) (13,0.008870) (14,0.008859) (15,0.008871)
+};
+\addlegendentry{Tile (static)}
+
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le deuxième graphique (au milieu)
+\addplot[color=red, fill=red] coordinates {
+  (0,0.015778) (1,0.015797) (2,0.015466) (3,0.015483) (4,0.015558) (5,0.015342) (6,0.018404) (7,0.018241) (8,0.015639) (9,0.015655) (10,0.015633) (11,0.015610) (12,0.022523) (13,0.022555) (14,0.015789) (15,0.015618)
+};
+\addlegendentry{Tile (dynamic)}
+
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=.022470,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le troisième graphique (à droite)
+\addplot[color=green, fill=green] coordinates {
+  (0,0.028108) (1,0.028134) (2,0.028115) (3,0.028138) (4,0.028135) (5,0.028106) (6,0.028401) (7,0.028379) (8,0.028129) (9,0.028159) (10,0.028142) (11,0.028147) (12,0.032939) (13,0.032982) (14,0.028088) (15,0.028121)
+};
+\addlegendentry{Algebraic tile (static)}
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Temps d'exécution des threads pour le fichier mvt.c}
+\label{fig:graphes}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Statistiques pour le fichier mvt.c}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Statistique & Algebraic Tile & Tile (static) & Tile (dynamic) \\ 
+    \hline
+    Skewness (g1) & 2.25439 & 0.279936 & 1.75427 \\ 
+    Kurtosis (g2) & 3.10821 & -0.96557 & 1.54443 \\ 
+    Écart type & 0.0015886 & 8.37313e-06 & 0.00233995\\ 
+    Percent Imbalance metric en \% & 14.6646 & 0.190275 & 34.1107\\ 
+    Temps moyen (s) & 0.032982 & 0.008883 & 0.022555 \\ 
+    \hline
+  \end{tabular}
+\end{table}
+\newpage
+
+\begin{figure}
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=.015210,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le premier graphique (à gauche)
+\addplot[color=blue, fill=blue] coordinates {
+  (0,0.019013) (1,0.019055) (2,0.019021) (3,0.019033) (4,0.019014) (5,0.019027) (6,0.019014) (7,0.019027) (8,0.019060) (9,0.019047) (10,0.019047) (11,0.019060) (12,0.019548) (13,0.019559) (14,0.019037) (15,0.019025)
+};
+\addlegendentry{Tile (static)}
+
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le deuxième graphique (au milieu)
+\addplot[color=red, fill=red] coordinates {
+  (0,0.006663) (1,0.006678) (2,0.006665) (3,0.006678) (4,0.006443) (5,0.006462) (6,0.006619) (7,0.006633) (8,0.006634) (9,0.006148) (10,0.006494) (11,0.006508) (12,0.006654) (13,0.006669) (14,0.006672) (15,0.006659)
+};
+\addlegendentry{Tile (dynamic)}
+
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,
+  bar width=0.1cm,
+  xlabel={Thread no.},
+  ylabel={Temps (s)},
+  ymin=.009274,
+  legend pos=south west,
+  width=0.45\textwidth,
+  xtick distance=4
+]
+
+% Données pour le troisième graphique (à droite)
+\addplot[color=green, fill=green] coordinates {
+  (0,0.011632) (1,0.011654) (2,0.011638) (3,0.011658) (4,0.011599) (5,0.011622) (6,0.011596) (7,0.011617) (8,0.011644) (9,0.011666) (10,0.011732) (11,0.011753) (12,0.011593) (13,0.011620) (14,0.011624) (15,0.011618)
+};
+\addlegendentry{Algebraic tile (static)}
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Temps d'exécution des threads pour le fichier mvt.c}
+\label{fig:graphes}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Statistiques pour le fichier mvt.c}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Statistique & Algebraic Tile & Tile (static) & Tile (dynamic) \\ 
+    \hline
+    Skewness (g1) & 1.36647 & 2.23309 & -1.9413 \\ 
+    Kurtosis (g2) & 1.10527 & 3.05713 & 3.36568 \\ 
+    Écart type & 4.35099e-05 & 0.000172402 & 0.00013706\\ 
+    Percent Imbalance metric en \% & 0.956913 & 2.40743 & 1.49029\\ 
+    Temps moyen (s) & 0.011753 & 0.019559 & 0.006678 \\ 
+    \hline
+  \end{tabular}
+\end{table}
+\newpage
+
   \end{document}
