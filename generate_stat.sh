@@ -41,7 +41,6 @@ generate_tex_content() {
   local lower_bound=${21}
   local lower_boud_dynamic=${22}
   local lower_bound_atile=${23}
-  echo "exec_time_tile_dynamic=$algebraic_tile_data"
     # echo "g1_tile=$g1_tile"
     # echo "g2_tile=$g2_tile"
     # echo "std_dev_tile=$std_dev_tile"
@@ -304,13 +303,10 @@ for ((j=0; j<count; j++)); do
 
     # Extraction des données TILE
     tile_data_static=$(grep -oP -m $i '(?<=##TILE static\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    echo "tile :$tile_data_static"
     tile_data_dynamic=$(grep -oP -m $i '(?<=##TILE dynamic\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    echo "tile :$tile_data_dynamic"
     # echo "tile :$tile_data"
     # Extraction des données ALGEBRIC TILE
     algebraic_tile_data=$(grep -oP -m $i '(?<=##ALGEBRAIC TILE\s\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$i p")
-    echo "algebraic tile :$algebraic_tile_data"
     #Extraction du temps d'exécution
     time_rank=$((3*i-2))
     execution_time_tile_static=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
@@ -318,7 +314,6 @@ for ((j=0; j<count; j++)); do
     execution_time_tile_dynamic=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
     time_rank=$((time_rank+1))
     execution_time_atile=$(grep -oP -m $i '(?<=##Execution time\s)[[0-9.\s]*(\s)*]*' <<< "$np_data_string" | sed -n "$time_rank p")
-    echo "execution time :$execution_time_tile_static et $execution_time_tile_dynamic et $execution_time_atile" 
 
     # On transforme les données en coordonnées pour TikZ
     coordinates=()
@@ -382,21 +377,7 @@ for ((j=0; j<count; j++)); do
     aavg=$(calculate_avg "${algebraic_tile_data[@]}")
     apim=$(calculate_pim "${amax[@]}" "${aavg[@]}")
 
-    # Affichage des statistiques
-    echo "Fichier : $file_name"
-    echo "ALGEBRAIC TILE"
-    echo "Écart type : $astd_dev"
-    echo "Skewness (g1) : $ag1"
-    echo "Kurtosis (g2) : $ag2"
-    echo "Percent Imbalance Metric (PIM) : $apim"
-    echo ""
-    echo "TILE"
-    echo "Écart type : $std_dev"
-    echo "Skewness (g1) : $g1"
-    echo "Kurtosis (g2) : $g2"
-    echo "Percent Imbalance Metric (PIM) : $pim"
-    echo ""
-    echo ""
+
   # lowerb est le 90% du min
   lowerb=$(echo "scale=2; $min*0.8" | bc)
   lowerbd=$(echo "scale=2; $dmin*0.8" | bc)
@@ -405,7 +386,7 @@ for ((j=0; j<count; j++)); do
   # Génération du fichier TeX
   generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$max" "$ag1" "$ag2" "$astd_dev" "$apim" "$amax" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$dmax" "$lowerb" "$lowerbd" "$lowerba"
   
-  echo "maxs : $max et $dmax et $amax"
+
 done 
 
 end_tex
