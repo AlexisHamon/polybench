@@ -75,10 +75,10 @@ cp "rtclock.h" $dir
 export DIV0="$DIV0"
 export DIV1="$DIV1"
 export DIV2="$DIV2"
-gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_dynamic.c utilities/polybench.c -DDIV0="$DIV0dynamic" -DDIV1="$DIV1dynamic" -DDIV2="$DIV2dynamic" $FLAGSdynamic $EXTRAdynamic -o "$exe_pluto_dynamic"
-gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_static.c utilities/polybench.c -DDIV0="$DIV0static" -DDIV1="$DIV1static" -DDIV2="$DIV2static" $FLAGSstatic $EXTRAstatic -o "$exe_pluto_static"
-gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilities/polybench.c -DDIV0="$DIV0a" -DDIV1="$DIV1a" -DDIV2="$DIV2a" $FLAGSa $EXTRAa -o "$exe_pluto_a"
-
+gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_dynamic.c utilities/polybench.c -DDIV0="$DIV0dynamic" -DDIV1="$DIV1dynamic" -DDIV2="$DIV2dynamic" $FLAGSdynamic $EXTRAdynamic -DPOLYBENCH_TIME -o "$exe_pluto_dynamic"
+gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_static.c utilities/polybench.c -DDIV0="$DIV0static" -DDIV1="$DIV1static" -DDIV2="$DIV2static" $FLAGSstatic $EXTRAstatic -DPOLYBENCH_TIME -o "$exe_pluto_static"
+gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilities/polybench.c -DDIV0="$DIV0a" -DDIV1="$DIV1a" -DDIV2="$DIV2a" $FLAGSa $EXTRAa -DPOLYBENCH_TIME -o "$exe_pluto_a"
+echo " gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilities/polybench.c -DDIV0="$DIV0a" -DDIV1="$DIV1a" -DDIV2="$DIV2a" $FLAGSa $EXTRAa -DPOLYBENCH_TIME -o "$exe_pluto_a""
 #schedule TODO
 cat /dev/null > "$exe_pluto".out
 #on écrit à la suite du fichier result.csv

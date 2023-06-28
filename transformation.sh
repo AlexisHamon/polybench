@@ -46,8 +46,7 @@ tall_start=rtclock()-tall_start; \
 for(int i=0;i<_ThreadCount;i++){\
 printf("%0.6lf \\n", _time_threads[i]);\
 }\
- printf("##Execution time \\n");\
- printf("%0.6lf \\n", tall_start);\n'
+ printf("##Execution time \\n");\n'
 
 affichage2='/* Il n'\''y a plus de boucles paralleles, on peut afficher et traiter les résultats du tableau _time_threads */\
  /* Mathis : exemple d'\''affichage (à revoir) : */ \
