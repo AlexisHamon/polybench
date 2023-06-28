@@ -41,6 +41,9 @@ generate_tex_content() {
   local lower_bound=${21}
   local lower_boud_dynamic=${22}
   local lower_bound_atile=${23}
+  local gini_static=${24}
+  local gini_dynamic=${25}
+  local gini_atile=${26}
     # echo "g1_tile=$g1_tile"
     # echo "g2_tile=$g2_tile"
     # echo "std_dev_tile=$std_dev_tile"
@@ -129,14 +132,19 @@ generate_tex_content() {
     \hline
     Statistique & Algebraic Tile & Tile (static) & Tile (dynamic) \\\ 
     \hline
-    Skewness (g1) & $g1_atile & $g1_tile & $g1_tile_dynamic \\\ 
-    Kurtosis (g2) & $g2_atile & $g2_tile & $g2_tile_dynamic \\\ 
+    Skewness (g1)  & $g1_atile & $g1_tile & $g1_tile_dynamic \\\ 
+    Kurtosis (g2)  & $g2_atile & $g2_tile & $g2_tile_dynamic \\\ 
     Coefficient de variation $ \frac{\sigma}{\overline{x}} $ & $std_dev_atile & $std_dev_tile & $std_dev_tile_dynamic\\\ 
     Percent Imbalance metric en \% & $pim_atile & $pim_tile & $pim_tile_dynamic\\\ 
+    Coefficient de Gini  & $gini_atile & $gini_static & $gini_dynamic\\\ 
     Temps d'exécution (s) & $exec_time_atile & $exec_time_tile & $exec_time_tile_dynamic \\\ 
+
     \hline
   \end{tabular}
-\end{table}
+\end{table}\newline
+g1=$ \frac{\sum_{i=1}^{n} (x_i - \overline{x})^3}{n\sigma^3} $\\
+g2=$ \frac{\sum_{i=1}^{n} (x_i - \overline{x})^4}{n\sigma^4} $\\
+Coefficient de Gini = $ \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} $\\
 \newpage
 
 EOF
@@ -298,27 +306,24 @@ calculate_CV() {
 
 calculate_gini() {
   local data=("$@")
-  echo $data | awk 'BEGIN{FS=" "; count=0; sum=0; sq_sum=0; cube_sum=0; quad_sum=0;}
+  echo $data | awk 'function abs(v) {return v < 0 ? -v : v} BEGIN{FS=" "; count=0; sum=0; sq_sum=0; cube_sum=0; quad_sum=0;}
+
 {
+
     for(i=1; i<=NF; i++){
         sum+=$i;
         count++;
     }
     mean=sum/count;
     sum=0;
-    count=0;
     for(i=1; i<=NF; i++){
-        sum+=$i-mean;
-        sq_sum+=($i-mean)*($i-mean);
-        cube_sum+=($i-mean)*($i-mean)*($i-mean);
-        quad_sum+=($i-mean)*($i-mean)*($i-mean)*($i-mean);
-        count++;
+      for(j=1; j<=NF; j++){
+        sum+=abs($i-$j);
+      }
     }
 }
 END{
-    variance=(sq_sum/count);
-    std_dev=sqrt(variance);
-    print 1/count*cube_sum/(std_dev*std_dev*std_dev);
+    print sum/(2*count*count*mean);
 }'
 }
 
@@ -395,7 +400,8 @@ for ((j=0; j<count; j++)); do
     avg=$(calculate_avg "${tile_data_static[@]}")
     pim=$(calculate_pim "${max[@]}" "${avg[@]}")
     std_dev=$(calculate_CV "$avg" "$std_dev")
-
+    ginis=$(calculate_gini "${tile_data_static[@]}")
+    echo "ginis=$ginis"
     # Calcul des statistiques pavage classique (dynamic)
     dstd_dev=$(calculate_ecart_type "${tile_data_dynamic[@]}")
     dg1=$(calculate_g1 "${tile_data_dynamic[@]}")
@@ -405,7 +411,7 @@ for ((j=0; j<count; j++)); do
     davg=$(calculate_avg "${tile_data_dynamic[@]}")
     dpim=$(calculate_pim "${dmax[@]}" "${davg[@]}")
     dstd_dev=$(calculate_CV "$davg" "$dstd_dev")
-    
+    ginid=$(calculate_gini "${tile_data_dynamic[@]}")
 
 
     # Calcul des statistiques algebraic
@@ -417,6 +423,7 @@ for ((j=0; j<count; j++)); do
     aavg=$(calculate_avg "${algebraic_tile_data[@]}")
     apim=$(calculate_pim "${amax[@]}" "${aavg[@]}")
     astd_dev=$(calculate_CV "$aavg" "$astd_dev")
+    ginia=$(calculate_gini "${algebraic_tile_data[@]}")
 
   # lowerb est le 90% du min
   lowerb=$(echo "scale=2; $min*0.8" | bc)
@@ -424,7 +431,7 @@ for ((j=0; j<count; j++)); do
   lowerba=$(echo "scale=2; $amin*0.8" | bc)
 
   # Génération du fichier TeX
-  generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$execution_time_tile_static" "$ag1" "$ag2" "$astd_dev" "$apim" "$execution_time_atile" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$execution_time_tile_dynamic" "$lowerb" "$lowerbd" "$lowerba"
+  generate_tex_content "$file_name" "$file_name" "$coord_tile_static" "$coord_algebraic_tile" "$coord_tile_dynamic" "$g1" "$g2" "$std_dev" "$pim" "$execution_time_tile_static" "$ag1" "$ag2" "$astd_dev" "$apim" "$execution_time_atile" "$dg1" "$dg2" "$dstd_dev" "$dpim" "$execution_time_tile_dynamic" "$lowerb" "$lowerbd" "$lowerba" "$ginis" "$ginid" "$ginia" 
   
 
 done 
