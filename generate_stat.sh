@@ -61,13 +61,13 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.1cm,
+  bar width=0.02cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=$lower_bound,
+  ymin=0,
   legend pos=south west,
   width=0.45\textwidth,
-  xtick distance=4
+  xtick distance=16
 ]
 
 % Données pour le premier graphique (à gauche)
@@ -82,13 +82,13 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.1cm,
+  bar width=0.02cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=$lower_bound_dynamic,
+  ymin=0,
   legend pos=south west,
   width=0.45\textwidth,
-  xtick distance=4
+  xtick distance=16
 ]
 
 % Données pour le deuxième graphique (au milieu)
@@ -103,13 +103,13 @@ generate_tex_content() {
 \begin{tikzpicture}
 \begin{axis}[
   ybar,
-  bar width=0.1cm,
+  bar width=0.02cm,
   xlabel={Thread no.},
   ylabel={Temps (s)},
-  ymin=$lower_bound_atile,
+  ymin=0,
   legend pos=south west,
   width=0.45\textwidth,
-  xtick distance=4
+  xtick distance=16
 ]
 
 % Données pour le troisième graphique (à droite)
@@ -141,7 +141,7 @@ generate_tex_content() {
 
     \hline
   \end{tabular}
-\end{table}\newline
+\end{table}
 g1=$ \frac{\sum_{i=1}^{n} (x_i - \overline{x})^3}{n\sigma^3} $\\
 g2=$ \frac{\sum_{i=1}^{n} (x_i - \overline{x})^4}{n\sigma^4} $\\
 Coefficient de Gini = $ \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} $\\
@@ -401,7 +401,6 @@ for ((j=0; j<count; j++)); do
     pim=$(calculate_pim "${max[@]}" "${avg[@]}")
     std_dev=$(calculate_CV "$avg" "$std_dev")
     ginis=$(calculate_gini "${tile_data_static[@]}")
-    echo "ginis=$ginis"
     # Calcul des statistiques pavage classique (dynamic)
     dstd_dev=$(calculate_ecart_type "${tile_data_dynamic[@]}")
     dg1=$(calculate_g1 "${tile_data_dynamic[@]}")

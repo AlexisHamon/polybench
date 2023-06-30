@@ -174,7 +174,7 @@ if [ -f "$fichier_c" ]; then
   
   #Si l'option -s est activée on ajoute schedule(static) après #pragma omp for
   if [[ $static = true ]]; then
-    sed -i 's/#pragma omp for nowait/#pragma omp for schedule(static) nowait/g' "$fichier_c"
+    sed -i 's/#pragma omp for /#pragma omp for nowait /g' "$fichier_c"
   fi
     
   #On collecte les temps à la fin de la section parallèle 

@@ -78,24 +78,30 @@ export DIV2="$DIV2"
 gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_dynamic.c utilities/polybench.c -DDIV0="$DIV0dynamic" -DDIV1="$DIV1dynamic" -DDIV2="$DIV2dynamic" $FLAGSdynamic $EXTRAdynamic -DPOLYBENCH_TIME -o "$exe_pluto_dynamic"
 gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_static.c utilities/polybench.c -DDIV0="$DIV0static" -DDIV1="$DIV1static" -DDIV2="$DIV2static" $FLAGSstatic $EXTRAstatic -DPOLYBENCH_TIME -o "$exe_pluto_static"
 gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilities/polybench.c -DDIV0="$DIV0a" -DDIV1="$DIV1a" -DDIV2="$DIV2a" $FLAGSa $EXTRAa -DPOLYBENCH_TIME -o "$exe_pluto_a"
-echo " gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_a.c utilities/polybench.c -DDIV0="$DIV0a" -DDIV1="$DIV1a" -DDIV2="$DIV2a" $FLAGSa $EXTRAa -DPOLYBENCH_TIME -o "$exe_pluto_a""
-#schedule TODO
-cat /dev/null > "$exe_pluto".out
-#on écrit à la suite du fichier result.csv
+#on copie les trois exécutables sur la machine pernias@trahrhe.icube.unistra.fr
 
-#On écrit le nom du fichier 
-echo "#$r_basename" >> result.csv
+mot_de_passe_ssh=""
+sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_static" pernias@trahrhe.icube.unistra.fr:eqCharge/polybench/tmp
+sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_a" pernias@trahrhe.icube.unistra.fr:eqCharge/polybench/tmp
+sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_dynamic" pernias@trahrhe.icube.unistra.fr:eqCharge/polybench/tmp
+#on exécute le script execution.sh sur la machine pernias@trahrhe
+sshpass -p "$mot_de_passe_ssh" ssh pernias@trahrhe.icube.unistra.fr "export OMP_PROC_BIND=true && export OMP_NUM_THREADS=64 && cd eqCharge/polybench && ./execution.sh $file"
+# cat /dev/null > "$exe_pluto".out
+# #on écrit à la suite du fichier result.csv
 
-echo "##TILE static " >> result.csv
-$exe_pluto_static >> result.csv
-echo "" >> result.csv
+# #On écrit le nom du fichier 
+# echo "#$r_basename" >> result.csv
 
-echo "##TILE dynamic " >> result.csv
-$exe_pluto_dynamic >> result.csv
-echo "" >> result.csv
-echo "##ALGEBRAIC TILE " >> result.csv
-$exe_pluto_a >> result.csv
-#on saute 2 lignes
-echo "" >> result.csv
-echo "" >> result.csv
+# echo "##TILE static " >> result.csv
+# $exe_pluto_static >> result.csv
+# echo "" >> result.csv
+
+# echo "##TILE dynamic " >> result.csv
+# $exe_pluto_dynamic >> result.csv
+# echo "" >> result.csv
+# echo "##ALGEBRAIC TILE " >> result.csv
+# $exe_pluto_a >> result.csv
+# #on saute 2 lignes
+# echo "" >> result.csv
+# echo "" >> result.csv
 
