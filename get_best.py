@@ -24,7 +24,8 @@ filename = sys.argv[1]
 exec_type = sys.argv[2]
 
 #On cherche dans tous les fichiers csv qui commence par le nom du fichier
-files=glob.glob("../mark5/processed_data/"+filename+"*.csv")
+best_div1, best_div2, best_div3, best_flag, best_extra = None, None, None, None, None
+files=glob.glob("../mark5/processed_data/"+filename+"_*.csv")
 for file in files:
     with open(file, 'r') as file:
         csv_reader = csv.DictReader(file)
@@ -33,14 +34,17 @@ for file in files:
     # Récupérer les meilleurs DIV1, DIV2, DIV3 et FLAGS
     best_div1, best_div2, best_div3, best_flag, best_extra = get_best_execution_time(data,exec_type)
 
-    # Afficher les résultats
-    print(best_div1)
-    print(best_div2)
-    print(best_div3)
-    print(best_flag)
-    print(best_extra)
 
 
 
 
-    
+
+# Afficher les résultats
+# print("DIV1 = ",best_div1)
+# print("DIV2 = ",best_div2)
+# print("DIV3 = ",best_div3)
+print(best_div1)
+print(best_div2)
+print(best_div3)
+print(best_flag)
+print(best_extra)   

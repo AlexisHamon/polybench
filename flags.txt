@@ -1,0 +1,221 @@
+gemm
+STATIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  2
+DIV3 =  128
+
+
+gemver
+STATIC
+DIV1 =  128
+DIV2 =  128
+DIV3 =  64
+
+DYNAMIC
+DIV1 =  128
+DIV2 =  128
+DIV3 =  128
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  2
+DIV3 =  2
+
+
+gesummv
+STATIC
+DIV1 =  96
+DIV2 =  32
+DIV3 =  32
+
+DYNAMIC
+DIV1 =  96
+DIV2 =  32
+DIV3 =  64
+
+ALGEBRAIC
+DIV1 =  96
+DIV2 =  2
+DIV3 =  8
+
+
+syr2k
+STATIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  1
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  1
+
+ALGEBRAIC
+DIV1 =  128
+DIV2 =  16
+DIV3 =  64
+
+
+syrk
+STATIC
+DIV1 =  64
+DIV2 =  64
+DIV3 =  1
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  1
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  16
+DIV3 =  128
+
+
+trmm
+STATIC
+DIV1 =  96
+DIV2 =  32
+DIV3 =  4
+
+DYNAMIC
+DIV1 =  96
+DIV2 =  64
+DIV3 =  16
+
+ALGEBRAIC
+DIV1 =  128
+DIV2 =  8
+DIV3 =  128
+
+
+2mm
+STATIC
+DIV1 =  64
+DIV2 =  64
+DIV3 =  32
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  64
+DIV3 =  32
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  16
+DIV3 =  128
+
+
+3mm
+STATIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  1
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  1
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  64
+
+
+atax
+STATIC
+DIV1 =  64
+DIV2 =  1
+DIV3 =  2
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  2
+DIV3 =  64
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  2
+DIV3 =  8
+
+
+bicg
+STATIC
+DIV1 =  96
+DIV2 =  64
+DIV3 =  2
+
+DYNAMIC
+DIV1 =  96
+DIV2 =  8
+DIV3 =  64
+
+ALGEBRAIC
+DIV1 =  96
+DIV2 =  2
+DIV3 =  32
+
+
+mvt
+STATIC
+DIV1 =  128
+DIV2 =  64
+DIV3 =  8
+
+DYNAMIC
+DIV1 =  128
+DIV2 =  32
+DIV3 =  8
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  32
+DIV3 =  64
+
+
+correlation
+STATIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  8
+DIV3 =  64
+
+
+covariance
+STATIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+DYNAMIC
+DIV1 =  64
+DIV2 =  128
+DIV3 =  8
+
+ALGEBRAIC
+DIV1 =  64
+DIV2 =  8
+DIV3 =  64
+
+

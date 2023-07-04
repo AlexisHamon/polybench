@@ -23,7 +23,7 @@ double _time_threads[MAX_THREADS];\n\
 \n'
 
 InitVar='\_ThreadCount = atoi(getenv("OMP_NUM_THREADS"));\
-  for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; /* Mathis : initialisation du tableau des mesures à 0 */\
+  for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; /*initialisation du tableau des mesures à 0 */\
   /* temps d'\''exécution totale */\
   tall_start=rtclock();\n'
 
