@@ -19,5 +19,19 @@ datamining/covariance/covariance.c"
 
 for file in $TESTS; do
 	printf "%s\n" "$file"
-	./unit_charge "$file" --silent --nounrolljam 
+    #on garde seuelement le nom du fichier sans le .c
+    file=$(echo $file | cut -d'.' -f1 |rev | cut -d'/' -f1 | rev)
+    echo "$file" >> flags.txt
+    echo "STATIC" >> flags.txt
+    python3 get_best.py $file static >> flags.txt
+    echo "" >> flags.txt
+
+    echo "DYNAMIC" >> flags.txt
+    python3 get_best.py $file dynamic >> flags.txt
+    echo "" >> flags.txt
+
+    echo "ALGEBRAIC" >> flags.txt
+    python3 get_best.py $file algebraic >> flags.txt
+    echo "" >> flags.txt
+    echo "" >> flags.txt
 done

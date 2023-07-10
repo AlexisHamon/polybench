@@ -4,5 +4,6 @@ unit_charge
 all_unit_tests
 all_unit_charges
 tmp
+all-charges
 stat.aux
 stat.log

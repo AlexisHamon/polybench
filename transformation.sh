@@ -4,23 +4,29 @@
 fichier_c=$2
 
 # Les lignes de codes à ajouter
-Include='#include <stdio.h>\n\
-#include <sys/time.h>\n\
+Include='\
+#include <stdio.h>\
+#include <sys/time.h>\
 #include "rtclock.h"\
-#include <stdlib.h>\n'
+#include <stdlib.h>\
+#define MAX_THREADS 256\n'
 
-InitVar='\
+DeclarVar='\
 /* Initialization temporal variables */\
 double t_start;\n\
+double tall_start;\
 /* récupération du nombre de threads, avant la section omp parallel.\
  Avant la première exécution du programme, il faut renseigner la variable\
  d'\''environnement : export OMP_NUM_THREADS=X, où X est le nombre de threads */\
-const int _ThreadCount = atoi(getenv("OMP_NUM_THREADS")); \
-double _time_threads[_ThreadCount];\n\
-/* initialisation du tableau des mesures à 0, afin de pouvoir cumuler */\
-for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; \
-/* temps d'\''exécution totale */\
-double tall_start=rtclock();\n'
+int _ThreadCount; \
+double _time_threads[MAX_THREADS];\n\
+\n'
+
+InitVar='\_ThreadCount = atoi(getenv("OMP_NUM_THREADS"));\
+  for (int _i=0; _i<_ThreadCount; _i++) _time_threads[_i]=0.0; /*initialisation du tableau des mesures à 0 */\
+  /* temps d'\''exécution totale */\
+  tall_start=rtclock();\n'
+
 
 premierappelclock='\
 /* Premier appel à la fonction rtclock */\
@@ -40,8 +46,7 @@ tall_start=rtclock()-tall_start; \
 for(int i=0;i<_ThreadCount;i++){\
 printf("%0.6lf \\n", _time_threads[i]);\
 }\
- printf("##Execution time \\n");\
- printf("%0.6lf \\n", tall_start);\n'
+ printf("##Execution time \\n");\n'
 
 affichage2='/* Il n'\''y a plus de boucles paralleles, on peut afficher et traiter les résultats du tableau _time_threads */\
  /* Mathis : exemple d'\''affichage (à revoir) : */ \
@@ -117,14 +122,36 @@ done
 
 # Vérification si le fichier C existe
 if [ -f "$fichier_c" ]; then
-  # On ajoute l'include après register int lbv, ubv;
-    sed -i '/^#include <omp.h>/a\
+  # On ajoute les includes et define en premiere ligne;
+  sed -i '1i\
 '"$Include" "$fichier_c"
 
-  # On ajoute l'initialisation des variables temporelles 
-  # après register int lbv, ubv;
-    sed -i '/register int lbv, ubv;/a\
+
+  # On ajoute la déclaration des variables temporelles 
+  # après le define;
+    sed -i '/#define MAX_THREADS 256/a\
+'"$DeclarVar" "$fichier_c"
+
+
+  #On initialise les variables temporelles après int main
+  start_read=false
+  num_line=0
+    while read -r line
+    do
+      num_line=$((num_line+1))
+      if [[ $line == *"int main"* ]]; then
+        start_read=true
+      fi
+      if [[ $start_read = true ]]; then
+        if [[ $line == *"{"* ]]; then
+          num_line=$((num_line+1))
+          sed -i "$num_line"'i\
 '"$InitVar" "$fichier_c"
+          break
+        fi
+      fi
+    done < "$fichier_c"
+
 
 
 
@@ -147,7 +174,7 @@ if [ -f "$fichier_c" ]; then
   
   #Si l'option -s est activée on ajoute schedule(static) après #pragma omp for
   if [[ $static = true ]]; then
-    sed -i 's/#pragma omp for nowait/#pragma omp for schedule(static) nowait/g' "$fichier_c"
+    sed -i 's/#pragma omp for /#pragma omp for nowait /g' "$fichier_c"
   fi
     
   #On collecte les temps à la fin de la section parallèle 
