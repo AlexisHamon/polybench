@@ -23,4 +23,4 @@ all_unit_charges: all_unit_charges.sh
 
 clean:
 	rm -f time_benchmark unit_test all_unit_tests
-	rm tmp/*
+	rm -f tmp/*
