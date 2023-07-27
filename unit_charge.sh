@@ -82,17 +82,18 @@ cp "rtclock.h" $dir
 #on cree le dossier all-charges s'il n'existe pas
 mkdir -p all-charges
 #on copie les trois fichiers dans all-charges
-cp "$dir"bench_pluto_dynamic.c all-charges/"$basename"_dynamic.c
-cp "$dir"bench_pluto_static.c all-charges/"$basename"_static.c
-cp "$dir"bench_pluto_a.c all-charges/"$basename"_algebraic.c
+# cp "$dir"bench_pluto_dynamic.c all-charges/"$basename"_dynamic.c
+# cp "$dir"bench_pluto_static.c all-charges/"$basename"_static.c
+# cp "$dir"bench_pluto_a.c all-charges/"$basename"_algebraic.c
 
-export DIV0="$DIV0"
-export DIV1="$DIV1"
-export DIV2="$DIV2"
-#on modifie le fichier tiles.sizes
+
+echo "DIV0 = $DIV0dynamic"
+echo "DIV1 = $DIV1a"
+echo "DIV2 = $DIV2a"
+echo "FLAGS = $FLAGSa"
+echo "EXTRA = $EXTRAa"
 
 gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_dynamic.c utilities/polybench.c -DDIV0="$DIV0dynamic" -DDIV1="$DIV1dynamic" -DDIV2="$DIV2dynamic" $FLAGSdynamic $EXTRAdynamic -DPOLYBENCH_TIME -march=native -O3 -o "$exe_pluto_dynamic"
-
 
 gcc -O3 -lmpc -I utilities -fopenmp -I "$dirname" "$dir"bench_pluto_static.c utilities/polybench.c -DDIV0="$DIV0static" -DDIV1="$DIV1static" -DDIV2="$DIV2static" $FLAGSstatic $EXTRAstatic -DPOLYBENCH_TIME -march=native -O3 -o "$exe_pluto_static"
 
@@ -104,7 +105,7 @@ sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_static" pernias@trahrhe.icube.uni
 sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_a" pernias@trahrhe.icube.unistra.fr:eqCharge/polybench/tmp
 sshpass -p "$mot_de_passe_ssh" scp "$exe_pluto_dynamic" pernias@trahrhe.icube.unistra.fr:eqCharge/polybench/tmp
 #on exécute le script execution.sh sur la machine pernias@trahrhe
-sshpass -p "$mot_de_passe_ssh" ssh pernias@trahrhe.icube.unistra.fr "export OMP_PROC_BIND=true && export OMP_NUM_THREADS=64 && cd eqCharge/polybench && ./execution.sh $file"
+sshpass -p "$mot_de_passe_ssh" ssh pernias@trahrhe.icube.unistra.fr "export DATASET_SIZE="DOOM_DATASET" && export OMP_PROC_BIND=true && export OMP_NUM_THREADS=64 && cd eqCharge/polybench && ./execution.sh $file"
 
 
 

@@ -1,221 +1,299 @@
 gemm
 STATIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+128
+128
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+128
+128
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  2
-DIV3 =  128
+64
+32
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 gemver
 STATIC
-DIV1 =  128
-DIV2 =  128
-DIV3 =  64
+128
+1
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  128
-DIV2 =  128
-DIV3 =  128
+128
+1
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  2
-DIV3 =  2
+16
+2
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 gesummv
 STATIC
-DIV1 =  96
-DIV2 =  32
-DIV3 =  32
+128
+128
+4
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  96
-DIV2 =  32
-DIV3 =  64
+128
+128
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  96
-DIV2 =  2
-DIV3 =  8
+16
+2
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 syr2k
 STATIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  1
+128
+128
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  1
+128
+128
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  128
-DIV2 =  16
-DIV3 =  64
+64
+64
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 syrk
 STATIC
-DIV1 =  64
-DIV2 =  64
-DIV3 =  1
+128
+32
+1
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  1
+128
+32
+1
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  16
-DIV3 =  128
+128
+32
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 trmm
 STATIC
-DIV1 =  96
-DIV2 =  32
-DIV3 =  4
+96
+128
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  96
-DIV2 =  64
-DIV3 =  16
+96
+128
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  128
-DIV2 =  8
-DIV3 =  128
+128
+8
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 2mm
 STATIC
-DIV1 =  64
-DIV2 =  64
-DIV3 =  32
+128
+128
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  64
-DIV3 =  32
+128
+128
+64
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  16
-DIV3 =  128
+64
+16
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 3mm
 STATIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  1
+128
+128
+1
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  1
+128
+128
+1
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  64
+64
+32
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 atax
 STATIC
-DIV1 =  64
-DIV2 =  1
-DIV3 =  2
+128
+64
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  2
-DIV3 =  64
+128
+128
+64
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  2
-DIV3 =  8
+16
+2
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 bicg
 STATIC
-DIV1 =  96
-DIV2 =  64
-DIV3 =  2
+128
+128
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  96
-DIV2 =  8
-DIV3 =  64
+128
+128
+1
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  96
-DIV2 =  2
-DIV3 =  32
+16
+2
+16
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 mvt
 STATIC
-DIV1 =  128
-DIV2 =  64
-DIV3 =  8
+128
+64
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  128
-DIV2 =  32
-DIV3 =  8
+128
+64
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  32
-DIV3 =  64
+32
+128
+32
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 correlation
 STATIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+96
+128
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+96
+128
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  8
-DIV3 =  64
+64
+4
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 
 covariance
 STATIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+96
+128
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 DYNAMIC
-DIV1 =  64
-DIV2 =  128
-DIV3 =  8
+96
+128
+8
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 ALGEBRAIC
-DIV1 =  64
-DIV2 =  8
-DIV3 =  64
+64
+8
+128
+-fopenmp -O3 -march=native
+ -DDOOM_DATASET -lm -DPOLYBENCH_TIME
 
 

@@ -439,3 +439,6 @@ end_tex
 
 # Génération du fichier PDF
 texi2dvi -I ./doc --pdf stat.tex -o stat.pdf --quiet
+
+#Affichage du fichier PDF
+xdg-open stat.pdf
