@@ -10,7 +10,7 @@ INPUT                  = src/ header/ tests/ ./
 INPUT_ENCODING         = UTF-8
 RECURSIVE              = YES
 
-INPUT += README.md
+INPUT += READ.md
 USE_MDFILE_AS_MAINPAGE = READ.md
 
 EXTRACT_ALL = YES

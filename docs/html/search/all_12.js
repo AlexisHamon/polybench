@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readme_2emd_375',['README.md',['../README_8md.html',1,'']]],
+  ['read_2emd_375',['READ.md',['../READ_8md.html',1,'']]],
   ['real_5fptr_376',['real_ptr',['../structpolybench__data__ptrs.html#a654c3742c1a18ee7151ef6074a439d1e',1,'polybench_data_ptrs']]],
   ['result_2ecsv_377',['result.csv',['../result_8csv.html',1,'']]],
   ['resulttest_2ecsv_378',['resulttest.csv',['../resulttest_8csv.html',1,'']]],
