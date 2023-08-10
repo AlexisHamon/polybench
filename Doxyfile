@@ -11,7 +11,7 @@ INPUT_ENCODING         = UTF-8
 RECURSIVE              = YES
 
 INPUT += README.md
-USE_MDFILE_AS_MAINPAGE = README.md
+USE_MDFILE_AS_MAINPAGE = READ.md
 
 EXTRACT_ALL = YES
 # Show private members of class
