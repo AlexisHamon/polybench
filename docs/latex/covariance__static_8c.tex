@@ -1,0 +1,413 @@
+\hypertarget{covariance__static_8c}{}\doxysection{all-\/charges/covariance\+\_\+static.c File Reference}
+\label{covariance__static_8c}\index{all-\/charges/covariance\_static.c@{all-\/charges/covariance\_static.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtclock.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$omp.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}covariance.\+h\char`\"{}}\newline
+Include dependency graph for covariance\+\_\+static.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{covariance__static_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{covariance__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}~256
+\item 
+\#define \mbox{\hyperlink{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(n,  d)~(((n)$<$0) ? -\/((-\/(n))/(d)) \+: ((n)+(d)-\/1)/(d))
+\item 
+\#define \mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(n,  d)~(((n)$<$0) ? -\/((-\/(n)+(d)-\/1)/(d)) \+: (n)/(d))
+\item 
+\#define \mbox{\hyperlink{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(x,  y)~((x) $>$ (y)? (x) \+: (y))
+\item 
+\#define \mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(x,  y)~((x) $<$ (y)? (x) \+: (y))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{covariance__static_8c_acaace34572d6dc7f8731421331792322}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m))
+\item 
+static void \mbox{\hyperlink{covariance__static_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\+\_\+array}} (int m, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m))
+\item 
+static void \mbox{\hyperlink{covariance__static_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\+\_\+covariance}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(mean, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m))
+\item 
+int \mbox{\hyperlink{covariance__static_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\+\_\+start}}
+\item 
+int \mbox{\hyperlink{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\+\_\+\+Thread\+Count}}
+\item 
+double \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\+\_\+time\+\_\+threads}} \mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}\label{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}} 
+\index{covariance\_static.c@{covariance\_static.c}!ceild@{ceild}}
+\index{ceild@{ceild}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{ceild}{ceild}}
+{\footnotesize\ttfamily \#define ceild(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n)$<$0) ? -\/((-\/(n))/(d)) \+: ((n)+(d)-\/1)/(d))}
+
+\mbox{\Hypertarget{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}\label{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}} 
+\index{covariance\_static.c@{covariance\_static.c}!floord@{floord}}
+\index{floord@{floord}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{floord}{floord}}
+{\footnotesize\ttfamily \#define floord(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n)$<$0) ? -\/((-\/(n)+(d)-\/1)/(d)) \+: (n)/(d))}
+
+\mbox{\Hypertarget{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}\label{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}} 
+\index{covariance\_static.c@{covariance\_static.c}!max@{max}}
+\index{max@{max}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $>$ (y)? (x) \+: (y))}
+
+\mbox{\Hypertarget{covariance__static_8c_a8b5173357adb02a86c027316e0acdfa0}\label{covariance__static_8c_a8b5173357adb02a86c027316e0acdfa0}} 
+\index{covariance\_static.c@{covariance\_static.c}!MAX\_THREADS@{MAX\_THREADS}}
+\index{MAX\_THREADS@{MAX\_THREADS}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THREADS}{MAX\_THREADS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS~256}
+
+\mbox{\Hypertarget{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}\label{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{covariance\_static.c@{covariance\_static.c}!min@{min}}
+\index{min@{min}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $<$ (y)? (x) \+: (y))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{covariance__static_8c_acaace34572d6dc7f8731421331792322}\label{covariance__static_8c_acaace34572d6dc7f8731421331792322}} 
+\index{covariance\_static.c@{covariance\_static.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60   *float\_n = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}; i++)}
+\DoxyCodeLine{63     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}; j++)}
+\DoxyCodeLine{64       \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] = ((\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}) i*j) / \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__static_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}\label{covariance__static_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}} 
+\index{covariance\_static.c@{covariance\_static.c}!kernel\_covariance@{kernel\_covariance}}
+\index{kernel\_covariance@{kernel\_covariance}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_covariance()}{kernel\_covariance()}}
+{\footnotesize\ttfamily static void kernel\+\_\+covariance (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dmean, M, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97 \{}
+\DoxyCodeLine{98   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{keywordtype}{int} t1, t2, t3, t4, t5, t6, t7, t8;}
+\DoxyCodeLine{101  \textcolor{keywordtype}{int} lb, ub, lbp, ubp, lb2, ub2;}
+\DoxyCodeLine{102  \textcolor{keyword}{register} \textcolor{keywordtype}{int} lbv, ubv;}
+\DoxyCodeLine{103 \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} >= 1) \{}
+\DoxyCodeLine{104   lbp=0;}
+\DoxyCodeLine{105   ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{106 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{107 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{108 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{110 \{}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{113   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{114     \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{115       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t4++) \{}
+\DoxyCodeLine{116         lbv=\mbox{\hyperlink{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t4);}
+\DoxyCodeLine{117         ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{119         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{120           cov[t4][t5] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);;}
+\DoxyCodeLine{121         \}}
+\DoxyCodeLine{122       \}}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124   \}}
+\DoxyCodeLine{125 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{126 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{127 \}}
+\DoxyCodeLine{128   lbp=0;}
+\DoxyCodeLine{129   ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{130 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{131 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{132 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{137   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{138     lbv=96*t2;}
+\DoxyCodeLine{139     ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{141     \textcolor{keywordflow}{for} (t3=lbv;t3<=ubv;t3++) \{}
+\DoxyCodeLine{142       mean[t3] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);;}
+\DoxyCodeLine{143     \}}
+\DoxyCodeLine{144   \}}
+\DoxyCodeLine{145 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{146 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{147 \}}
+\DoxyCodeLine{148   \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} >= 1) \{}
+\DoxyCodeLine{149     lbp=0;}
+\DoxyCodeLine{150     ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{151 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{152 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{153 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{155 \{}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{158     \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{159       \textcolor{keywordflow}{for} (t3=0;t3<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,128);t3++) \{}
+\DoxyCodeLine{160         \textcolor{keywordflow}{for} (t4=128*t3;t4<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,128*t3+127);t4++) \{}
+\DoxyCodeLine{161           lbv=96*t2;}
+\DoxyCodeLine{162           ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{164           \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{165             mean[t5] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5];;}
+\DoxyCodeLine{166           \}}
+\DoxyCodeLine{167         \}}
+\DoxyCodeLine{168       \}}
+\DoxyCodeLine{169     \}}
+\DoxyCodeLine{170 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{171 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{172 \}}
+\DoxyCodeLine{173   \}}
+\DoxyCodeLine{174   lbp=0;}
+\DoxyCodeLine{175   ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{176 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{177 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{178 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{180 \{}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{183   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{184     lbv=96*t2;}
+\DoxyCodeLine{185     ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{187     \textcolor{keywordflow}{for} (t3=lbv;t3<=ubv;t3++) \{}
+\DoxyCodeLine{188       mean[t3] /= float\_n;;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190   \}}
+\DoxyCodeLine{191 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{192 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{193 \}}
+\DoxyCodeLine{194   lbp=0;}
+\DoxyCodeLine{195   ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,96);}
+\DoxyCodeLine{196 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{197 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{198 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{200 \{}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{203   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{204     \textcolor{keywordflow}{for} (t3=0;t3<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{205       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,96*t2+95);t4++) \{}
+\DoxyCodeLine{206         lbv=128*t3;}
+\DoxyCodeLine{207         ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{209         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{210           \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5] -\/= mean[t5];;}
+\DoxyCodeLine{211         \}}
+\DoxyCodeLine{212       \}}
+\DoxyCodeLine{213     \}}
+\DoxyCodeLine{214   \}}
+\DoxyCodeLine{215 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{216 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{217 \}}
+\DoxyCodeLine{218   \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} >= 1) \{}
+\DoxyCodeLine{219     lbp=0;}
+\DoxyCodeLine{220     ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{221 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{222 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{223 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{225 \{}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{228     \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{229       \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{230         \textcolor{keywordflow}{for} (t4=0;t4<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,8);t4++) \{}
+\DoxyCodeLine{231           \textcolor{keywordflow}{for} (t5=96*t2;t5<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t5++) \{}
+\DoxyCodeLine{232             \textcolor{keywordflow}{for} (t6=8*t4;t6<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,8*t4+7);t6++) \{}
+\DoxyCodeLine{233               lbv=\mbox{\hyperlink{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t5);}
+\DoxyCodeLine{234               ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{236               \textcolor{keywordflow}{for} (t7=lbv;t7<=ubv;t7++) \{}
+\DoxyCodeLine{237                 cov[t5][t7] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t5] * \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t7];;}
+\DoxyCodeLine{238               \}}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240           \}}
+\DoxyCodeLine{241         \}}
+\DoxyCodeLine{242       \}}
+\DoxyCodeLine{243     \}}
+\DoxyCodeLine{244 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{245 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{246 \}}
+\DoxyCodeLine{247   \}}
+\DoxyCodeLine{248   lbp=0;}
+\DoxyCodeLine{249   ubp=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{250 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{251 \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{252 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{254 \{}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#pragma omp for nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{257   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{258     \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{covariance__static_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{covariance__static_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{259       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t4++) \{}
+\DoxyCodeLine{260         lbv=\mbox{\hyperlink{covariance__static_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t4);}
+\DoxyCodeLine{261         ubv=\mbox{\hyperlink{covariance__static_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{263         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{264           cov[t4][t5] /= (float\_n -\/ \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0));;}
+\DoxyCodeLine{265           cov[t5][t4] = cov[t4][t5];;}
+\DoxyCodeLine{266         \}}
+\DoxyCodeLine{267       \}}
+\DoxyCodeLine{268     \}}
+\DoxyCodeLine{269   \}}
+\DoxyCodeLine{270 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{271 \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{272 \}}
+\DoxyCodeLine{273 \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{comment}{/* Affichage des temps d'exécution */}}
+\DoxyCodeLine{276 \mbox{\hyperlink{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}()-\/\mbox{\hyperlink{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}; }
+\DoxyCodeLine{277 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}};i++)\{}
+\DoxyCodeLine{278 printf(\textcolor{stringliteral}{"\%0.6lf \(\backslash\)n"}, \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[i]);}
+\DoxyCodeLine{279 \}}
+\DoxyCodeLine{280  printf(\textcolor{stringliteral}{"\#\#Execution time \(\backslash\)n"});}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__static_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{covariance__static_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{covariance\_static.c@{covariance\_static.c}!main@{main}}
+\index{main@{main}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{286 \{}
+\DoxyCodeLine{287 \mbox{\hyperlink{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}} = atoi(getenv(\textcolor{stringliteral}{"OMP\_NUM\_THREADS"}));}
+\DoxyCodeLine{288   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} \_i=0; \_i<\mbox{\hyperlink{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}}; \_i++) \mbox{\hyperlink{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[\_i]=0.0; \textcolor{comment}{/*initialisation du tableau des mesures à 0 */}}
+\DoxyCodeLine{289   \textcolor{comment}{/* temps d'exécution totale */}}
+\DoxyCodeLine{290   \mbox{\hyperlink{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{293   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{294   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{297   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} float\_n;}
+\DoxyCodeLine{298   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}},\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},n,m);}
+\DoxyCodeLine{299   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(cov,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m,m);}
+\DoxyCodeLine{300   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(mean,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m);}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{304   \mbox{\hyperlink{covariance__static_8c_acaace34572d6dc7f8731421331792322}{init\_array}} (m, n, \&float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}));}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{307   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{310   \mbox{\hyperlink{covariance__static_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\_covariance}} (m, n, float\_n,}
+\DoxyCodeLine{311              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}),}
+\DoxyCodeLine{312              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov),}
+\DoxyCodeLine{313              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(mean));}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{316   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{317   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{320 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{321   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{covariance__static_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\_array}}(m, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov)));}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{324   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}});}
+\DoxyCodeLine{325   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(cov);}
+\DoxyCodeLine{326   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(mean);}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{329 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__static_8c_a5871173ca5b1dc97ddb81212bdd2e09e}\label{covariance__static_8c_a5871173ca5b1dc97ddb81212bdd2e09e}} 
+\index{covariance\_static.c@{covariance\_static.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{78   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{79   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{80     \textcolor{keywordflow}{for} (j = 0; j < m; j++) \{}
+\DoxyCodeLine{81       \textcolor{keywordflow}{if} ((i * m + j) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{82       fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, cov[i][j]);}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{85   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}\label{covariance__static_8c_a79cfc1c26fb53e77b30da28d44b8923e}} 
+\index{covariance\_static.c@{covariance\_static.c}!\_ThreadCount@{\_ThreadCount}}
+\index{\_ThreadCount@{\_ThreadCount}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{\_ThreadCount}{\_ThreadCount}}
+{\footnotesize\ttfamily int \+\_\+\+Thread\+Count}
+
+\mbox{\Hypertarget{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}\label{covariance__static_8c_a2607998c9a8b7aa2f430820e3d39e28c}} 
+\index{covariance\_static.c@{covariance\_static.c}!\_time\_threads@{\_time\_threads}}
+\index{\_time\_threads@{\_time\_threads}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{\_time\_threads}{\_time\_threads}}
+{\footnotesize\ttfamily double \+\_\+time\+\_\+threads\mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}}
+
+\mbox{\Hypertarget{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}\label{covariance__static_8c_a1b01a4354147da92a548ea1a5f96d592}} 
+\index{covariance\_static.c@{covariance\_static.c}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily double t\+\_\+start}
+
+\mbox{\Hypertarget{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}\label{covariance__static_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}} 
+\index{covariance\_static.c@{covariance\_static.c}!tall\_start@{tall\_start}}
+\index{tall\_start@{tall\_start}!covariance\_static.c@{covariance\_static.c}}
+\doxysubsubsection{\texorpdfstring{tall\_start}{tall\_start}}
+{\footnotesize\ttfamily double tall\+\_\+start}
+

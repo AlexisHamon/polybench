@@ -1,0 +1,411 @@
+\hypertarget{bench__pluto__dynamic_8c}{}\doxysection{tmp/bench\+\_\+pluto\+\_\+dynamic.c File Reference}
+\label{bench__pluto__dynamic_8c}\index{tmp/bench\_pluto\_dynamic.c@{tmp/bench\_pluto\_dynamic.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtclock.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$omp.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}covariance.\+h\char`\"{}}\newline
+Include dependency graph for bench\+\_\+pluto\+\_\+dynamic.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bench__pluto__dynamic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bench__pluto__dynamic_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}~256
+\item 
+\#define \mbox{\hyperlink{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(n,  d)~(((n)$<$0) ? -\/((-\/(n))/(d)) \+: ((n)+(d)-\/1)/(d))
+\item 
+\#define \mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(n,  d)~(((n)$<$0) ? -\/((-\/(n)+(d)-\/1)/(d)) \+: (n)/(d))
+\item 
+\#define \mbox{\hyperlink{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(x,  y)~((x) $>$ (y)? (x) \+: (y))
+\item 
+\#define \mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(x,  y)~((x) $<$ (y)? (x) \+: (y))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{bench__pluto__dynamic_8c_acaace34572d6dc7f8731421331792322}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m))
+\item 
+static void \mbox{\hyperlink{bench__pluto__dynamic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\+\_\+array}} (int m, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m))
+\item 
+static void \mbox{\hyperlink{bench__pluto__dynamic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\+\_\+covariance}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(mean, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m))
+\item 
+int \mbox{\hyperlink{bench__pluto__dynamic_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\+\_\+start}}
+\item 
+int \mbox{\hyperlink{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\+\_\+\+Thread\+Count}}
+\item 
+double \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\+\_\+time\+\_\+threads}} \mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}\label{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!ceild@{ceild}}
+\index{ceild@{ceild}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{ceild}{ceild}}
+{\footnotesize\ttfamily \#define ceild(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n)$<$0) ? -\/((-\/(n))/(d)) \+: ((n)+(d)-\/1)/(d))}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}\label{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!floord@{floord}}
+\index{floord@{floord}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{floord}{floord}}
+{\footnotesize\ttfamily \#define floord(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n)$<$0) ? -\/((-\/(n)+(d)-\/1)/(d)) \+: (n)/(d))}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}\label{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!max@{max}}
+\index{max@{max}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $>$ (y)? (x) \+: (y))}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a8b5173357adb02a86c027316e0acdfa0}\label{bench__pluto__dynamic_8c_a8b5173357adb02a86c027316e0acdfa0}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!MAX\_THREADS@{MAX\_THREADS}}
+\index{MAX\_THREADS@{MAX\_THREADS}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THREADS}{MAX\_THREADS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS~256}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}\label{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!min@{min}}
+\index{min@{min}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $<$ (y)? (x) \+: (y))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_acaace34572d6dc7f8731421331792322}\label{bench__pluto__dynamic_8c_acaace34572d6dc7f8731421331792322}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   *float\_n = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}; i++)}
+\DoxyCodeLine{60     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}; j++)}
+\DoxyCodeLine{61       \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] = ((\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})i * j) / \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}\label{bench__pluto__dynamic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!kernel\_covariance@{kernel\_covariance}}
+\index{kernel\_covariance@{kernel\_covariance}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_covariance()}{kernel\_covariance()}}
+{\footnotesize\ttfamily static void kernel\+\_\+covariance (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dmean, M, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90 \{}
+\DoxyCodeLine{91   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{keywordtype}{int} t1, t2, t3, t4, t5, t6, t7, t8;}
+\DoxyCodeLine{94  \textcolor{keywordtype}{int} lb, ub, lbp, ubp, lb2, ub2;}
+\DoxyCodeLine{95  \textcolor{keyword}{register} \textcolor{keywordtype}{int} lbv, ubv;}
+\DoxyCodeLine{96 \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} >= 1) \{}
+\DoxyCodeLine{97   lbp=0;}
+\DoxyCodeLine{98   ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{99 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{100 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{101 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{103 \{}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{106   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{107     \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{108       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t4++) \{}
+\DoxyCodeLine{109         lbv=\mbox{\hyperlink{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t4);}
+\DoxyCodeLine{110         ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{112         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{113           cov[t4][t5] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);;}
+\DoxyCodeLine{114         \}}
+\DoxyCodeLine{115       \}}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117   \}}
+\DoxyCodeLine{118 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{119 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{120 \}}
+\DoxyCodeLine{121   lbp=0;}
+\DoxyCodeLine{122   ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{123 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{124 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{125 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{127 \{}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{130   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{131     lbv=96*t2;}
+\DoxyCodeLine{132     ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{134     \textcolor{keywordflow}{for} (t3=lbv;t3<=ubv;t3++) \{}
+\DoxyCodeLine{135       mean[t3] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);;}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137   \}}
+\DoxyCodeLine{138 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{139 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{140 \}}
+\DoxyCodeLine{141   \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} >= 1) \{}
+\DoxyCodeLine{142     lbp=0;}
+\DoxyCodeLine{143     ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{144 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{145 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{146 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{148 \{}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{151     \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{152       \textcolor{keywordflow}{for} (t3=0;t3<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,128);t3++) \{}
+\DoxyCodeLine{153         \textcolor{keywordflow}{for} (t4=128*t3;t4<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,128*t3+127);t4++) \{}
+\DoxyCodeLine{154           lbv=96*t2;}
+\DoxyCodeLine{155           ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{157           \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{158             mean[t5] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5];;}
+\DoxyCodeLine{159           \}}
+\DoxyCodeLine{160         \}}
+\DoxyCodeLine{161       \}}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{164 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{165 \}}
+\DoxyCodeLine{166   \}}
+\DoxyCodeLine{167   lbp=0;}
+\DoxyCodeLine{168   ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{169 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{170 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{171 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{173 \{}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{176   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{177     lbv=96*t2;}
+\DoxyCodeLine{178     ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95);}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{180     \textcolor{keywordflow}{for} (t3=lbv;t3<=ubv;t3++) \{}
+\DoxyCodeLine{181       mean[t3] /= float\_n;;}
+\DoxyCodeLine{182     \}}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{185 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{186 \}}
+\DoxyCodeLine{187   lbp=0;}
+\DoxyCodeLine{188   ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,96);}
+\DoxyCodeLine{189 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{190 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{191 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{193 \{}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{196   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{197     \textcolor{keywordflow}{for} (t3=0;t3<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{198       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,96*t2+95);t4++) \{}
+\DoxyCodeLine{199         lbv=128*t3;}
+\DoxyCodeLine{200         ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{202         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{203           \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5] -\/= mean[t5];;}
+\DoxyCodeLine{204         \}}
+\DoxyCodeLine{205       \}}
+\DoxyCodeLine{206     \}}
+\DoxyCodeLine{207   \}}
+\DoxyCodeLine{208 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{209 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{210 \}}
+\DoxyCodeLine{211   \textcolor{keywordflow}{if} (\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} >= 1) \{}
+\DoxyCodeLine{212     lbp=0;}
+\DoxyCodeLine{213     ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{214 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{215 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{216 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{218 \{}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{221     \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{222       \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{223         \textcolor{keywordflow}{for} (t4=0;t4<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,8);t4++) \{}
+\DoxyCodeLine{224           \textcolor{keywordflow}{for} (t5=96*t2;t5<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t5++) \{}
+\DoxyCodeLine{225             \textcolor{keywordflow}{for} (t6=8*t4;t6<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1,8*t4+7);t6++) \{}
+\DoxyCodeLine{226               lbv=\mbox{\hyperlink{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t5);}
+\DoxyCodeLine{227               ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{229               \textcolor{keywordflow}{for} (t7=lbv;t7<=ubv;t7++) \{}
+\DoxyCodeLine{230                 cov[t5][t7] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t5] * \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t7];;}
+\DoxyCodeLine{231               \}}
+\DoxyCodeLine{232             \}}
+\DoxyCodeLine{233           \}}
+\DoxyCodeLine{234         \}}
+\DoxyCodeLine{235       \}}
+\DoxyCodeLine{236     \}}
+\DoxyCodeLine{237 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{238 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{239 \}}
+\DoxyCodeLine{240   \}}
+\DoxyCodeLine{241   lbp=0;}
+\DoxyCodeLine{242   ubp=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96);}
+\DoxyCodeLine{243 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{244 \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{245 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{247 \{}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#pragma omp for schedule(dynamic) nowait private(lbv,ubv,t3,t4,t5,t6,t7,t8)}}
+\DoxyCodeLine{250   \textcolor{keywordflow}{for} (t2=lbp;t2<=ubp;t2++) \{}
+\DoxyCodeLine{251     \textcolor{keywordflow}{for} (t3=\mbox{\hyperlink{bench__pluto__dynamic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(3*t2-\/3,4);t3<=\mbox{\hyperlink{bench__pluto__dynamic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128);t3++) \{}
+\DoxyCodeLine{252       \textcolor{keywordflow}{for} (t4=96*t2;t4<=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,96*t2+95),128*t3+127);t4++) \{}
+\DoxyCodeLine{253         lbv=\mbox{\hyperlink{bench__pluto__dynamic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(128*t3,t4);}
+\DoxyCodeLine{254         ubv=\mbox{\hyperlink{bench__pluto__dynamic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1,128*t3+127);}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{256         \textcolor{keywordflow}{for} (t5=lbv;t5<=ubv;t5++) \{}
+\DoxyCodeLine{257           cov[t4][t5] /= (float\_n -\/ \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0));;}
+\DoxyCodeLine{258           cov[t5][t4] = cov[t4][t5];;}
+\DoxyCodeLine{259         \}}
+\DoxyCodeLine{260       \}}
+\DoxyCodeLine{261     \}}
+\DoxyCodeLine{262   \}}
+\DoxyCodeLine{263 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{264 \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{265 \}}
+\DoxyCodeLine{266 \}}
+\DoxyCodeLine{267 \textcolor{comment}{/* Affichage des temps d'exécution */}}
+\DoxyCodeLine{268 \mbox{\hyperlink{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}()-\/\mbox{\hyperlink{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}; }
+\DoxyCodeLine{269 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}};i++)\{}
+\DoxyCodeLine{270 printf(\textcolor{stringliteral}{"\%0.6lf \(\backslash\)n"}, \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[i]);}
+\DoxyCodeLine{271 \}}
+\DoxyCodeLine{272  printf(\textcolor{stringliteral}{"\#\#Execution time \(\backslash\)n"});}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{bench__pluto__dynamic_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!main@{main}}
+\index{main@{main}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{277 \{}
+\DoxyCodeLine{278 \mbox{\hyperlink{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}} = atoi(getenv(\textcolor{stringliteral}{"OMP\_NUM\_THREADS"}));}
+\DoxyCodeLine{279   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} \_i=0; \_i<\mbox{\hyperlink{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}}; \_i++) \mbox{\hyperlink{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[\_i]=0.0; \textcolor{comment}{/*initialisation du tableau des mesures à 0 */}}
+\DoxyCodeLine{280   \textcolor{comment}{/* temps d'exécution totale */}}
+\DoxyCodeLine{281   \mbox{\hyperlink{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{284   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{285   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{288   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} float\_n;}
+\DoxyCodeLine{289   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m);}
+\DoxyCodeLine{290   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(cov, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m);}
+\DoxyCodeLine{291   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(mean, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m);}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{294   \mbox{\hyperlink{bench__pluto__dynamic_8c_acaace34572d6dc7f8731421331792322}{init\_array}}(m, n, \&float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}));}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{297   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{300   \mbox{\hyperlink{bench__pluto__dynamic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\_covariance}}(m, n, float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov),}
+\DoxyCodeLine{301                     \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(mean));}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{304   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{305   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{308 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{309   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{bench__pluto__dynamic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\_array}}(m, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov)));}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{312   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}});}
+\DoxyCodeLine{313   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(cov);}
+\DoxyCodeLine{314   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(mean);}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{317 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}\label{bench__pluto__dynamic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{68 \{}
+\DoxyCodeLine{69   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{72   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{73   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{74     \textcolor{keywordflow}{for} (j = 0; j < m; j++)}
+\DoxyCodeLine{75     \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{if} ((i * m + j) \% 20 == 0)}
+\DoxyCodeLine{77         fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{78       fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, cov[i][j]);}
+\DoxyCodeLine{79     \}}
+\DoxyCodeLine{80   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{81   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}\label{bench__pluto__dynamic_8c_a79cfc1c26fb53e77b30da28d44b8923e}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!\_ThreadCount@{\_ThreadCount}}
+\index{\_ThreadCount@{\_ThreadCount}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{\_ThreadCount}{\_ThreadCount}}
+{\footnotesize\ttfamily int \+\_\+\+Thread\+Count}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}\label{bench__pluto__dynamic_8c_a2607998c9a8b7aa2f430820e3d39e28c}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!\_time\_threads@{\_time\_threads}}
+\index{\_time\_threads@{\_time\_threads}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{\_time\_threads}{\_time\_threads}}
+{\footnotesize\ttfamily double \+\_\+time\+\_\+threads\mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}\label{bench__pluto__dynamic_8c_a1b01a4354147da92a548ea1a5f96d592}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily double t\+\_\+start}
+
+\mbox{\Hypertarget{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}\label{bench__pluto__dynamic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}} 
+\index{bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}!tall\_start@{tall\_start}}
+\index{tall\_start@{tall\_start}!bench\_pluto\_dynamic.c@{bench\_pluto\_dynamic.c}}
+\doxysubsubsection{\texorpdfstring{tall\_start}{tall\_start}}
+{\footnotesize\ttfamily double tall\+\_\+start}
+

@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['gemm_2ec_113',['gemm.c',['../gemm_8c.html',1,'']]],
+  ['gemm_2eh_114',['gemm.h',['../gemm_8h.html',1,'']]],
+  ['gemm_5falgebraic_2ec_115',['gemm_algebraic.c',['../gemm__algebraic_8c.html',1,'']]],
+  ['gemm_5fdynamic_2ec_116',['gemm_dynamic.c',['../gemm__dynamic_8c.html',1,'']]],
+  ['gemm_5fstatic_2ec_117',['gemm_static.c',['../gemm__static_8c.html',1,'']]],
+  ['gemver_2ec_118',['gemver.c',['../gemver_8c.html',1,'']]],
+  ['gemver_2eh_119',['gemver.h',['../gemver_8h.html',1,'']]],
+  ['gemver_5falgebraic_2ec_120',['gemver_algebraic.c',['../gemver__algebraic_8c.html',1,'']]],
+  ['gemver_5fdynamic_2ec_121',['gemver_dynamic.c',['../gemver__dynamic_8c.html',1,'']]],
+  ['gemver_5fstatic_2ec_122',['gemver_static.c',['../gemver__static_8c.html',1,'']]],
+  ['generate_5fflags_2esh_123',['generate_flags.sh',['../generate__flags_8sh.html',1,'']]],
+  ['generate_5fstat_2esh_124',['generate_stat.sh',['../generate__stat_8sh.html',1,'']]],
+  ['gesummv_2ec_125',['gesummv.c',['../gesummv_8c.html',1,'']]],
+  ['gesummv_2eh_126',['gesummv.h',['../gesummv_8h.html',1,'']]],
+  ['gesummv_5falgebraic_2ec_127',['gesummv_algebraic.c',['../gesummv__algebraic_8c.html',1,'']]],
+  ['gesummv_5fdynamic_2ec_128',['gesummv_dynamic.c',['../gesummv__dynamic_8c.html',1,'']]],
+  ['gesummv_5fstatic_2ec_129',['gesummv_static.c',['../gesummv__static_8c.html',1,'']]],
+  ['get_5fbest_130',['get_best',['../namespaceget__best.html',1,'']]],
+  ['get_5fbest_2epy_131',['get_best.py',['../get__best_8py.html',1,'']]],
+  ['get_5fbest_5fexecution_5ftime_132',['get_best_execution_time',['../namespaceget__best.html#a34105b169ba756241bc7acf883bbddb7',1,'get_best']]],
+  ['getint_133',['getint',['../Nussinov_8orig_8c.html#ac6562cbb01cc384c5d3bc6dcf4ef1260',1,'Nussinov.orig.c']]],
+  ['gramschmidt_2ec_134',['gramschmidt.c',['../gramschmidt_8c.html',1,'']]],
+  ['gramschmidt_2eh_135',['gramschmidt.h',['../gramschmidt_8h.html',1,'']]]
+];

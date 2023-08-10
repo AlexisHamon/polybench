@@ -21,6 +21,9 @@ unit_charge: unit_charge.sh
 all_unit_charges: all_unit_charges.sh
 	$(make-sh)
 
+doc:
+	doxygen Doxyfile
+
 clean:
 	rm -f time_benchmark unit_test all_unit_tests
 	rm -f tmp/*

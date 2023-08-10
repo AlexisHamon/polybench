@@ -1,0 +1,36 @@
+\hypertarget{tmp_2rtclock_8h}{}\doxysection{tmp/rtclock.h File Reference}
+\label{tmp_2rtclock_8h}\index{tmp/rtclock.h@{tmp/rtclock.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tmp_2rtclock_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{tmp_2rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tmp_2rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}\label{tmp_2rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}} 
+\index{rtclock.h@{rtclock.h}!rtclock@{rtclock}}
+\index{rtclock@{rtclock}!rtclock.h@{rtclock.h}}
+\doxysubsubsection{\texorpdfstring{rtclock()}{rtclock()}}
+{\footnotesize\ttfamily double rtclock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2 \{}
+\DoxyCodeLine{3     \textcolor{keyword}{struct }timezone Tzp;}
+\DoxyCodeLine{4     \textcolor{keyword}{struct }timeval Tp;}
+\DoxyCodeLine{5     \textcolor{keywordtype}{int} stat;}
+\DoxyCodeLine{6     stat = gettimeofday (\&Tp, \&Tzp);}
+\DoxyCodeLine{7     \textcolor{keywordflow}{if} (stat != 0) fprintf(stderr,\textcolor{stringliteral}{"Error return from gettimeofday: \%d"},stat);}
+\DoxyCodeLine{8     }
+\DoxyCodeLine{9     \textcolor{keywordflow}{return}(Tp.tv\_sec + Tp.tv\_usec*1.0e-\/6);}
+\DoxyCodeLine{10 \}}
+
+\end{DoxyCode}

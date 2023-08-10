@@ -1,0 +1,358 @@
+\hypertarget{polybench_8c}{}\doxysection{utilities/polybench.c File Reference}
+\label{polybench_8c}\index{utilities/polybench.c@{utilities/polybench.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/resource.\+h$>$}\newline
+{\ttfamily \#include $<$sched.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}polybench.\+h\char`\"{}}\newline
+Include dependency graph for polybench.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{polybench_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpolybench__data__ptrs}{polybench\+\_\+data\+\_\+ptrs}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{polybench_8c_a471314354ca6f0f172a02d2c35d07e99}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+O\+N\+I\+T\+OR}}~0
+\item 
+\#define \mbox{\hyperlink{polybench_8c_a97ff40ca9aaed6871b78abb03765e922}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+I\+Z\+E\+\_\+\+KB}}~32770
+\item 
+\#define \mbox{\hyperlink{polybench_8c_ac1085f067139cab520c582888c80ba5f}{N\+B\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+T\+A\+B\+L\+E\+\_\+\+E\+N\+T\+R\+I\+ES}}~512
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{polybench_8c_a0a10cc42e4d01d3c147fa4f8cb9b282c}{rtclock}} ()
+\item 
+void \mbox{\hyperlink{polybench_8c_aaccf02aa4ad737023573f74af90bdeee}{polybench\+\_\+flush\+\_\+cache}} ()
+\item 
+void \mbox{\hyperlink{polybench_8c_a7deaadfaf7e54c406c4924f5db918a5b}{polybench\+\_\+prepare\+\_\+instruments}} ()
+\item 
+void \mbox{\hyperlink{polybench_8c_af77730ca74b19d5d834f0622e9f1fd0f}{polybench\+\_\+timer\+\_\+start}} ()
+\item 
+void \mbox{\hyperlink{polybench_8c_ae9718caaefd32f4b27565fd34cd4b587}{polybench\+\_\+timer\+\_\+stop}} ()
+\item 
+void \mbox{\hyperlink{polybench_8c_a54f880790e8a697998fb75928557dcda}{polybench\+\_\+timer\+\_\+print}} ()
+\item 
+static void $\ast$ \mbox{\hyperlink{polybench_8c_a6da99e3ec19a8499565e9809aba7d0ac}{xmalloc}} (size\+\_\+t alloc\+\_\+sz)
+\item 
+void \mbox{\hyperlink{polybench_8c_a190e04d323c8412519ef8b7460e278d7}{polybench\+\_\+free\+\_\+data}} (void $\ast$ptr)
+\item 
+void $\ast$ \mbox{\hyperlink{polybench_8c_a8ae1017fa6cb9300a486567f7da93bf1}{polybench\+\_\+alloc\+\_\+data}} (unsigned long long int n, int elt\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{polybench_8c_a4b85105437695f5bb2cec7ff576d7cd8}{polybench\+\_\+papi\+\_\+counters\+\_\+threadid}} = \mbox{\hyperlink{polybench_8c_a471314354ca6f0f172a02d2c35d07e99}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+O\+N\+I\+T\+OR}}
+\item 
+double \mbox{\hyperlink{polybench_8c_ab81047a9abe935c7e6dbfb74055489c7}{polybench\+\_\+program\+\_\+total\+\_\+flops}} = 0
+\item 
+static struct \mbox{\hyperlink{structpolybench__data__ptrs}{polybench\+\_\+data\+\_\+ptrs}} $\ast$ \mbox{\hyperlink{polybench_8c_a7b9f9085385d736c57787a20dde52920}{\+\_\+polybench\+\_\+alloc\+\_\+table}} = N\+U\+LL
+\item 
+static size\+\_\+t \mbox{\hyperlink{polybench_8c_af6ec1965d7d117eb4591ad87f966e7b1}{polybench\+\_\+inter\+\_\+array\+\_\+padding\+\_\+sz}} = 0
+\item 
+double \mbox{\hyperlink{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}{polybench\+\_\+t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}{polybench\+\_\+t\+\_\+end}}
+\item 
+unsigned long long int \mbox{\hyperlink{polybench_8c_ad7022d8424b92e7449d2e10d4481ffe0}{polybench\+\_\+c\+\_\+start}}
+\item 
+unsigned long long int \mbox{\hyperlink{polybench_8c_a1d446ede6cda638375d43cf743c43c12}{polybench\+\_\+c\+\_\+end}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{polybench_8c_ac1085f067139cab520c582888c80ba5f}\label{polybench_8c_ac1085f067139cab520c582888c80ba5f}} 
+\index{polybench.c@{polybench.c}!NB\_INITIAL\_TABLE\_ENTRIES@{NB\_INITIAL\_TABLE\_ENTRIES}}
+\index{NB\_INITIAL\_TABLE\_ENTRIES@{NB\_INITIAL\_TABLE\_ENTRIES}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{NB\_INITIAL\_TABLE\_ENTRIES}{NB\_INITIAL\_TABLE\_ENTRIES}}
+{\footnotesize\ttfamily \#define N\+B\+\_\+\+I\+N\+I\+T\+I\+A\+L\+\_\+\+T\+A\+B\+L\+E\+\_\+\+E\+N\+T\+R\+I\+ES~512}
+
+\mbox{\Hypertarget{polybench_8c_a97ff40ca9aaed6871b78abb03765e922}\label{polybench_8c_a97ff40ca9aaed6871b78abb03765e922}} 
+\index{polybench.c@{polybench.c}!POLYBENCH\_CACHE\_SIZE\_KB@{POLYBENCH\_CACHE\_SIZE\_KB}}
+\index{POLYBENCH\_CACHE\_SIZE\_KB@{POLYBENCH\_CACHE\_SIZE\_KB}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{POLYBENCH\_CACHE\_SIZE\_KB}{POLYBENCH\_CACHE\_SIZE\_KB}}
+{\footnotesize\ttfamily \#define P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+I\+Z\+E\+\_\+\+KB~32770}
+
+\mbox{\Hypertarget{polybench_8c_a471314354ca6f0f172a02d2c35d07e99}\label{polybench_8c_a471314354ca6f0f172a02d2c35d07e99}} 
+\index{polybench.c@{polybench.c}!POLYBENCH\_THREAD\_MONITOR@{POLYBENCH\_THREAD\_MONITOR}}
+\index{POLYBENCH\_THREAD\_MONITOR@{POLYBENCH\_THREAD\_MONITOR}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{POLYBENCH\_THREAD\_MONITOR}{POLYBENCH\_THREAD\_MONITOR}}
+{\footnotesize\ttfamily \#define P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+O\+N\+I\+T\+OR~0}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{polybench_8c_a8ae1017fa6cb9300a486567f7da93bf1}\label{polybench_8c_a8ae1017fa6cb9300a486567f7da93bf1}} 
+\index{polybench.c@{polybench.c}!polybench\_alloc\_data@{polybench\_alloc\_data}}
+\index{polybench\_alloc\_data@{polybench\_alloc\_data}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_alloc\_data()}{polybench\_alloc\_data()}}
+{\footnotesize\ttfamily void$\ast$ polybench\+\_\+alloc\+\_\+data (\begin{DoxyParamCaption}\item[{unsigned long long int}]{n,  }\item[{int}]{elt\+\_\+size }\end{DoxyParamCaption})}
+
+F\+I\+X\+ME\+: detect overflow!
+\begin{DoxyCode}{0}
+\DoxyCodeLine{558 \{}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#ifdef POLYBENCH\_ENABLE\_INTARRAY\_PAD}}
+\DoxyCodeLine{560   check\_alloc\_table\_state ();}
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{564   \textcolor{keywordtype}{size\_t} val = n;}
+\DoxyCodeLine{565   val *= elt\_size;}
+\DoxyCodeLine{566   \textcolor{keywordtype}{void}* ret = \mbox{\hyperlink{polybench_8c_a6da99e3ec19a8499565e9809aba7d0ac}{xmalloc}} (val);}
+\DoxyCodeLine{567 }
+\DoxyCodeLine{568   \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{569 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_aaccf02aa4ad737023573f74af90bdeee}\label{polybench_8c_aaccf02aa4ad737023573f74af90bdeee}} 
+\index{polybench.c@{polybench.c}!polybench\_flush\_cache@{polybench\_flush\_cache}}
+\index{polybench\_flush\_cache@{polybench\_flush\_cache}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_flush\_cache()}{polybench\_flush\_cache()}}
+{\footnotesize\ttfamily void polybench\+\_\+flush\+\_\+cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{113 \{}
+\DoxyCodeLine{114   \textcolor{keywordtype}{int} cs = \mbox{\hyperlink{polybench_8c_a97ff40ca9aaed6871b78abb03765e922}{POLYBENCH\_CACHE\_SIZE\_KB}} * 1024 / \textcolor{keyword}{sizeof}(double);}
+\DoxyCodeLine{115   \textcolor{keywordtype}{double}* flush = (\textcolor{keywordtype}{double}*) calloc (cs, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{116   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{117   \textcolor{keywordtype}{double} tmp = 0.0;}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#pragma omp parallel for reduction(+:tmp) private(i)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{121   \textcolor{keywordflow}{for} (i = 0; i < cs; i++)}
+\DoxyCodeLine{122     tmp += flush[i];}
+\DoxyCodeLine{123   assert (tmp <= 10.0);}
+\DoxyCodeLine{124   free (flush);}
+\DoxyCodeLine{125 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_a190e04d323c8412519ef8b7460e278d7}\label{polybench_8c_a190e04d323c8412519ef8b7460e278d7}} 
+\index{polybench.c@{polybench.c}!polybench\_free\_data@{polybench\_free\_data}}
+\index{polybench\_free\_data@{polybench\_free\_data}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_free\_data()}{polybench\_free\_data()}}
+{\footnotesize\ttfamily void polybench\+\_\+free\+\_\+data (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{548 \{}
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#ifdef POLYBENCH\_ENABLE\_INTARRAY\_PAD}}
+\DoxyCodeLine{550   free\_data\_from\_alloc\_table (ptr);}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{552   free (ptr);}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{554 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_a7deaadfaf7e54c406c4924f5db918a5b}\label{polybench_8c_a7deaadfaf7e54c406c4924f5db918a5b}} 
+\index{polybench.c@{polybench.c}!polybench\_prepare\_instruments@{polybench\_prepare\_instruments}}
+\index{polybench\_prepare\_instruments@{polybench\_prepare\_instruments}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_prepare\_instruments()}{polybench\_prepare\_instruments()}}
+{\footnotesize\ttfamily void polybench\+\_\+prepare\+\_\+instruments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{354 \{}
+\DoxyCodeLine{355 \textcolor{preprocessor}{\#ifndef POLYBENCH\_NO\_FLUSH\_CACHE}}
+\DoxyCodeLine{356   \mbox{\hyperlink{polybench_8c_aaccf02aa4ad737023573f74af90bdeee}{polybench\_flush\_cache}} ();}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{\#ifdef POLYBENCH\_LINUX\_FIFO\_SCHEDULER}}
+\DoxyCodeLine{359   polybench\_linux\_fifo\_scheduler ();}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{361 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_a54f880790e8a697998fb75928557dcda}\label{polybench_8c_a54f880790e8a697998fb75928557dcda}} 
+\index{polybench.c@{polybench.c}!polybench\_timer\_print@{polybench\_timer\_print}}
+\index{polybench\_timer\_print@{polybench\_timer\_print}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_timer\_print()}{polybench\_timer\_print()}}
+{\footnotesize\ttfamily void polybench\+\_\+timer\+\_\+print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{389 \{}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#ifdef POLYBENCH\_GFLOPS}}
+\DoxyCodeLine{391       \textcolor{keywordflow}{if}  (\mbox{\hyperlink{polybench_8c_ab81047a9abe935c7e6dbfb74055489c7}{polybench\_program\_total\_flops}} == 0)}
+\DoxyCodeLine{392     \{}
+\DoxyCodeLine{393       printf (\textcolor{stringliteral}{"[PolyBench][WARNING] Program flops not defined, use polybench\_set\_program\_flops(value)\(\backslash\)n"});}
+\DoxyCodeLine{394       printf (\textcolor{stringliteral}{"\%0.6lf\(\backslash\)n"}, \mbox{\hyperlink{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}{polybench\_t\_end}} -\/ \mbox{\hyperlink{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}{polybench\_t\_start}});}
+\DoxyCodeLine{395     \}}
+\DoxyCodeLine{396       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{397     printf (\textcolor{stringliteral}{"\%0.2lf\(\backslash\)n"},}
+\DoxyCodeLine{398         (\mbox{\hyperlink{polybench_8c_ab81047a9abe935c7e6dbfb74055489c7}{polybench\_program\_total\_flops}} /}
+\DoxyCodeLine{399          (\textcolor{keywordtype}{double})(\mbox{\hyperlink{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}{polybench\_t\_end}} -\/ \mbox{\hyperlink{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}{polybench\_t\_start}})) / 1000000000);}
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\# ifndef POLYBENCH\_CYCLE\_ACCURATE\_TIMER}}
+\DoxyCodeLine{402       printf (\textcolor{stringliteral}{"\%0.6f\(\backslash\)n"}, \mbox{\hyperlink{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}{polybench\_t\_end}} -\/ \mbox{\hyperlink{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}{polybench\_t\_start}});}
+\DoxyCodeLine{403 \textcolor{preprocessor}{\# else}}
+\DoxyCodeLine{404       printf (\textcolor{stringliteral}{"\%Ld\(\backslash\)n"}, \mbox{\hyperlink{polybench_8c_a1d446ede6cda638375d43cf743c43c12}{polybench\_c\_end}} -\/ \mbox{\hyperlink{polybench_8c_ad7022d8424b92e7449d2e10d4481ffe0}{polybench\_c\_start}});}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\# endif}}
+\DoxyCodeLine{406 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{407 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_af77730ca74b19d5d834f0622e9f1fd0f}\label{polybench_8c_af77730ca74b19d5d834f0622e9f1fd0f}} 
+\index{polybench.c@{polybench.c}!polybench\_timer\_start@{polybench\_timer\_start}}
+\index{polybench\_timer\_start@{polybench\_timer\_start}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_timer\_start()}{polybench\_timer\_start()}}
+{\footnotesize\ttfamily void polybench\+\_\+timer\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{365 \{}
+\DoxyCodeLine{366   \mbox{\hyperlink{polybench_8c_a7deaadfaf7e54c406c4924f5db918a5b}{polybench\_prepare\_instruments}} ();}
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#ifndef POLYBENCH\_CYCLE\_ACCURATE\_TIMER}}
+\DoxyCodeLine{368   \mbox{\hyperlink{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}{polybench\_t\_start}} = \mbox{\hyperlink{polybench_8c_a0a10cc42e4d01d3c147fa4f8cb9b282c}{rtclock}} ();}
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{370   \mbox{\hyperlink{polybench_8c_ad7022d8424b92e7449d2e10d4481ffe0}{polybench\_c\_start}} = rdtsc ();}
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{372 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_ae9718caaefd32f4b27565fd34cd4b587}\label{polybench_8c_ae9718caaefd32f4b27565fd34cd4b587}} 
+\index{polybench.c@{polybench.c}!polybench\_timer\_stop@{polybench\_timer\_stop}}
+\index{polybench\_timer\_stop@{polybench\_timer\_stop}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_timer\_stop()}{polybench\_timer\_stop()}}
+{\footnotesize\ttfamily void polybench\+\_\+timer\+\_\+stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{376 \{}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#ifndef POLYBENCH\_CYCLE\_ACCURATE\_TIMER}}
+\DoxyCodeLine{378   \mbox{\hyperlink{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}{polybench\_t\_end}} = \mbox{\hyperlink{polybench_8c_a0a10cc42e4d01d3c147fa4f8cb9b282c}{rtclock}} ();}
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{380   \mbox{\hyperlink{polybench_8c_a1d446ede6cda638375d43cf743c43c12}{polybench\_c\_end}} = rdtsc ();}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#ifdef POLYBENCH\_LINUX\_FIFO\_SCHEDULER}}
+\DoxyCodeLine{383   polybench\_linux\_standard\_scheduler ();}
+\DoxyCodeLine{384 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{385 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_a0a10cc42e4d01d3c147fa4f8cb9b282c}\label{polybench_8c_a0a10cc42e4d01d3c147fa4f8cb9b282c}} 
+\index{polybench.c@{polybench.c}!rtclock@{rtclock}}
+\index{rtclock@{rtclock}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{rtclock()}{rtclock()}}
+{\footnotesize\ttfamily static double rtclock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{84 \{}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#if defined(POLYBENCH\_TIME) || defined(POLYBENCH\_GFLOPS)}}
+\DoxyCodeLine{86     \textcolor{keyword}{struct }timeval Tp;}
+\DoxyCodeLine{87     \textcolor{keywordtype}{int} stat;}
+\DoxyCodeLine{88     stat = gettimeofday (\&Tp, NULL);}
+\DoxyCodeLine{89     \textcolor{keywordflow}{if} (stat != 0)}
+\DoxyCodeLine{90       printf (\textcolor{stringliteral}{"Error return from gettimeofday: \%d"}, stat);}
+\DoxyCodeLine{91     \textcolor{keywordflow}{return} (Tp.tv\_sec + Tp.tv\_usec * 1.0e-\/6);}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{93     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{95 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{polybench_8c_a6da99e3ec19a8499565e9809aba7d0ac}\label{polybench_8c_a6da99e3ec19a8499565e9809aba7d0ac}} 
+\index{polybench.c@{polybench.c}!xmalloc@{xmalloc}}
+\index{xmalloc@{xmalloc}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{xmalloc()}{xmalloc()}}
+{\footnotesize\ttfamily static void$\ast$ xmalloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{alloc\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{518 \{}
+\DoxyCodeLine{519   \textcolor{keywordtype}{void}* ret = NULL;}
+\DoxyCodeLine{520   \textcolor{comment}{/* By default, post-\/pad the arrays. Safe behavior, but likely useless. */}}
+\DoxyCodeLine{521   \mbox{\hyperlink{polybench_8c_af6ec1965d7d117eb4591ad87f966e7b1}{polybench\_inter\_array\_padding\_sz}} += \mbox{\hyperlink{polybench_8h_a757aaacb063faa9819361d61c63768c0}{POLYBENCH\_INTER\_ARRAY\_PADDING\_FACTOR}};}
+\DoxyCodeLine{522   \textcolor{keywordtype}{size\_t} padded\_sz = alloc\_sz + \mbox{\hyperlink{polybench_8c_af6ec1965d7d117eb4591ad87f966e7b1}{polybench\_inter\_array\_padding\_sz}};}
+\DoxyCodeLine{523   \textcolor{keywordtype}{int} err = posix\_memalign (\&ret, 4096, padded\_sz);}
+\DoxyCodeLine{524   \textcolor{keywordflow}{if} (! ret || err)}
+\DoxyCodeLine{525     \{}
+\DoxyCodeLine{526       fprintf (stderr, \textcolor{stringliteral}{"[PolyBench] posix\_memalign: cannot allocate memory"});}
+\DoxyCodeLine{527       exit (1);}
+\DoxyCodeLine{528     \}}
+\DoxyCodeLine{529   \textcolor{comment}{/* Safeguard: this is invoked only if polybench.c has been compiled}}
+\DoxyCodeLine{530 \textcolor{comment}{     with inter-\/array padding support from polybench.h. If so, move}}
+\DoxyCodeLine{531 \textcolor{comment}{     the starting address of the allocation and return it to the}}
+\DoxyCodeLine{532 \textcolor{comment}{     user. The original pointer is registered in an allocation table}}
+\DoxyCodeLine{533 \textcolor{comment}{     internal to polybench.c. Data must then be freed using}}
+\DoxyCodeLine{534 \textcolor{comment}{     polybench\_free\_data, which will inspect the allocation table to}}
+\DoxyCodeLine{535 \textcolor{comment}{     free the original pointer.*/}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#ifdef POLYBENCH\_ENABLE\_INTARRAY\_PAD}}
+\DoxyCodeLine{537   \textcolor{comment}{/* This moves the 'ret' pointer by (padded\_sz -\/ alloc\_sz) positions, and}}
+\DoxyCodeLine{538 \textcolor{comment}{  registers it in the lookup table for future free using}}
+\DoxyCodeLine{539 \textcolor{comment}{  polybench\_free\_data. */}}
+\DoxyCodeLine{540   ret = register\_padded\_pointer(ret, alloc\_sz, padded\_sz);}
+\DoxyCodeLine{541 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543   \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{544 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{polybench_8c_a7b9f9085385d736c57787a20dde52920}\label{polybench_8c_a7b9f9085385d736c57787a20dde52920}} 
+\index{polybench.c@{polybench.c}!\_polybench\_alloc\_table@{\_polybench\_alloc\_table}}
+\index{\_polybench\_alloc\_table@{\_polybench\_alloc\_table}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{\_polybench\_alloc\_table}{\_polybench\_alloc\_table}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structpolybench__data__ptrs}{polybench\+\_\+data\+\_\+ptrs}}$\ast$ \+\_\+polybench\+\_\+alloc\+\_\+table = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{polybench_8c_a1d446ede6cda638375d43cf743c43c12}\label{polybench_8c_a1d446ede6cda638375d43cf743c43c12}} 
+\index{polybench.c@{polybench.c}!polybench\_c\_end@{polybench\_c\_end}}
+\index{polybench\_c\_end@{polybench\_c\_end}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_c\_end}{polybench\_c\_end}}
+{\footnotesize\ttfamily unsigned long long int polybench\+\_\+c\+\_\+end}
+
+\mbox{\Hypertarget{polybench_8c_ad7022d8424b92e7449d2e10d4481ffe0}\label{polybench_8c_ad7022d8424b92e7449d2e10d4481ffe0}} 
+\index{polybench.c@{polybench.c}!polybench\_c\_start@{polybench\_c\_start}}
+\index{polybench\_c\_start@{polybench\_c\_start}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_c\_start}{polybench\_c\_start}}
+{\footnotesize\ttfamily unsigned long long int polybench\+\_\+c\+\_\+start}
+
+\mbox{\Hypertarget{polybench_8c_af6ec1965d7d117eb4591ad87f966e7b1}\label{polybench_8c_af6ec1965d7d117eb4591ad87f966e7b1}} 
+\index{polybench.c@{polybench.c}!polybench\_inter\_array\_padding\_sz@{polybench\_inter\_array\_padding\_sz}}
+\index{polybench\_inter\_array\_padding\_sz@{polybench\_inter\_array\_padding\_sz}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_inter\_array\_padding\_sz}{polybench\_inter\_array\_padding\_sz}}
+{\footnotesize\ttfamily size\+\_\+t polybench\+\_\+inter\+\_\+array\+\_\+padding\+\_\+sz = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{polybench_8c_a4b85105437695f5bb2cec7ff576d7cd8}\label{polybench_8c_a4b85105437695f5bb2cec7ff576d7cd8}} 
+\index{polybench.c@{polybench.c}!polybench\_papi\_counters\_threadid@{polybench\_papi\_counters\_threadid}}
+\index{polybench\_papi\_counters\_threadid@{polybench\_papi\_counters\_threadid}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_papi\_counters\_threadid}{polybench\_papi\_counters\_threadid}}
+{\footnotesize\ttfamily int polybench\+\_\+papi\+\_\+counters\+\_\+threadid = \mbox{\hyperlink{polybench_8c_a471314354ca6f0f172a02d2c35d07e99}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+O\+N\+I\+T\+OR}}}
+
+\mbox{\Hypertarget{polybench_8c_ab81047a9abe935c7e6dbfb74055489c7}\label{polybench_8c_ab81047a9abe935c7e6dbfb74055489c7}} 
+\index{polybench.c@{polybench.c}!polybench\_program\_total\_flops@{polybench\_program\_total\_flops}}
+\index{polybench\_program\_total\_flops@{polybench\_program\_total\_flops}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_program\_total\_flops}{polybench\_program\_total\_flops}}
+{\footnotesize\ttfamily double polybench\+\_\+program\+\_\+total\+\_\+flops = 0}
+
+\mbox{\Hypertarget{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}\label{polybench_8c_a8cdb215efe2ba4e7da841b3107ea6f28}} 
+\index{polybench.c@{polybench.c}!polybench\_t\_end@{polybench\_t\_end}}
+\index{polybench\_t\_end@{polybench\_t\_end}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_t\_end}{polybench\_t\_end}}
+{\footnotesize\ttfamily double polybench\+\_\+t\+\_\+end}
+
+\mbox{\Hypertarget{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}\label{polybench_8c_ac0456471db571b96d81a8e9fee49dc3a}} 
+\index{polybench.c@{polybench.c}!polybench\_t\_start@{polybench\_t\_start}}
+\index{polybench\_t\_start@{polybench\_t\_start}!polybench.c@{polybench.c}}
+\doxysubsubsection{\texorpdfstring{polybench\_t\_start}{polybench\_t\_start}}
+{\footnotesize\ttfamily double polybench\+\_\+t\+\_\+start}
+

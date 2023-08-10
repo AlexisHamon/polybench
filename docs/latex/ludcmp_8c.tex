@@ -1,0 +1,206 @@
+\hypertarget{ludcmp_8c}{}\doxysection{linear-\/algebra/solvers/ludcmp/ludcmp.c File Reference}
+\label{ludcmp_8c}\index{linear-\/algebra/solvers/ludcmp/ludcmp.c@{linear-\/algebra/solvers/ludcmp/ludcmp.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ludcmp.\+h\char`\"{}}\newline
+Include dependency graph for ludcmp.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ludcmp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{ludcmp_8c_a6b6f991176efbceda989f378275d71a9}{init\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(b, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{ludcmp_8c_a6ab7f31ab1668da4727a946e53d747e2}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{ludcmp_8c_a1800fe3c41bd93e350aa2ae309266463}{kernel\+\_\+ludcmp}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(b, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+int \mbox{\hyperlink{ludcmp_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ludcmp_8c_a6b6f991176efbceda989f378275d71a9}\label{ludcmp_8c_a6b6f991176efbceda989f378275d71a9}} 
+\index{ludcmp.c@{ludcmp.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!ludcmp.c@{ludcmp.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Db, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{33   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} fn = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{36     \{}
+\DoxyCodeLine{37       x[i] = 0;}
+\DoxyCodeLine{38       y[i] = 0;}
+\DoxyCodeLine{39       b[i] = (i+1)/fn/2.0 + 4;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{43     \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{for} (j = 0; j <= i; j++)}
+\DoxyCodeLine{45     A[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})(-\/j \% n) / n + 1;}
+\DoxyCodeLine{46       \textcolor{keywordflow}{for} (j = i+1; j < n; j++) \{}
+\DoxyCodeLine{47     A[i][j] = 0;}
+\DoxyCodeLine{48       \}}
+\DoxyCodeLine{49       A[i][i] = 1;}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52   \textcolor{comment}{/* Make the matrix positive semi-\/definite. */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* not necessary for LU, but using same code as cholesky */}}
+\DoxyCodeLine{54   \textcolor{keywordtype}{int} r,s,t;}
+\DoxyCodeLine{55   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(B, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{56   \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{57     \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{58       (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s] = 0;}
+\DoxyCodeLine{59   \textcolor{keywordflow}{for} (t = 0; t < n; ++t)}
+\DoxyCodeLine{60     \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{61       \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{62     (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s] += A[r][t] * A[s][t];}
+\DoxyCodeLine{63     \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{64       \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{65     A[r][s] = (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s];}
+\DoxyCodeLine{66   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(B);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ludcmp_8c_a1800fe3c41bd93e350aa2ae309266463}\label{ludcmp_8c_a1800fe3c41bd93e350aa2ae309266463}} 
+\index{ludcmp.c@{ludcmp.c}!kernel\_ludcmp@{kernel\_ludcmp}}
+\index{kernel\_ludcmp@{kernel\_ludcmp}!ludcmp.c@{ludcmp.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_ludcmp()}{kernel\_ludcmp()}}
+{\footnotesize\ttfamily static void kernel\+\_\+ludcmp (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Db, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{99 \{}
+\DoxyCodeLine{100   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} w;}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{105   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++) \{}
+\DoxyCodeLine{106     \textcolor{keywordflow}{for} (j = 0; j <i; j++) \{}
+\DoxyCodeLine{107        w = A[i][j];}
+\DoxyCodeLine{108        \textcolor{keywordflow}{for} (k = 0; k < j; k++) \{}
+\DoxyCodeLine{109           w -\/= A[i][k] * A[k][j];}
+\DoxyCodeLine{110        \}}
+\DoxyCodeLine{111         A[i][j] = w / A[j][j];}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113    \textcolor{keywordflow}{for} (j = i; j < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; j++) \{}
+\DoxyCodeLine{114        w = A[i][j];}
+\DoxyCodeLine{115        \textcolor{keywordflow}{for} (k = 0; k < i; k++) \{}
+\DoxyCodeLine{116           w -\/= A[i][k] * A[k][j];}
+\DoxyCodeLine{117        \}}
+\DoxyCodeLine{118        A[i][j] = w;}
+\DoxyCodeLine{119     \}}
+\DoxyCodeLine{120   \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++) \{}
+\DoxyCodeLine{123      w = b[i];}
+\DoxyCodeLine{124      \textcolor{keywordflow}{for} (j = 0; j < i; j++)}
+\DoxyCodeLine{125         w -\/= A[i][j] * y[j];}
+\DoxyCodeLine{126      y[i] = w;}
+\DoxyCodeLine{127   \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129    \textcolor{keywordflow}{for} (i = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1; i >=0; i-\/-\/) \{}
+\DoxyCodeLine{130      w = y[i];}
+\DoxyCodeLine{131      \textcolor{keywordflow}{for} (j = i+1; j < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; j++)}
+\DoxyCodeLine{132         w -\/= A[i][j] * x[j];}
+\DoxyCodeLine{133      x[i] = w / A[i][i];}
+\DoxyCodeLine{134   \}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ludcmp_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{ludcmp_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{ludcmp.c@{ludcmp.c}!main@{main}}
+\index{main@{main}!ludcmp.c@{ludcmp.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141 \{}
+\DoxyCodeLine{142   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{143   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{146   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(A, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{147   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(b, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{148   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(x, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{149   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(y, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{153   \mbox{\hyperlink{ludcmp_8c_a6b6f991176efbceda989f378275d71a9}{init\_array}} (n,}
+\DoxyCodeLine{154           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A),}
+\DoxyCodeLine{155           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(b),}
+\DoxyCodeLine{156           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x),}
+\DoxyCodeLine{157           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y));}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{160   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{163   \mbox{\hyperlink{ludcmp_8c_a1800fe3c41bd93e350aa2ae309266463}{kernel\_ludcmp}} (n,}
+\DoxyCodeLine{164          \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A),}
+\DoxyCodeLine{165          \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(b),}
+\DoxyCodeLine{166          \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x),}
+\DoxyCodeLine{167          \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y));}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{170   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{171   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{174 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{175   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{ludcmp_8c_a6ab7f31ab1668da4727a946e53d747e2}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x)));}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{178   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{179   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(b);}
+\DoxyCodeLine{180   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(x);}
+\DoxyCodeLine{181   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(y);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{184 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ludcmp_8c_a6ab7f31ab1668da4727a946e53d747e2}\label{ludcmp_8c_a6ab7f31ab1668da4727a946e53d747e2}} 
+\index{ludcmp.c@{ludcmp.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!ludcmp.c@{ludcmp.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{77 \{}
+\DoxyCodeLine{78   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{81   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"x"});}
+\DoxyCodeLine{82   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{}
+\DoxyCodeLine{83     \textcolor{keywordflow}{if} (i \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{84     fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, x[i]);}
+\DoxyCodeLine{85   \}}
+\DoxyCodeLine{86   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"x"});}
+\DoxyCodeLine{87   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{88 \}}
+
+\end{DoxyCode}

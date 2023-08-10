@@ -1,0 +1,129 @@
+\hypertarget{namespaceget__best}{}\doxysection{get\+\_\+best Namespace Reference}
+\label{namespaceget__best}\index{get\_best@{get\_best}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceget__best_a34105b169ba756241bc7acf883bbddb7}{get\+\_\+best\+\_\+execution\+\_\+time}} (\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}, exec\+\_\+type0, \mbox{\hyperlink{namespaceget__best_a228df6dd818b657a25bdbd0f2909a8ea}{best\+\_\+div1}}, \mbox{\hyperlink{namespaceget__best_a3abbbbe1872450a987ba68ddc528dcf2}{best\+\_\+div2}}, \mbox{\hyperlink{namespaceget__best_a7e0360b81ba9e0af8368c98115fcb49c}{best\+\_\+div3}}, \mbox{\hyperlink{namespaceget__best_a662ed855655ee8e96f1a0fe0b2231ced}{best\+\_\+flag}}, \mbox{\hyperlink{namespaceget__best_a215d47bef463ff86b79e22113977a6fd}{best\+\_\+extra}}, \mbox{\hyperlink{namespaceget__best_a0e8e61a22c2b4f0662535bffd69635c6}{best\+\_\+time}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceget__best_afd68ef6e7db868e9d1e50284e0a8641b}{filename}} = sys.\+argv\mbox{[}1\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceget__best_a30e326cccde9153f55a6fb8366d13bb1}{exec\+\_\+type}} = sys.\+argv\mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceget__best_a228df6dd818b657a25bdbd0f2909a8ea}{best\+\_\+div1}}
+\item 
+\mbox{\hyperlink{namespaceget__best_a3abbbbe1872450a987ba68ddc528dcf2}{best\+\_\+div2}}
+\item 
+\mbox{\hyperlink{namespaceget__best_a7e0360b81ba9e0af8368c98115fcb49c}{best\+\_\+div3}}
+\item 
+\mbox{\hyperlink{namespaceget__best_a662ed855655ee8e96f1a0fe0b2231ced}{best\+\_\+flag}}
+\item 
+\mbox{\hyperlink{namespaceget__best_a215d47bef463ff86b79e22113977a6fd}{best\+\_\+extra}}
+\item 
+\mbox{\hyperlink{namespaceget__best_a0e8e61a22c2b4f0662535bffd69635c6}{best\+\_\+time}} = float(\textquotesingle{}inf\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespaceget__best_ad8bb9aa27289c8cdf35f7e8f14bd86d2}{files}} = glob.\+glob(\char`\"{}../mark6/processed\+\_\+data/\char`\"{}+filename+\char`\"{}\+\_\+$\ast$.csv\char`\"{})
+\item 
+\mbox{\hyperlink{namespaceget__best_a6acbb8cf4458707676a7b0e20c4cd72d}{csv\+\_\+reader}} = csv.\+Dict\+Reader(file)
+\item 
+\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}} = list(\mbox{\hyperlink{namespaceget__best_a6acbb8cf4458707676a7b0e20c4cd72d}{csv\+\_\+reader}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceget__best_a34105b169ba756241bc7acf883bbddb7}\label{namespaceget__best_a34105b169ba756241bc7acf883bbddb7}} 
+\index{get\_best@{get\_best}!get\_best\_execution\_time@{get\_best\_execution\_time}}
+\index{get\_best\_execution\_time@{get\_best\_execution\_time}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{get\_best\_execution\_time()}{get\_best\_execution\_time()}}
+{\footnotesize\ttfamily def get\+\_\+best.\+get\+\_\+best\+\_\+execution\+\_\+time (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{exec\+\_\+type0,  }\item[{}]{best\+\_\+div1,  }\item[{}]{best\+\_\+div2,  }\item[{}]{best\+\_\+div3,  }\item[{}]{best\+\_\+flag,  }\item[{}]{best\+\_\+extra,  }\item[{}]{best\+\_\+time }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4 \textcolor{keyword}{def }\mbox{\hyperlink{namespaceget__best_a34105b169ba756241bc7acf883bbddb7}{get\_best\_execution\_time}}(data,exec\_type0,best\_div1, best\_div2, best\_div3, best\_flag, best\_extra,best\_time):}
+\DoxyCodeLine{5     \textcolor{keywordflow}{for} row \textcolor{keywordflow}{in} data:}
+\DoxyCodeLine{6         div1 = int(row[\textcolor{stringliteral}{'DIV1'}])}
+\DoxyCodeLine{7         div2 = int(row[\textcolor{stringliteral}{'DIV2'}])}
+\DoxyCodeLine{8         div3 = int(row[\textcolor{stringliteral}{'DIV3'}])}
+\DoxyCodeLine{9         flags = row[\textcolor{stringliteral}{'CFLAGS'}]}
+\DoxyCodeLine{10         exec\_type = row[\textcolor{stringliteral}{'EXEC\_TYPE'}]}
+\DoxyCodeLine{11         extra = row[\textcolor{stringliteral}{'EXTRA\_FLAGS'}]}
+\DoxyCodeLine{12         time = float(row[\textcolor{stringliteral}{'TIME'}])}
+\DoxyCodeLine{13         \textcolor{keywordflow}{if} time < best\_time \textcolor{keywordflow}{and} str(exec\_type0) == str(exec\_type):}
+\DoxyCodeLine{14             best\_time = time}
+\DoxyCodeLine{15             best\_div1, best\_div2, best\_div3, best\_flag, best\_extra = div1, div2, div3, flags, extra}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keywordflow}{return} best\_div1, best\_div2, best\_div3, best\_flag, best\_extra, best\_time}
+\DoxyCodeLine{18 \textcolor{comment}{\#Le nom du fichier est le premier argument}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceget__best_a228df6dd818b657a25bdbd0f2909a8ea}\label{namespaceget__best_a228df6dd818b657a25bdbd0f2909a8ea}} 
+\index{get\_best@{get\_best}!best\_div1@{best\_div1}}
+\index{best\_div1@{best\_div1}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_div1}{best\_div1}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+div1}
+
+\mbox{\Hypertarget{namespaceget__best_a3abbbbe1872450a987ba68ddc528dcf2}\label{namespaceget__best_a3abbbbe1872450a987ba68ddc528dcf2}} 
+\index{get\_best@{get\_best}!best\_div2@{best\_div2}}
+\index{best\_div2@{best\_div2}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_div2}{best\_div2}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+div2}
+
+\mbox{\Hypertarget{namespaceget__best_a7e0360b81ba9e0af8368c98115fcb49c}\label{namespaceget__best_a7e0360b81ba9e0af8368c98115fcb49c}} 
+\index{get\_best@{get\_best}!best\_div3@{best\_div3}}
+\index{best\_div3@{best\_div3}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_div3}{best\_div3}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+div3}
+
+\mbox{\Hypertarget{namespaceget__best_a215d47bef463ff86b79e22113977a6fd}\label{namespaceget__best_a215d47bef463ff86b79e22113977a6fd}} 
+\index{get\_best@{get\_best}!best\_extra@{best\_extra}}
+\index{best\_extra@{best\_extra}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_extra}{best\_extra}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+extra}
+
+\mbox{\Hypertarget{namespaceget__best_a662ed855655ee8e96f1a0fe0b2231ced}\label{namespaceget__best_a662ed855655ee8e96f1a0fe0b2231ced}} 
+\index{get\_best@{get\_best}!best\_flag@{best\_flag}}
+\index{best\_flag@{best\_flag}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_flag}{best\_flag}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+flag}
+
+\mbox{\Hypertarget{namespaceget__best_a0e8e61a22c2b4f0662535bffd69635c6}\label{namespaceget__best_a0e8e61a22c2b4f0662535bffd69635c6}} 
+\index{get\_best@{get\_best}!best\_time@{best\_time}}
+\index{best\_time@{best\_time}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{best\_time}{best\_time}}
+{\footnotesize\ttfamily get\+\_\+best.\+best\+\_\+time = float(\textquotesingle{}inf\textquotesingle{})}
+
+\mbox{\Hypertarget{namespaceget__best_a6acbb8cf4458707676a7b0e20c4cd72d}\label{namespaceget__best_a6acbb8cf4458707676a7b0e20c4cd72d}} 
+\index{get\_best@{get\_best}!csv\_reader@{csv\_reader}}
+\index{csv\_reader@{csv\_reader}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{csv\_reader}{csv\_reader}}
+{\footnotesize\ttfamily get\+\_\+best.\+csv\+\_\+reader = csv.\+Dict\+Reader(file)}
+
+\mbox{\Hypertarget{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}\label{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}} 
+\index{get\_best@{get\_best}!data@{data}}
+\index{data@{data}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily get\+\_\+best.\+data = list(\mbox{\hyperlink{namespaceget__best_a6acbb8cf4458707676a7b0e20c4cd72d}{csv\+\_\+reader}})}
+
+\mbox{\Hypertarget{namespaceget__best_a30e326cccde9153f55a6fb8366d13bb1}\label{namespaceget__best_a30e326cccde9153f55a6fb8366d13bb1}} 
+\index{get\_best@{get\_best}!exec\_type@{exec\_type}}
+\index{exec\_type@{exec\_type}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{exec\_type}{exec\_type}}
+{\footnotesize\ttfamily get\+\_\+best.\+exec\+\_\+type = sys.\+argv\mbox{[}2\mbox{]}}
+
+\mbox{\Hypertarget{namespaceget__best_afd68ef6e7db868e9d1e50284e0a8641b}\label{namespaceget__best_afd68ef6e7db868e9d1e50284e0a8641b}} 
+\index{get\_best@{get\_best}!filename@{filename}}
+\index{filename@{filename}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily get\+\_\+best.\+filename = sys.\+argv\mbox{[}1\mbox{]}}
+
+\mbox{\Hypertarget{namespaceget__best_ad8bb9aa27289c8cdf35f7e8f14bd86d2}\label{namespaceget__best_ad8bb9aa27289c8cdf35f7e8f14bd86d2}} 
+\index{get\_best@{get\_best}!files@{files}}
+\index{files@{files}!get\_best@{get\_best}}
+\doxysubsubsection{\texorpdfstring{files}{files}}
+{\footnotesize\ttfamily get\+\_\+best.\+files = glob.\+glob(\char`\"{}../mark6/processed\+\_\+data/\char`\"{}+filename+\char`\"{}\+\_\+$\ast$.csv\char`\"{})}
+

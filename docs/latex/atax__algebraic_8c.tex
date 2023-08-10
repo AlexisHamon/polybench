@@ -1,0 +1,450 @@
+\hypertarget{atax__algebraic_8c}{}\doxysection{all-\/charges/atax\+\_\+algebraic.c File Reference}
+\label{atax__algebraic_8c}\index{all-\/charges/atax\_algebraic.c@{all-\/charges/atax\_algebraic.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtclock.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+0.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+2.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+3.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$omp.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}atax.\+h\char`\"{}}\newline
+Include dependency graph for atax\+\_\+algebraic.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{atax__algebraic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{atax__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}~256
+\item 
+\#define \mbox{\hyperlink{atax__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))
+\item 
+\#define \mbox{\hyperlink{atax__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))
+\item 
+\#define \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(x,  y)~((x) $>$ (y) ? (x) \+: (y))
+\item 
+\#define \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(x,  y)~((x) $<$ (y) ? (x) \+: (y))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{atax__algebraic_8c_a7b50c726b39b29e913caf05cb6f05c07}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{atax__algebraic_8c_a5f42663f04902de95d22099cb086f265}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{atax__algebraic_8c_a20000a4300c9020ef462bbdc648954c7}{kernel\+\_\+atax}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(tmp, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m))
+\item 
+int \mbox{\hyperlink{atax__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\+\_\+start}}
+\item 
+int \mbox{\hyperlink{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\+\_\+\+Thread\+Count}}
+\item 
+double \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\+\_\+time\+\_\+threads}} \mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{atax__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}\label{atax__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!ceild@{ceild}}
+\index{ceild@{ceild}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{ceild}{ceild}}
+{\footnotesize\ttfamily \#define ceild(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))}
+
+\mbox{\Hypertarget{atax__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}\label{atax__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!floord@{floord}}
+\index{floord@{floord}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{floord}{floord}}
+{\footnotesize\ttfamily \#define floord(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))}
+
+\mbox{\Hypertarget{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}\label{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!max@{max}}
+\index{max@{max}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $>$ (y) ? (x) \+: (y))}
+
+\mbox{\Hypertarget{atax__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}\label{atax__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!MAX\_THREADS@{MAX\_THREADS}}
+\index{MAX\_THREADS@{MAX\_THREADS}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THREADS}{MAX\_THREADS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS~256}
+
+\mbox{\Hypertarget{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}\label{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!min@{min}}
+\index{min@{min}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $<$ (y) ? (x) \+: (y))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{atax__algebraic_8c_a7b50c726b39b29e913caf05cb6f05c07}\label{atax__algebraic_8c_a7b50c726b39b29e913caf05cb6f05c07}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, M, N, m, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                                         \{}
+\DoxyCodeLine{58   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{59   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} fn;}
+\DoxyCodeLine{60   fn = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{63     x[i] = 1 + (i / fn);}
+\DoxyCodeLine{64   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{65     \textcolor{keywordflow}{for} (j = 0; j < n; j++)}
+\DoxyCodeLine{66       A[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})((i + j) \% n) / (5 * m);}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atax__algebraic_8c_a20000a4300c9020ef462bbdc648954c7}\label{atax__algebraic_8c_a20000a4300c9020ef462bbdc648954c7}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!kernel\_atax@{kernel\_atax}}
+\index{kernel\_atax@{kernel\_atax}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_atax()}{kernel\_atax()}}
+{\footnotesize\ttfamily static void kernel\+\_\+atax (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, M, N, m, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dtmp, M, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{92                                                            \{}
+\DoxyCodeLine{93   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} t1, t2, t3, t4, t5;}
+\DoxyCodeLine{96   \textcolor{keywordtype}{int} lb, ub, lbp, ubp, lb2, ub2;}
+\DoxyCodeLine{97   \textcolor{keyword}{register} \textcolor{keywordtype}{int} lbv, ubv;}
+\DoxyCodeLine{98   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L0, t0\_pcmax, alb0, aub0, aub0t;}
+\DoxyCodeLine{99   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L1, t1\_pcmax, alb1, aub1, aub1t;}
+\DoxyCodeLine{100   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a9f514b45515b7fdb6f467630aeaf0292}{i1\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{101   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{102   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{103   ;}
+\DoxyCodeLine{104   lbp = 0;}
+\DoxyCodeLine{105   ubp = aub0t;}
+\DoxyCodeLine{106 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{107 \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{108 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{110 \{}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, t3, t4, t5)}}
+\DoxyCodeLine{114   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{115     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{116     aub0 =}
+\DoxyCodeLine{117         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}) -\/}
+\DoxyCodeLine{118         1;}
+\DoxyCodeLine{119     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{120       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{123       fprintf(stderr,}
+\DoxyCodeLine{124               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{125               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{126               TILE\_VOL\_L0);}
+\DoxyCodeLine{127       exit(1);}
+\DoxyCodeLine{128     \};}
+\DoxyCodeLine{129     lbv = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{130     ubv = \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{132     \textcolor{keywordflow}{for} (t3 = lbv; t3 <= ubv; t3++) \{}
+\DoxyCodeLine{133       tmp[t3] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{134       ;}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136   \}}
+\DoxyCodeLine{137 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{138 \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{139 \}}
+\DoxyCodeLine{140   t0\_pcmax = i2\_Ehrhart(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{141   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{142   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{143   ;}
+\DoxyCodeLine{144   lbp = 0;}
+\DoxyCodeLine{145   ubp = aub0t;}
+\DoxyCodeLine{146 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{147 \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{148 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{150 \{}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{    t5)}}
+\DoxyCodeLine{155   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{156     alb0 = i2\_trahrhe\_i2(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{157     aub0 =}
+\DoxyCodeLine{158         i2\_trahrhe\_i2(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}) -\/}
+\DoxyCodeLine{159         1;}
+\DoxyCodeLine{160     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{161       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{164       fprintf(stderr,}
+\DoxyCodeLine{165               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{166               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{167               TILE\_VOL\_L0);}
+\DoxyCodeLine{168       exit(1);}
+\DoxyCodeLine{169     \};}
+\DoxyCodeLine{170     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_af7f9755bc883cc0d082c1679efd7fd46}{j2\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0);}
+\DoxyCodeLine{171     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{172     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{173     ;}
+\DoxyCodeLine{174     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{175       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_a57a5df692e461d5f96c3175b9ebde16d}{j2\_trahrhe\_j2}}(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0);}
+\DoxyCodeLine{176       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_a57a5df692e461d5f96c3175b9ebde16d}{j2\_trahrhe\_j2}}(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}},}
+\DoxyCodeLine{177                            \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0) -\/}
+\DoxyCodeLine{178              1;}
+\DoxyCodeLine{179       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{180         aub1 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{181       \}}
+\DoxyCodeLine{182       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{183         fprintf(stderr,}
+\DoxyCodeLine{184                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{185                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{186                 TILE\_VOL\_L1);}
+\DoxyCodeLine{187         exit(1);}
+\DoxyCodeLine{188       \};}
+\DoxyCodeLine{189       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t4++) \{}
+\DoxyCodeLine{190         \textcolor{keywordflow}{for} (t5 = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1); t5 <= \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t5++) \{}
+\DoxyCodeLine{191           tmp[t4] = tmp[t4] + A[t4][t5] * x[t5];}
+\DoxyCodeLine{192           ;}
+\DoxyCodeLine{193         \}}
+\DoxyCodeLine{194       \}}
+\DoxyCodeLine{195     \}}
+\DoxyCodeLine{196   \}}
+\DoxyCodeLine{197 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{198 \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{199 \}}
+\DoxyCodeLine{200   t0\_pcmax = i0\_Ehrhart(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{201   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{202   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{203   ;}
+\DoxyCodeLine{204   lbp = 0;}
+\DoxyCodeLine{205   ubp = aub0t;}
+\DoxyCodeLine{206 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{207 \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{208 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{210 \{}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, t3, t4, t5)}}
+\DoxyCodeLine{214   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{215     alb0 = i0\_trahrhe\_i0(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{216     aub0 =}
+\DoxyCodeLine{217         i0\_trahrhe\_i0(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}) -\/}
+\DoxyCodeLine{218         1;}
+\DoxyCodeLine{219     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{220       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{223       fprintf(stderr,}
+\DoxyCodeLine{224               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{225               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{226               TILE\_VOL\_L0);}
+\DoxyCodeLine{227       exit(1);}
+\DoxyCodeLine{228     \};}
+\DoxyCodeLine{229     lbv = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{230     ubv = \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1);}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{232     \textcolor{keywordflow}{for} (t3 = lbv; t3 <= ubv; t3++) \{}
+\DoxyCodeLine{233       y[t3] = 0;}
+\DoxyCodeLine{234       ;}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{236   \}}
+\DoxyCodeLine{237 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{238 \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{239 \}}
+\DoxyCodeLine{240   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0d8adfdb708c96f66777fad47073c954}{j3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{241   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{242   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{243   ;}
+\DoxyCodeLine{244   lbp = 0;}
+\DoxyCodeLine{245   ubp = aub0t;}
+\DoxyCodeLine{246 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{247 \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{248 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{250 \{}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{    t5)}}
+\DoxyCodeLine{255   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{256     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}});}
+\DoxyCodeLine{257     aub0 =}
+\DoxyCodeLine{258         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}) -\/}
+\DoxyCodeLine{259         1;}
+\DoxyCodeLine{260     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{261       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{262     \}}
+\DoxyCodeLine{263     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{264       fprintf(stderr,}
+\DoxyCodeLine{265               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{266               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{267               TILE\_VOL\_L0);}
+\DoxyCodeLine{268       exit(1);}
+\DoxyCodeLine{269     \};}
+\DoxyCodeLine{270     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0819f57253cb8ee95704c45faa70dd65}{i3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0);}
+\DoxyCodeLine{271     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{272     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{273     ;}
+\DoxyCodeLine{274     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{275       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0);}
+\DoxyCodeLine{276       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}},}
+\DoxyCodeLine{277                            \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, alb0, aub0) -\/}
+\DoxyCodeLine{278              1;}
+\DoxyCodeLine{279       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{280         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{281       \}}
+\DoxyCodeLine{282       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{283         fprintf(stderr,}
+\DoxyCodeLine{284                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{285                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{286                 TILE\_VOL\_L1);}
+\DoxyCodeLine{287         exit(1);}
+\DoxyCodeLine{288       \};}
+\DoxyCodeLine{289       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1); t4 <= \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t4++) \{}
+\DoxyCodeLine{290         lbv = \mbox{\hyperlink{atax__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{291         ubv = \mbox{\hyperlink{atax__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1);}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{293         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{294           y[t5] = y[t5] + A[t4][t5] * tmp[t4];}
+\DoxyCodeLine{295           ;}
+\DoxyCodeLine{296         \}}
+\DoxyCodeLine{297       \}}
+\DoxyCodeLine{298     \}}
+\DoxyCodeLine{299   \}}
+\DoxyCodeLine{300 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{301 \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{302 \}}
+\DoxyCodeLine{303 \textcolor{comment}{/* Affichage des temps d'exécution */}}
+\DoxyCodeLine{304 \mbox{\hyperlink{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}()-\/\mbox{\hyperlink{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}; }
+\DoxyCodeLine{305 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}};i++)\{}
+\DoxyCodeLine{306 printf(\textcolor{stringliteral}{"\%0.6lf \(\backslash\)n"}, \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[i]);}
+\DoxyCodeLine{307 \}}
+\DoxyCodeLine{308  printf(\textcolor{stringliteral}{"\#\#Execution time \(\backslash\)n"});}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atax__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{atax__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!main@{main}}
+\index{main@{main}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{312                                 \{}
+\DoxyCodeLine{313 \mbox{\hyperlink{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}} = atoi(getenv(\textcolor{stringliteral}{"OMP\_NUM\_THREADS"}));}
+\DoxyCodeLine{314   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} \_i=0; \_i<\mbox{\hyperlink{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}}; \_i++) \mbox{\hyperlink{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[\_i]=0.0; \textcolor{comment}{/*initialisation du tableau des mesures à 0 */}}
+\DoxyCodeLine{315   \textcolor{comment}{/* temps d'exécution totale */}}
+\DoxyCodeLine{316   \mbox{\hyperlink{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{319   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{320   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{323   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(A, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n);}
+\DoxyCodeLine{324   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(x, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{325   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(y, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{326   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(tmp, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m);}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{329   \mbox{\hyperlink{atax__algebraic_8c_a7b50c726b39b29e913caf05cb6f05c07}{init\_array}}(m, n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x));}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{332   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{335   \mbox{\hyperlink{atax__algebraic_8c_a20000a4300c9020ef462bbdc648954c7}{kernel\_atax}}(m, n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y),}
+\DoxyCodeLine{336               \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(tmp));}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{339   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{340   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{343 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{344   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{atax__algebraic_8c_a5f42663f04902de95d22099cb086f265}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y)));}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{347   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{348   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(x);}
+\DoxyCodeLine{349   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(y);}
+\DoxyCodeLine{350   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(tmp);}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{353 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{atax__algebraic_8c_a5f42663f04902de95d22099cb086f265}\label{atax__algebraic_8c_a5f42663f04902de95d22099cb086f265}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73 \{}
+\DoxyCodeLine{74   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{77   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"y"});}
+\DoxyCodeLine{78   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{}
+\DoxyCodeLine{79     \textcolor{keywordflow}{if} (i \% 20 == 0)}
+\DoxyCodeLine{80       fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{81     fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, y[i]);}
+\DoxyCodeLine{82   \}}
+\DoxyCodeLine{83   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"y"});}
+\DoxyCodeLine{84   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}\label{atax__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!\_ThreadCount@{\_ThreadCount}}
+\index{\_ThreadCount@{\_ThreadCount}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_ThreadCount}{\_ThreadCount}}
+{\footnotesize\ttfamily int \+\_\+\+Thread\+Count}
+
+\mbox{\Hypertarget{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}\label{atax__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!\_time\_threads@{\_time\_threads}}
+\index{\_time\_threads@{\_time\_threads}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_time\_threads}{\_time\_threads}}
+{\footnotesize\ttfamily double \+\_\+time\+\_\+threads\mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}}
+
+\mbox{\Hypertarget{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}\label{atax__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily double t\+\_\+start}
+
+\mbox{\Hypertarget{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}\label{atax__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}} 
+\index{atax\_algebraic.c@{atax\_algebraic.c}!tall\_start@{tall\_start}}
+\index{tall\_start@{tall\_start}!atax\_algebraic.c@{atax\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{tall\_start}{tall\_start}}
+{\footnotesize\ttfamily double tall\+\_\+start}
+

@@ -1,0 +1,491 @@
+\hypertarget{gemver__algebraic_8c}{}\doxysection{all-\/charges/gemver\+\_\+algebraic.c File Reference}
+\label{gemver__algebraic_8c}\index{all-\/charges/gemver\_algebraic.c@{all-\/charges/gemver\_algebraic.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtclock.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+0.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+2.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+3.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$omp.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gemver.\+h\char`\"{}}\newline
+Include dependency graph for gemver\+\_\+algebraic.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gemver__algebraic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gemver__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}~256
+\item 
+\#define \mbox{\hyperlink{gemver__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))
+\item 
+\#define \mbox{\hyperlink{gemver__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))
+\item 
+\#define \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(x,  y)~((x) $>$ (y) ? (x) \+: (y))
+\item 
+\#define \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(x,  y)~((x) $<$ (y) ? (x) \+: (y))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{gemver__algebraic_8c_a2d58e3b38c8abe8ba5a6312d701d4111}{init\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$beta, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(u1, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(v1, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(u2, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(v2, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(w, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(z, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{gemver__algebraic_8c_a5c27b2346dca3d5f563251c95c027132}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(w, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+static void \mbox{\hyperlink{gemver__algebraic_8c_a298c51a9d426d939a40e7e4c25f78350}{kernel\+\_\+gemver}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} beta, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(u1, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(v1, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(u2, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(v2, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(w, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(x, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(y, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(z, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n))
+\item 
+int \mbox{\hyperlink{gemver__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\+\_\+start}}
+\item 
+int \mbox{\hyperlink{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\+\_\+\+Thread\+Count}}
+\item 
+double \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\+\_\+time\+\_\+threads}} \mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gemver__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}\label{gemver__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!ceild@{ceild}}
+\index{ceild@{ceild}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{ceild}{ceild}}
+{\footnotesize\ttfamily \#define ceild(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}\label{gemver__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!floord@{floord}}
+\index{floord@{floord}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{floord}{floord}}
+{\footnotesize\ttfamily \#define floord(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}\label{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!max@{max}}
+\index{max@{max}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $>$ (y) ? (x) \+: (y))}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}\label{gemver__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!MAX\_THREADS@{MAX\_THREADS}}
+\index{MAX\_THREADS@{MAX\_THREADS}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THREADS}{MAX\_THREADS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS~256}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}\label{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!min@{min}}
+\index{min@{min}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $<$ (y) ? (x) \+: (y))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gemver__algebraic_8c_a2d58e3b38c8abe8ba5a6312d701d4111}\label{gemver__algebraic_8c_a2d58e3b38c8abe8ba5a6312d701d4111}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{beta,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Du1, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dv1, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Du2, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dv2, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dw, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dz, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62                                                                              \{}
+\DoxyCodeLine{63   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65   *alpha = 1.5;}
+\DoxyCodeLine{66   *beta = 1.2;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} fn = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{}
+\DoxyCodeLine{71     u1[i] = i;}
+\DoxyCodeLine{72     u2[i] = ((i + 1) / fn) / 2.0;}
+\DoxyCodeLine{73     v1[i] = ((i + 1) / fn) / 4.0;}
+\DoxyCodeLine{74     v2[i] = ((i + 1) / fn) / 6.0;}
+\DoxyCodeLine{75     y[i] = ((i + 1) / fn) / 8.0;}
+\DoxyCodeLine{76     z[i] = ((i + 1) / fn) / 9.0;}
+\DoxyCodeLine{77     x[i] = 0.0;}
+\DoxyCodeLine{78     w[i] = 0.0;}
+\DoxyCodeLine{79     \textcolor{keywordflow}{for} (j = 0; j < n; j++)}
+\DoxyCodeLine{80       A[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})(i * j \% n) / n;}
+\DoxyCodeLine{81   \}}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gemver__algebraic_8c_a298c51a9d426d939a40e7e4c25f78350}\label{gemver__algebraic_8c_a298c51a9d426d939a40e7e4c25f78350}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!kernel\_gemver@{kernel\_gemver}}
+\index{kernel\_gemver@{kernel\_gemver}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_gemver()}{kernel\_gemver()}}
+{\footnotesize\ttfamily static void kernel\+\_\+gemver (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{beta,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Du1, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dv1, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Du2, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dv2, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dw, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dx, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dy, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dz, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108                                      \{}
+\DoxyCodeLine{109   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} t1, t2, t3, t4, t5;}
+\DoxyCodeLine{112   \textcolor{keywordtype}{int} lb, ub, lbp, ubp, lb2, ub2;}
+\DoxyCodeLine{113   \textcolor{keyword}{register} \textcolor{keywordtype}{int} lbv, ubv;}
+\DoxyCodeLine{114   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L0, t0\_pcmax, alb0, aub0, aub0t;}
+\DoxyCodeLine{115   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L1, t1\_pcmax, alb1, aub1, aub1t;}
+\DoxyCodeLine{116   t0\_pcmax = i0\_Ehrhart(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{117   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{118   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{119   ;}
+\DoxyCodeLine{120   lbp = 0;}
+\DoxyCodeLine{121   ubp = aub0t;}
+\DoxyCodeLine{122 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{123 \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{124 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{126 \{}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{    t5)}}
+\DoxyCodeLine{131   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{132     alb0 = i0\_trahrhe\_i0(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{133     aub0 = i0\_trahrhe\_i0(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/ 1;}
+\DoxyCodeLine{134     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{135       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{138       fprintf(stderr,}
+\DoxyCodeLine{139               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{140               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{141               TILE\_VOL\_L0);}
+\DoxyCodeLine{142       exit(1);}
+\DoxyCodeLine{143     \};}
+\DoxyCodeLine{144     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a5eeb7eb8b493273d1ad1c9c59474a638}{j0\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{145     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{146     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{147     ;}
+\DoxyCodeLine{148     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{149       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a6aa7c4bb0333f7c3d7675e3af523dd16}{j0\_trahrhe\_j0}}(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{150       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a6aa7c4bb0333f7c3d7675e3af523dd16}{j0\_trahrhe\_j0}}(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0,}
+\DoxyCodeLine{151                            aub0) -\/}
+\DoxyCodeLine{152              1;}
+\DoxyCodeLine{153       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{154         aub1 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{155       \}}
+\DoxyCodeLine{156       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{157         fprintf(stderr,}
+\DoxyCodeLine{158                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{159                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{160                 TILE\_VOL\_L1);}
+\DoxyCodeLine{161         exit(1);}
+\DoxyCodeLine{162       \};}
+\DoxyCodeLine{163       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t4++) \{}
+\DoxyCodeLine{164         lbv = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1);}
+\DoxyCodeLine{165         ubv = \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1);}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{167         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{168           A[t4][t5] = A[t4][t5] + u1[t4] * v1[t5] + u2[t4] * v2[t5];}
+\DoxyCodeLine{169           ;}
+\DoxyCodeLine{170         \}}
+\DoxyCodeLine{171       \}}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173   \}}
+\DoxyCodeLine{174 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{175 \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{176 \}}
+\DoxyCodeLine{177   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a9f514b45515b7fdb6f467630aeaf0292}{i1\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{178   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{179   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{180   ;}
+\DoxyCodeLine{181   lbp = 0;}
+\DoxyCodeLine{182   ubp = aub0t;}
+\DoxyCodeLine{183 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{184 \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{185 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{187 \{}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{    t5)}}
+\DoxyCodeLine{192   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{193     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{194     aub0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/ 1;}
+\DoxyCodeLine{195     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{196       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{197     \}}
+\DoxyCodeLine{198     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{199       fprintf(stderr,}
+\DoxyCodeLine{200               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{201               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{202               TILE\_VOL\_L0);}
+\DoxyCodeLine{203       exit(1);}
+\DoxyCodeLine{204     \};}
+\DoxyCodeLine{205     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a0c805e60ff844bd6f118bcce49ed0a60}{j1\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{206     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{207     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{208     ;}
+\DoxyCodeLine{209     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{210       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a351b68cddd2bc23ebad3e216011b1ead}{j1\_trahrhe\_j1}}(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{211       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a351b68cddd2bc23ebad3e216011b1ead}{j1\_trahrhe\_j1}}(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0,}
+\DoxyCodeLine{212                            aub0) -\/}
+\DoxyCodeLine{213              1;}
+\DoxyCodeLine{214       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{215         aub1 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{216       \}}
+\DoxyCodeLine{217       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{218         fprintf(stderr,}
+\DoxyCodeLine{219                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{220                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{221                 TILE\_VOL\_L1);}
+\DoxyCodeLine{222         exit(1);}
+\DoxyCodeLine{223       \};}
+\DoxyCodeLine{224       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1); t4 <= \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t4++) \{}
+\DoxyCodeLine{225         lbv = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{226         ubv = \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1);}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{228         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{229           x[t5] = x[t5] + beta * A[t4][t5] * y[t4];}
+\DoxyCodeLine{230           ;}
+\DoxyCodeLine{231         \}}
+\DoxyCodeLine{232       \}}
+\DoxyCodeLine{233     \}}
+\DoxyCodeLine{234   \}}
+\DoxyCodeLine{235 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{236 \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{237 \}}
+\DoxyCodeLine{238   t0\_pcmax = i2\_Ehrhart(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{239   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{240   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{241   ;}
+\DoxyCodeLine{242   lbp = 0;}
+\DoxyCodeLine{243   ubp = aub0t;}
+\DoxyCodeLine{244 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{245 \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{246 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{248 \{}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, t3, t4, t5)}}
+\DoxyCodeLine{252   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{253     alb0 = i2\_trahrhe\_i2(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{254     aub0 = i2\_trahrhe\_i2(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/ 1;}
+\DoxyCodeLine{255     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{256       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{257     \}}
+\DoxyCodeLine{258     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{259       fprintf(stderr,}
+\DoxyCodeLine{260               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{261               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{262               TILE\_VOL\_L0);}
+\DoxyCodeLine{263       exit(1);}
+\DoxyCodeLine{264     \};}
+\DoxyCodeLine{265     lbv = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{266     ubv = \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1);}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{268     \textcolor{keywordflow}{for} (t3 = lbv; t3 <= ubv; t3++) \{}
+\DoxyCodeLine{269       x[t3] = x[t3] + z[t3];}
+\DoxyCodeLine{270       ;}
+\DoxyCodeLine{271     \}}
+\DoxyCodeLine{272   \}}
+\DoxyCodeLine{273 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{274 \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{275 \}}
+\DoxyCodeLine{276   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0819f57253cb8ee95704c45faa70dd65}{i3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{277   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{278   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{279   ;}
+\DoxyCodeLine{280   lbp = 0;}
+\DoxyCodeLine{281   ubp = aub0t;}
+\DoxyCodeLine{282 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{283 \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{284 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{286 \{}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{    t5)}}
+\DoxyCodeLine{291   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{292     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{293     aub0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/ 1;}
+\DoxyCodeLine{294     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{295       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{296     \}}
+\DoxyCodeLine{297     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{298       fprintf(stderr,}
+\DoxyCodeLine{299               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{300               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{301               TILE\_VOL\_L0);}
+\DoxyCodeLine{302       exit(1);}
+\DoxyCodeLine{303     \};}
+\DoxyCodeLine{304     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0d8adfdb708c96f66777fad47073c954}{j3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{305     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{306     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{307     ;}
+\DoxyCodeLine{308     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{309       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{310       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0,}
+\DoxyCodeLine{311                            aub0) -\/}
+\DoxyCodeLine{312              1;}
+\DoxyCodeLine{313       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{314         aub1 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{315       \}}
+\DoxyCodeLine{316       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{317         fprintf(stderr,}
+\DoxyCodeLine{318                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{319                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{320                 TILE\_VOL\_L1);}
+\DoxyCodeLine{321         exit(1);}
+\DoxyCodeLine{322       \};}
+\DoxyCodeLine{323       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t4++) \{}
+\DoxyCodeLine{324         \textcolor{keywordflow}{for} (t5 = \mbox{\hyperlink{gemver__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1); t5 <= \mbox{\hyperlink{gemver__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t5++) \{}
+\DoxyCodeLine{325           w[t4] = w[t4] + alpha * A[t4][t5] * x[t5];}
+\DoxyCodeLine{326           ;}
+\DoxyCodeLine{327         \}}
+\DoxyCodeLine{328       \}}
+\DoxyCodeLine{329     \}}
+\DoxyCodeLine{330   \}}
+\DoxyCodeLine{331 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{332 \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{333 \}}
+\DoxyCodeLine{334 \textcolor{comment}{/* Affichage des temps d'exécution */}}
+\DoxyCodeLine{335 \mbox{\hyperlink{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}()-\/\mbox{\hyperlink{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}; }
+\DoxyCodeLine{336 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}};i++)\{}
+\DoxyCodeLine{337 printf(\textcolor{stringliteral}{"\%0.6lf \(\backslash\)n"}, \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[i]);}
+\DoxyCodeLine{338 \}}
+\DoxyCodeLine{339  printf(\textcolor{stringliteral}{"\#\#Execution time \(\backslash\)n"});}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gemver__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{gemver__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!main@{main}}
+\index{main@{main}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{343                                 \{}
+\DoxyCodeLine{344 \mbox{\hyperlink{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}} = atoi(getenv(\textcolor{stringliteral}{"OMP\_NUM\_THREADS"}));}
+\DoxyCodeLine{345   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} \_i=0; \_i<\mbox{\hyperlink{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}}; \_i++) \mbox{\hyperlink{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[\_i]=0.0; \textcolor{comment}{/*initialisation du tableau des mesures à 0 */}}
+\DoxyCodeLine{346   \textcolor{comment}{/* temps d'exécution totale */}}
+\DoxyCodeLine{347   \mbox{\hyperlink{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{350   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{353   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} alpha;}
+\DoxyCodeLine{354   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} beta;}
+\DoxyCodeLine{355   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(A, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{356   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(u1, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{357   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(v1, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{358   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(u2, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{359   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(v2, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{360   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(w, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{361   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(x, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{362   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(y, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{363   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(z, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{366   \mbox{\hyperlink{gemver__algebraic_8c_a2d58e3b38c8abe8ba5a6312d701d4111}{init\_array}}(n, \&alpha, \&beta, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(u1),}
+\DoxyCodeLine{367              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(v1), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(u2), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(v2),}
+\DoxyCodeLine{368              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(w), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y),}
+\DoxyCodeLine{369              \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(z));}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{372   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{375   \mbox{\hyperlink{gemver__algebraic_8c_a298c51a9d426d939a40e7e4c25f78350}{kernel\_gemver}}(n, alpha, beta, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(u1),}
+\DoxyCodeLine{376                 \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(v1), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(u2), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(v2),}
+\DoxyCodeLine{377                 \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(w), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(x), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y),}
+\DoxyCodeLine{378                 \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(z));}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{381   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{382   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{385 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{386   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{gemver__algebraic_8c_a5c27b2346dca3d5f563251c95c027132}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(w)));}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{389   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{390   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(u1);}
+\DoxyCodeLine{391   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(v1);}
+\DoxyCodeLine{392   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(u2);}
+\DoxyCodeLine{393   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(v2);}
+\DoxyCodeLine{394   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(w);}
+\DoxyCodeLine{395   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(x);}
+\DoxyCodeLine{396   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(y);}
+\DoxyCodeLine{397   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(z);}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{400 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gemver__algebraic_8c_a5c27b2346dca3d5f563251c95c027132}\label{gemver__algebraic_8c_a5c27b2346dca3d5f563251c95c027132}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dw, N, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{86                                                                 \{}
+\DoxyCodeLine{87   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{90   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"w"});}
+\DoxyCodeLine{91   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{}
+\DoxyCodeLine{92     \textcolor{keywordflow}{if} (i \% 20 == 0)}
+\DoxyCodeLine{93       fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{94     fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, w[i]);}
+\DoxyCodeLine{95   \}}
+\DoxyCodeLine{96   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"w"});}
+\DoxyCodeLine{97   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{98 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}\label{gemver__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!\_ThreadCount@{\_ThreadCount}}
+\index{\_ThreadCount@{\_ThreadCount}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_ThreadCount}{\_ThreadCount}}
+{\footnotesize\ttfamily int \+\_\+\+Thread\+Count}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}\label{gemver__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!\_time\_threads@{\_time\_threads}}
+\index{\_time\_threads@{\_time\_threads}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_time\_threads}{\_time\_threads}}
+{\footnotesize\ttfamily double \+\_\+time\+\_\+threads\mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}\label{gemver__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily double t\+\_\+start}
+
+\mbox{\Hypertarget{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}\label{gemver__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}} 
+\index{gemver\_algebraic.c@{gemver\_algebraic.c}!tall\_start@{tall\_start}}
+\index{tall\_start@{tall\_start}!gemver\_algebraic.c@{gemver\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{tall\_start}{tall\_start}}
+{\footnotesize\ttfamily double tall\+\_\+start}
+

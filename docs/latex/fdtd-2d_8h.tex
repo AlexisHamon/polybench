@@ -1,0 +1,131 @@
+\hypertarget{fdtd-2d_8h}{}\doxysection{stencils/fdtd-\/2d/fdtd-\/2d.h File Reference}
+\label{fdtd-2d_8h}\index{stencils/fdtd-\/2d/fdtd-\/2d.h@{stencils/fdtd-\/2d/fdtd-\/2d.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{fdtd-2d_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_af1fea01b66d380c67909932dc0407e9b}{L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}}
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_af7a16e2716eaac90fb331c55876cf511}{T\+M\+AX}}~500
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a4a9d32ff035c82119003134767948ebf}{NX}}~1000
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a652e87ecc9140879666ae9d6bf4ca893}{NY}}~1200
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a62a1233772173f0cbe77baa99c247af4}{\+\_\+\+P\+B\+\_\+\+T\+M\+AX}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_af7a16e2716eaac90fb331c55876cf511}{T\+M\+AX}},tmax)
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a263f9bb77832429f53dafeb2ef5ea44a}{\+\_\+\+P\+B\+\_\+\+NX}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_a4a9d32ff035c82119003134767948ebf}{NX}},nx)
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a4794a1418be5c42d977e713e29c3c559}{\+\_\+\+P\+B\+\_\+\+NY}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_a652e87ecc9140879666ae9d6bf4ca893}{NY}},ny)
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}{D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}}
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}~double
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_abc5889bc2dd57793cca91186bb8b123e}{D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER}}~\char`\"{}\%0.\+2lf \char`\"{}
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a97278ab00623feea0773db50c6e0620a}{S\+C\+A\+L\+A\+R\+\_\+\+V\+AL}}(x)~x
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_a65511cd52aff76924048f73e9776065e}{S\+Q\+R\+T\+\_\+\+F\+UN}}(x)~sqrt(x)
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_ae43361b6f20a4f37371b5a711b971d05}{E\+X\+P\+\_\+\+F\+UN}}(x)~exp(x)
+\item 
+\#define \mbox{\hyperlink{fdtd-2d_8h_ab7c71c79fb86e94ff65d36e81007167f}{P\+O\+W\+\_\+\+F\+UN}}(x,  y)~pow(x,y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{fdtd-2d_8h_a263f9bb77832429f53dafeb2ef5ea44a}\label{fdtd-2d_8h_a263f9bb77832429f53dafeb2ef5ea44a}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!\_PB\_NX@{\_PB\_NX}}
+\index{\_PB\_NX@{\_PB\_NX}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_NX}{\_PB\_NX}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+NX~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_a4a9d32ff035c82119003134767948ebf}{NX}},nx)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_a4794a1418be5c42d977e713e29c3c559}\label{fdtd-2d_8h_a4794a1418be5c42d977e713e29c3c559}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!\_PB\_NY@{\_PB\_NY}}
+\index{\_PB\_NY@{\_PB\_NY}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_NY}{\_PB\_NY}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+NY~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_a652e87ecc9140879666ae9d6bf4ca893}{NY}},ny)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_a62a1233772173f0cbe77baa99c247af4}\label{fdtd-2d_8h_a62a1233772173f0cbe77baa99c247af4}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!\_PB\_TMAX@{\_PB\_TMAX}}
+\index{\_PB\_TMAX@{\_PB\_TMAX}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_TMAX}{\_PB\_TMAX}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+T\+M\+AX~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{fdtd-2d_8h_af7a16e2716eaac90fb331c55876cf511}{T\+M\+AX}},tmax)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_abc5889bc2dd57793cca91186bb8b123e}\label{fdtd-2d_8h_abc5889bc2dd57793cca91186bb8b123e}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}}
+\index{DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_PRINTF\_MODIFIER}{DATA\_PRINTF\_MODIFIER}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER~\char`\"{}\%0.\+2lf \char`\"{}}
+
+\mbox{\Hypertarget{fdtd-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}\label{fdtd-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!DATA\_TYPE@{DATA\_TYPE}}
+\index{DATA\_TYPE@{DATA\_TYPE}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE}{DATA\_TYPE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+PE~double}
+
+\mbox{\Hypertarget{fdtd-2d_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}\label{fdtd-2d_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}}
+\index{DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE\_IS\_DOUBLE}{DATA\_TYPE\_IS\_DOUBLE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}
+
+\mbox{\Hypertarget{fdtd-2d_8h_ae43361b6f20a4f37371b5a711b971d05}\label{fdtd-2d_8h_ae43361b6f20a4f37371b5a711b971d05}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!EXP\_FUN@{EXP\_FUN}}
+\index{EXP\_FUN@{EXP\_FUN}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{EXP\_FUN}{EXP\_FUN}}
+{\footnotesize\ttfamily \#define E\+X\+P\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~exp(x)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_af1fea01b66d380c67909932dc0407e9b}\label{fdtd-2d_8h_af1fea01b66d380c67909932dc0407e9b}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!LARGE\_DATASET@{LARGE\_DATASET}}
+\index{LARGE\_DATASET@{LARGE\_DATASET}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{LARGE\_DATASET}{LARGE\_DATASET}}
+{\footnotesize\ttfamily \#define L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} \mbox{\Hypertarget{fdtd-2d_8h_a4a9d32ff035c82119003134767948ebf}\label{fdtd-2d_8h_a4a9d32ff035c82119003134767948ebf}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!NX@{NX}}
+\index{NX@{NX}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{NX}{NX}}
+{\footnotesize\ttfamily \#define NX~1000}
+
+\mbox{\Hypertarget{fdtd-2d_8h_a652e87ecc9140879666ae9d6bf4ca893}\label{fdtd-2d_8h_a652e87ecc9140879666ae9d6bf4ca893}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!NY@{NY}}
+\index{NY@{NY}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{NY}{NY}}
+{\footnotesize\ttfamily \#define NY~1200}
+
+\mbox{\Hypertarget{fdtd-2d_8h_ab7c71c79fb86e94ff65d36e81007167f}\label{fdtd-2d_8h_ab7c71c79fb86e94ff65d36e81007167f}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!POW\_FUN@{POW\_FUN}}
+\index{POW\_FUN@{POW\_FUN}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{POW\_FUN}{POW\_FUN}}
+{\footnotesize\ttfamily \#define P\+O\+W\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~pow(x,y)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_a97278ab00623feea0773db50c6e0620a}\label{fdtd-2d_8h_a97278ab00623feea0773db50c6e0620a}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!SCALAR\_VAL@{SCALAR\_VAL}}
+\index{SCALAR\_VAL@{SCALAR\_VAL}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{SCALAR\_VAL}{SCALAR\_VAL}}
+{\footnotesize\ttfamily \#define S\+C\+A\+L\+A\+R\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~x}
+
+\mbox{\Hypertarget{fdtd-2d_8h_a65511cd52aff76924048f73e9776065e}\label{fdtd-2d_8h_a65511cd52aff76924048f73e9776065e}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!SQRT\_FUN@{SQRT\_FUN}}
+\index{SQRT\_FUN@{SQRT\_FUN}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{SQRT\_FUN}{SQRT\_FUN}}
+{\footnotesize\ttfamily \#define S\+Q\+R\+T\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~sqrt(x)}
+
+\mbox{\Hypertarget{fdtd-2d_8h_af7a16e2716eaac90fb331c55876cf511}\label{fdtd-2d_8h_af7a16e2716eaac90fb331c55876cf511}} 
+\index{fdtd-\/2d.h@{fdtd-\/2d.h}!TMAX@{TMAX}}
+\index{TMAX@{TMAX}!fdtd-\/2d.h@{fdtd-\/2d.h}}
+\doxysubsubsection{\texorpdfstring{TMAX}{TMAX}}
+{\footnotesize\ttfamily \#define T\+M\+AX~500}
+

@@ -1,0 +1,140 @@
+\hypertarget{floyd-warshall_8c}{}\doxysection{medley/floyd-\/warshall/floyd-\/warshall.c File Reference}
+\label{floyd-warshall_8c}\index{medley/floyd-\/warshall/floyd-\/warshall.c@{medley/floyd-\/warshall/floyd-\/warshall.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}floyd-\/warshall.\+h\char`\"{}}\newline
+Include dependency graph for floyd-\/warshall.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{floyd-warshall_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{floyd-warshall_8c_a83aa3d3e4fd3b6de9ad7035de49bea77}{init\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(path, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{floyd-warshall_8c_a56a3e06462bc9333fcc78916e01189d3}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(path, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{floyd-warshall_8c_ab2aa26330a9c7a7e121d7cb2fe61b942}{kernel\+\_\+floyd\+\_\+warshall}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(path, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+int \mbox{\hyperlink{floyd-warshall_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{floyd-warshall_8c_a83aa3d3e4fd3b6de9ad7035de49bea77}\label{floyd-warshall_8c_a83aa3d3e4fd3b6de9ad7035de49bea77}} 
+\index{floyd-\/warshall.c@{floyd-\/warshall.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!floyd-\/warshall.c@{floyd-\/warshall.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dpath, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{32     \textcolor{keywordflow}{for} (j = 0; j < n; j++) \{}
+\DoxyCodeLine{33       path[i][j] = i*j\%7+1;}
+\DoxyCodeLine{34       \textcolor{keywordflow}{if} ((i+j)\%13 == 0 || (i+j)\%7==0 || (i+j)\%11 == 0)}
+\DoxyCodeLine{35          path[i][j] = 999;}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{floyd-warshall_8c_ab2aa26330a9c7a7e121d7cb2fe61b942}\label{floyd-warshall_8c_ab2aa26330a9c7a7e121d7cb2fe61b942}} 
+\index{floyd-\/warshall.c@{floyd-\/warshall.c}!kernel\_floyd\_warshall@{kernel\_floyd\_warshall}}
+\index{kernel\_floyd\_warshall@{kernel\_floyd\_warshall}!floyd-\/warshall.c@{floyd-\/warshall.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_floyd\_warshall()}{kernel\_floyd\_warshall()}}
+{\footnotesize\ttfamily static void kernel\+\_\+floyd\+\_\+warshall (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dpath, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{70   \textcolor{keywordflow}{for} (k = 0; k < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; k++)}
+\DoxyCodeLine{71     \{}
+\DoxyCodeLine{72       \textcolor{keywordflow}{for}(i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++)}
+\DoxyCodeLine{73     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; j++)}
+\DoxyCodeLine{74       path[i][j] = path[i][j] < path[i][k] + path[k][j] ?}
+\DoxyCodeLine{75         path[i][j] : path[i][k] + path[k][j];}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{floyd-warshall_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{floyd-warshall_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{floyd-\/warshall.c@{floyd-\/warshall.c}!main@{main}}
+\index{main@{main}!floyd-\/warshall.c@{floyd-\/warshall.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{83 \{}
+\DoxyCodeLine{84   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{85   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{88   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(path, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{92   \mbox{\hyperlink{floyd-warshall_8c_a83aa3d3e4fd3b6de9ad7035de49bea77}{init\_array}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(path));}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{95   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{98   \mbox{\hyperlink{floyd-warshall_8c_ab2aa26330a9c7a7e121d7cb2fe61b942}{kernel\_floyd\_warshall}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(path));}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{101   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{102   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{105 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{106   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{floyd-warshall_8c_a56a3e06462bc9333fcc78916e01189d3}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(path)));}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{109   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(path);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{112 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{floyd-warshall_8c_a56a3e06462bc9333fcc78916e01189d3}\label{floyd-warshall_8c_a56a3e06462bc9333fcc78916e01189d3}} 
+\index{floyd-\/warshall.c@{floyd-\/warshall.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!floyd-\/warshall.c@{floyd-\/warshall.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dpath, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{50   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"path"});}
+\DoxyCodeLine{51   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{52     \textcolor{keywordflow}{for} (j = 0; j < n; j++) \{}
+\DoxyCodeLine{53       \textcolor{keywordflow}{if} ((i * n + j) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{54       fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, path[i][j]);}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"path"});}
+\DoxyCodeLine{57   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,190 @@
+\hypertarget{correlation_8c}{}\doxysection{datamining/correlation/correlation.c File Reference}
+\label{correlation_8c}\index{datamining/correlation/correlation.c@{datamining/correlation/correlation.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}correlation.\+h\char`\"{}}\newline
+Include dependency graph for correlation.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{correlation_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{correlation_8c_acaace34572d6dc7f8731421331792322}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m))
+\item 
+static void \mbox{\hyperlink{correlation_8c_a160a403ca3c0a94e17570520b3849262}{print\+\_\+array}} (int m, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(corr, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m))
+\item 
+static void \mbox{\hyperlink{correlation_8c_a295c4b5a056a3bae524908c900bd8ca6}{kernel\+\_\+correlation}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(corr, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(mean, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(stddev, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m))
+\item 
+int \mbox{\hyperlink{correlation_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{correlation_8c_acaace34572d6dc7f8731421331792322}\label{correlation_8c_acaace34572d6dc7f8731421331792322}} 
+\index{correlation.c@{correlation.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!correlation.c@{correlation.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   *float\_n = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})\mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}; i++)}
+\DoxyCodeLine{36     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}; j++)}
+\DoxyCodeLine{37       \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})(i*j)/\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}} + i;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{correlation_8c_a295c4b5a056a3bae524908c900bd8ca6}\label{correlation_8c_a295c4b5a056a3bae524908c900bd8ca6}} 
+\index{correlation.c@{correlation.c}!kernel\_correlation@{kernel\_correlation}}
+\index{kernel\_correlation@{kernel\_correlation}!correlation.c@{correlation.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_correlation()}{kernel\_correlation()}}
+{\footnotesize\ttfamily static void kernel\+\_\+correlation (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcorr, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dmean, M, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dstddev, M, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{72 \{}
+\DoxyCodeLine{73   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} eps = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.1);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{79   \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; j++)}
+\DoxyCodeLine{80     \{}
+\DoxyCodeLine{81       mean[j] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{82       \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++)}
+\DoxyCodeLine{83     mean[j] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j];}
+\DoxyCodeLine{84       mean[j] /= float\_n;}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; j++)}
+\DoxyCodeLine{89     \{}
+\DoxyCodeLine{90       stddev[j] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{91       \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++)}
+\DoxyCodeLine{92         stddev[j] += (\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] -\/ mean[j]) * (\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] -\/ mean[j]);}
+\DoxyCodeLine{93       stddev[j] /= float\_n;}
+\DoxyCodeLine{94       stddev[j] = \mbox{\hyperlink{correlation_8h_a65511cd52aff76924048f73e9776065e}{SQRT\_FUN}}(stddev[j]);}
+\DoxyCodeLine{95       \textcolor{comment}{/* The following in an inelegant but usual way to handle}}
+\DoxyCodeLine{96 \textcolor{comment}{         near-\/zero std. dev. values, which below would cause a zero-\/}}
+\DoxyCodeLine{97 \textcolor{comment}{         divide. */}}
+\DoxyCodeLine{98       stddev[j] = stddev[j] <= eps ? \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0) : stddev[j];}
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \textcolor{comment}{/* Center and reduce the column vectors. */}}
+\DoxyCodeLine{102   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++)}
+\DoxyCodeLine{103     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; j++)}
+\DoxyCodeLine{104       \{}
+\DoxyCodeLine{105         \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] -\/= mean[j];}
+\DoxyCodeLine{106         \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] /= \mbox{\hyperlink{correlation_8h_a65511cd52aff76924048f73e9776065e}{SQRT\_FUN}}(float\_n) * stddev[j];}
+\DoxyCodeLine{107       \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \textcolor{comment}{/* Calculate the m * m correlation matrix. */}}
+\DoxyCodeLine{110   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1; i++)}
+\DoxyCodeLine{111     \{}
+\DoxyCodeLine{112       corr[i][i] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0);}
+\DoxyCodeLine{113       \textcolor{keywordflow}{for} (j = i+1; j < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; j++)}
+\DoxyCodeLine{114         \{}
+\DoxyCodeLine{115           corr[i][j] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{116           \textcolor{keywordflow}{for} (k = 0; k < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; k++)}
+\DoxyCodeLine{117             corr[i][j] += (\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[k][i] * \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[k][j]);}
+\DoxyCodeLine{118           corr[j][i] = corr[i][j];}
+\DoxyCodeLine{119         \}}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121   corr[\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1][\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}-\/1] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0);}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{correlation_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{correlation_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{correlation.c@{correlation.c}!main@{main}}
+\index{main@{main}!correlation.c@{correlation.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128 \{}
+\DoxyCodeLine{129   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{130   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{131   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{134   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} float\_n;}
+\DoxyCodeLine{135   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}},\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},n,m);}
+\DoxyCodeLine{136   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(corr,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m,m);}
+\DoxyCodeLine{137   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(mean,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m);}
+\DoxyCodeLine{138   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(stddev,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{141   \mbox{\hyperlink{correlation_8c_acaace34572d6dc7f8731421331792322}{init\_array}} (m, n, \&float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}));}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{144   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{147   \mbox{\hyperlink{correlation_8c_a295c4b5a056a3bae524908c900bd8ca6}{kernel\_correlation}} (m, n, float\_n,}
+\DoxyCodeLine{148               \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}),}
+\DoxyCodeLine{149               \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(corr),}
+\DoxyCodeLine{150               \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(mean),}
+\DoxyCodeLine{151               \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(stddev));}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{154   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{155   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{158 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{159   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{correlation_8c_a160a403ca3c0a94e17570520b3849262}{print\_array}}(m, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(corr)));}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{162   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}});}
+\DoxyCodeLine{163   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(corr);}
+\DoxyCodeLine{164   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(mean);}
+\DoxyCodeLine{165   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(stddev);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{168 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{correlation_8c_a160a403ca3c0a94e17570520b3849262}\label{correlation_8c_a160a403ca3c0a94e17570520b3849262}} 
+\index{correlation.c@{correlation.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!correlation.c@{correlation.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcorr, M, M, m, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{52   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"corr"});}
+\DoxyCodeLine{53   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{54     \textcolor{keywordflow}{for} (j = 0; j < m; j++) \{}
+\DoxyCodeLine{55       \textcolor{keywordflow}{if} ((i * m + j) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{56       fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, corr[i][j]);}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"corr"});}
+\DoxyCodeLine{59   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{60 \}}
+
+\end{DoxyCode}

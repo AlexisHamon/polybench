@@ -1,0 +1,166 @@
+\hypertarget{cholesky_8c}{}\doxysection{linear-\/algebra/solvers/cholesky/cholesky.c File Reference}
+\label{cholesky_8c}\index{linear-\/algebra/solvers/cholesky/cholesky.c@{linear-\/algebra/solvers/cholesky/cholesky.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}cholesky.\+h\char`\"{}}\newline
+Include dependency graph for cholesky.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cholesky_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{cholesky_8c_ac1037aae40f26401d26302ca9d23e56f}{init\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{cholesky_8c_a7ffb97bed7a26a734d7f5c7e6e3a8a83}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{cholesky_8c_a54c6b2a9905f2ccb2b897392ae80b028}{kernel\+\_\+cholesky}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+int \mbox{\hyperlink{cholesky_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cholesky_8c_ac1037aae40f26401d26302ca9d23e56f}\label{cholesky_8c_ac1037aae40f26401d26302ca9d23e56f}} 
+\index{cholesky.c@{cholesky.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!cholesky.c@{cholesky.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{32     \{}
+\DoxyCodeLine{33       \textcolor{keywordflow}{for} (j = 0; j <= i; j++)}
+\DoxyCodeLine{34     A[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})(-\/j \% n) / n + 1;}
+\DoxyCodeLine{35       \textcolor{keywordflow}{for} (j = i+1; j < n; j++) \{}
+\DoxyCodeLine{36     A[i][j] = 0;}
+\DoxyCodeLine{37       \}}
+\DoxyCodeLine{38       A[i][i] = 1;}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{comment}{/* Make the matrix positive semi-\/definite. */}}
+\DoxyCodeLine{42   \textcolor{keywordtype}{int} r,s,t;}
+\DoxyCodeLine{43   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(B, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{44   \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{45     \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{46       (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s] = 0;}
+\DoxyCodeLine{47   \textcolor{keywordflow}{for} (t = 0; t < n; ++t)}
+\DoxyCodeLine{48     \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{49       \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{50     (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s] += A[r][t] * A[s][t];}
+\DoxyCodeLine{51     \textcolor{keywordflow}{for} (r = 0; r < n; ++r)}
+\DoxyCodeLine{52       \textcolor{keywordflow}{for} (s = 0; s < n; ++s)}
+\DoxyCodeLine{53     A[r][s] = (\mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B))[r][s];}
+\DoxyCodeLine{54   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(B);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cholesky_8c_a54c6b2a9905f2ccb2b897392ae80b028}\label{cholesky_8c_a54c6b2a9905f2ccb2b897392ae80b028}} 
+\index{cholesky.c@{cholesky.c}!kernel\_cholesky@{kernel\_cholesky}}
+\index{kernel\_cholesky@{kernel\_cholesky}!cholesky.c@{cholesky.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_cholesky()}{kernel\_cholesky()}}
+{\footnotesize\ttfamily static void kernel\+\_\+cholesky (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{85 \{}
+\DoxyCodeLine{86   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{90   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; i++) \{}
+\DoxyCodeLine{91      \textcolor{comment}{//j<i}}
+\DoxyCodeLine{92      \textcolor{keywordflow}{for} (j = 0; j < i; j++) \{}
+\DoxyCodeLine{93         \textcolor{keywordflow}{for} (k = 0; k < j; k++) \{}
+\DoxyCodeLine{94            A[i][j] -\/= A[i][k] * A[j][k];}
+\DoxyCodeLine{95         \}}
+\DoxyCodeLine{96         A[i][j] /= A[j][j];}
+\DoxyCodeLine{97      \}}
+\DoxyCodeLine{98      \textcolor{comment}{// i==j case}}
+\DoxyCodeLine{99      \textcolor{keywordflow}{for} (k = 0; k < i; k++) \{}
+\DoxyCodeLine{100         A[i][i] -\/= A[i][k] * A[i][k];}
+\DoxyCodeLine{101      \}}
+\DoxyCodeLine{102      A[i][i] = \mbox{\hyperlink{correlation_8h_a65511cd52aff76924048f73e9776065e}{SQRT\_FUN}}(A[i][i]);}
+\DoxyCodeLine{103   \}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cholesky_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{cholesky_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{cholesky.c@{cholesky.c}!main@{main}}
+\index{main@{main}!cholesky.c@{cholesky.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{110 \{}
+\DoxyCodeLine{111   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{112   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{115   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(A, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{118   \mbox{\hyperlink{cholesky_8c_ac1037aae40f26401d26302ca9d23e56f}{init\_array}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A));}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{121   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{124   \mbox{\hyperlink{cholesky_8c_a54c6b2a9905f2ccb2b897392ae80b028}{kernel\_cholesky}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A));}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{127   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{128   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{131 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{132   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{cholesky_8c_a7ffb97bed7a26a734d7f5c7e6e3a8a83}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A)));}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{135   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{138 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cholesky_8c_a7ffb97bed7a26a734d7f5c7e6e3a8a83}\label{cholesky_8c_a7ffb97bed7a26a734d7f5c7e6e3a8a83}} 
+\index{cholesky.c@{cholesky.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!cholesky.c@{cholesky.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{69   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"A"});}
+\DoxyCodeLine{70   \textcolor{keywordflow}{for} (i = 0; i < n; i++)}
+\DoxyCodeLine{71     \textcolor{keywordflow}{for} (j = 0; j <= i; j++) \{}
+\DoxyCodeLine{72     \textcolor{keywordflow}{if} ((i * n + j) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{73     fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, A[i][j]);}
+\DoxyCodeLine{74   \}}
+\DoxyCodeLine{75   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"A"});}
+\DoxyCodeLine{76   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{77 \}}
+
+\end{DoxyCode}

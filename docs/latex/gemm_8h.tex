@@ -1,0 +1,131 @@
+\hypertarget{gemm_8h}{}\doxysection{linear-\/algebra/blas/gemm/gemm.h File Reference}
+\label{gemm_8h}\index{linear-\/algebra/blas/gemm/gemm.h@{linear-\/algebra/blas/gemm/gemm.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gemm_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gemm_8h_af1fea01b66d380c67909932dc0407e9b}{L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}}
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a860bedb684529775463fa3a6cb467efa}{NI}}~1000
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a54d192202ec35a6e951846dffbbb0c0f}{NJ}}~1100
+\item 
+\#define \mbox{\hyperlink{gemm_8h_ad7c4af50d6edb05be6d9179037157a37}{NK}}~1200
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a1ce4509fec72f3a60824cdd008610492}{\+\_\+\+P\+B\+\_\+\+NI}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_a860bedb684529775463fa3a6cb467efa}{NI}},ni)
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a66d4cd3c88c21fbe93f3b3e6cdfb6841}{\+\_\+\+P\+B\+\_\+\+NJ}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_a54d192202ec35a6e951846dffbbb0c0f}{NJ}},nj)
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a6853e18d0a30dec5a96ec63d98609cc8}{\+\_\+\+P\+B\+\_\+\+NK}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_ad7c4af50d6edb05be6d9179037157a37}{NK}},nk)
+\item 
+\#define \mbox{\hyperlink{gemm_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}{D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}}
+\item 
+\#define \mbox{\hyperlink{gemm_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}~double
+\item 
+\#define \mbox{\hyperlink{gemm_8h_abc5889bc2dd57793cca91186bb8b123e}{D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER}}~\char`\"{}\%0.\+2lf \char`\"{}
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a97278ab00623feea0773db50c6e0620a}{S\+C\+A\+L\+A\+R\+\_\+\+V\+AL}}(x)~x
+\item 
+\#define \mbox{\hyperlink{gemm_8h_a65511cd52aff76924048f73e9776065e}{S\+Q\+R\+T\+\_\+\+F\+UN}}(x)~sqrt(x)
+\item 
+\#define \mbox{\hyperlink{gemm_8h_ae43361b6f20a4f37371b5a711b971d05}{E\+X\+P\+\_\+\+F\+UN}}(x)~exp(x)
+\item 
+\#define \mbox{\hyperlink{gemm_8h_ab7c71c79fb86e94ff65d36e81007167f}{P\+O\+W\+\_\+\+F\+UN}}(x,  y)~pow(x,y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gemm_8h_a1ce4509fec72f3a60824cdd008610492}\label{gemm_8h_a1ce4509fec72f3a60824cdd008610492}} 
+\index{gemm.h@{gemm.h}!\_PB\_NI@{\_PB\_NI}}
+\index{\_PB\_NI@{\_PB\_NI}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_NI}{\_PB\_NI}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+NI~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_a860bedb684529775463fa3a6cb467efa}{NI}},ni)}
+
+\mbox{\Hypertarget{gemm_8h_a66d4cd3c88c21fbe93f3b3e6cdfb6841}\label{gemm_8h_a66d4cd3c88c21fbe93f3b3e6cdfb6841}} 
+\index{gemm.h@{gemm.h}!\_PB\_NJ@{\_PB\_NJ}}
+\index{\_PB\_NJ@{\_PB\_NJ}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_NJ}{\_PB\_NJ}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+NJ~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_a54d192202ec35a6e951846dffbbb0c0f}{NJ}},nj)}
+
+\mbox{\Hypertarget{gemm_8h_a6853e18d0a30dec5a96ec63d98609cc8}\label{gemm_8h_a6853e18d0a30dec5a96ec63d98609cc8}} 
+\index{gemm.h@{gemm.h}!\_PB\_NK@{\_PB\_NK}}
+\index{\_PB\_NK@{\_PB\_NK}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_NK}{\_PB\_NK}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+\+NK~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{3mm_8h_ad7c4af50d6edb05be6d9179037157a37}{NK}},nk)}
+
+\mbox{\Hypertarget{gemm_8h_abc5889bc2dd57793cca91186bb8b123e}\label{gemm_8h_abc5889bc2dd57793cca91186bb8b123e}} 
+\index{gemm.h@{gemm.h}!DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}}
+\index{DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_PRINTF\_MODIFIER}{DATA\_PRINTF\_MODIFIER}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER~\char`\"{}\%0.\+2lf \char`\"{}}
+
+\mbox{\Hypertarget{gemm_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}\label{gemm_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}} 
+\index{gemm.h@{gemm.h}!DATA\_TYPE@{DATA\_TYPE}}
+\index{DATA\_TYPE@{DATA\_TYPE}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE}{DATA\_TYPE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+PE~double}
+
+\mbox{\Hypertarget{gemm_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}\label{gemm_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}} 
+\index{gemm.h@{gemm.h}!DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}}
+\index{DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE\_IS\_DOUBLE}{DATA\_TYPE\_IS\_DOUBLE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}
+
+\mbox{\Hypertarget{gemm_8h_ae43361b6f20a4f37371b5a711b971d05}\label{gemm_8h_ae43361b6f20a4f37371b5a711b971d05}} 
+\index{gemm.h@{gemm.h}!EXP\_FUN@{EXP\_FUN}}
+\index{EXP\_FUN@{EXP\_FUN}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{EXP\_FUN}{EXP\_FUN}}
+{\footnotesize\ttfamily \#define E\+X\+P\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~exp(x)}
+
+\mbox{\Hypertarget{gemm_8h_af1fea01b66d380c67909932dc0407e9b}\label{gemm_8h_af1fea01b66d380c67909932dc0407e9b}} 
+\index{gemm.h@{gemm.h}!LARGE\_DATASET@{LARGE\_DATASET}}
+\index{LARGE\_DATASET@{LARGE\_DATASET}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{LARGE\_DATASET}{LARGE\_DATASET}}
+{\footnotesize\ttfamily \#define L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} \mbox{\Hypertarget{gemm_8h_a860bedb684529775463fa3a6cb467efa}\label{gemm_8h_a860bedb684529775463fa3a6cb467efa}} 
+\index{gemm.h@{gemm.h}!NI@{NI}}
+\index{NI@{NI}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{NI}{NI}}
+{\footnotesize\ttfamily \#define NI~1000}
+
+\mbox{\Hypertarget{gemm_8h_a54d192202ec35a6e951846dffbbb0c0f}\label{gemm_8h_a54d192202ec35a6e951846dffbbb0c0f}} 
+\index{gemm.h@{gemm.h}!NJ@{NJ}}
+\index{NJ@{NJ}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{NJ}{NJ}}
+{\footnotesize\ttfamily \#define NJ~1100}
+
+\mbox{\Hypertarget{gemm_8h_ad7c4af50d6edb05be6d9179037157a37}\label{gemm_8h_ad7c4af50d6edb05be6d9179037157a37}} 
+\index{gemm.h@{gemm.h}!NK@{NK}}
+\index{NK@{NK}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{NK}{NK}}
+{\footnotesize\ttfamily \#define NK~1200}
+
+\mbox{\Hypertarget{gemm_8h_ab7c71c79fb86e94ff65d36e81007167f}\label{gemm_8h_ab7c71c79fb86e94ff65d36e81007167f}} 
+\index{gemm.h@{gemm.h}!POW\_FUN@{POW\_FUN}}
+\index{POW\_FUN@{POW\_FUN}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{POW\_FUN}{POW\_FUN}}
+{\footnotesize\ttfamily \#define P\+O\+W\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~pow(x,y)}
+
+\mbox{\Hypertarget{gemm_8h_a97278ab00623feea0773db50c6e0620a}\label{gemm_8h_a97278ab00623feea0773db50c6e0620a}} 
+\index{gemm.h@{gemm.h}!SCALAR\_VAL@{SCALAR\_VAL}}
+\index{SCALAR\_VAL@{SCALAR\_VAL}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{SCALAR\_VAL}{SCALAR\_VAL}}
+{\footnotesize\ttfamily \#define S\+C\+A\+L\+A\+R\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~x}
+
+\mbox{\Hypertarget{gemm_8h_a65511cd52aff76924048f73e9776065e}\label{gemm_8h_a65511cd52aff76924048f73e9776065e}} 
+\index{gemm.h@{gemm.h}!SQRT\_FUN@{SQRT\_FUN}}
+\index{SQRT\_FUN@{SQRT\_FUN}!gemm.h@{gemm.h}}
+\doxysubsubsection{\texorpdfstring{SQRT\_FUN}{SQRT\_FUN}}
+{\footnotesize\ttfamily \#define S\+Q\+R\+T\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~sqrt(x)}
+

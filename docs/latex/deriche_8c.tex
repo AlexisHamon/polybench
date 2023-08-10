@@ -1,0 +1,219 @@
+\hypertarget{deriche_8c}{}\doxysection{medley/deriche/deriche.c File Reference}
+\label{deriche_8c}\index{medley/deriche/deriche.c@{medley/deriche/deriche.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}deriche.\+h\char`\"{}}\newline
+Include dependency graph for deriche.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{deriche_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{deriche_8c_a3908bdeed0d19f5bcb2d2549cd0cc068}{init\+\_\+array}} (int w, int h, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(img\+In, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(img\+Out, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h))
+\item 
+static void \mbox{\hyperlink{deriche_8c_a6b971daff7fb75b97a5dde02524717b8}{print\+\_\+array}} (int w, int h, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(img\+Out, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h))
+\item 
+static void \mbox{\hyperlink{deriche_8c_a7e2bc4b4c280bd4cacf6178444000688}{kernel\+\_\+deriche}} (int w, int h, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(img\+In, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(img\+Out, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(y1, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(y2, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h))
+\item 
+int \mbox{\hyperlink{deriche_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{deriche_8c_a3908bdeed0d19f5bcb2d2549cd0cc068}\label{deriche_8c_a3908bdeed0d19f5bcb2d2549cd0cc068}} 
+\index{deriche.c@{deriche.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!deriche.c@{deriche.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dimg\+In, W, H, w, h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dimg\+Out, W, H, w, h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   *alpha=0.25; \textcolor{comment}{//parameter of the filter}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{comment}{//input should be between 0 and 1 (grayscale image pixel)}}
+\DoxyCodeLine{35   \textcolor{keywordflow}{for} (i = 0; i < w; i++)}
+\DoxyCodeLine{36      \textcolor{keywordflow}{for} (j = 0; j < h; j++)}
+\DoxyCodeLine{37     imgIn[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}) ((313*i+991*j)\%65536) / 65535.0f;}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{deriche_8c_a7e2bc4b4c280bd4cacf6178444000688}\label{deriche_8c_a7e2bc4b4c280bd4cacf6178444000688}} 
+\index{deriche.c@{deriche.c}!kernel\_deriche@{kernel\_deriche}}
+\index{kernel\_deriche@{kernel\_deriche}!deriche.c@{deriche.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_deriche()}{kernel\_deriche()}}
+{\footnotesize\ttfamily static void kernel\+\_\+deriche (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dimg\+In, W, H, w, h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dimg\+Out, W, H, w, h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dy1, W, H, w, h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dy2, W, H, w, h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71                                                \{}
+\DoxyCodeLine{72     \textcolor{keywordtype}{int} i,j;}
+\DoxyCodeLine{73     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} xm1, tm1, ym1, ym2;}
+\DoxyCodeLine{74     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} xp1, xp2;}
+\DoxyCodeLine{75     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} tp1, tp2;}
+\DoxyCodeLine{76     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} yp1, yp2;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} k;}
+\DoxyCodeLine{79     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} a1, a2, a3, a4, a5, a6, a7, a8;}
+\DoxyCodeLine{80     \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} b1, b2, c1, c2;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{83    k = (\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0)-\/\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(-\/alpha))*(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0)-\/\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(-\/alpha))/(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0)+\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(2.0)*alpha*\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(-\/alpha)-\/\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(2.0)*alpha));}
+\DoxyCodeLine{84    a1 = a5 = k;}
+\DoxyCodeLine{85    a2 = a6 = k*\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(-\/alpha)*(alpha-\/\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0));}
+\DoxyCodeLine{86    a3 = a7 = k*\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(-\/alpha)*(alpha+\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0));}
+\DoxyCodeLine{87    a4 = a8 = -\/k*\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(-\/2.0)*alpha);}
+\DoxyCodeLine{88    b1 =  \mbox{\hyperlink{correlation_8h_ab7c71c79fb86e94ff65d36e81007167f}{POW\_FUN}}(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(2.0),-\/alpha);}
+\DoxyCodeLine{89    b2 = -\/\mbox{\hyperlink{correlation_8h_ae43361b6f20a4f37371b5a711b971d05}{EXP\_FUN}}(\mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(-\/2.0)*alpha);}
+\DoxyCodeLine{90    c1 = c2 = 1;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    \textcolor{keywordflow}{for} (i=0; i<\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}; i++) \{}
+\DoxyCodeLine{93         ym1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{94         ym2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{95         xm1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{96         \textcolor{keywordflow}{for} (j=0; j<\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}; j++) \{}
+\DoxyCodeLine{97             y1[i][j] = a1*imgIn[i][j] + a2*xm1 + b1*ym1 + b2*ym2;}
+\DoxyCodeLine{98             xm1 = imgIn[i][j];}
+\DoxyCodeLine{99             ym2 = ym1;}
+\DoxyCodeLine{100             ym1 = y1[i][j];}
+\DoxyCodeLine{101         \}}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keywordflow}{for} (i=0; i<\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}; i++) \{}
+\DoxyCodeLine{105         yp1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{106         yp2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{107         xp1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{108         xp2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{109         \textcolor{keywordflow}{for} (j=\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}-\/1; j>=0; j-\/-\/) \{}
+\DoxyCodeLine{110             y2[i][j] = a3*xp1 + a4*xp2 + b1*yp1 + b2*yp2;}
+\DoxyCodeLine{111             xp2 = xp1;}
+\DoxyCodeLine{112             xp1 = imgIn[i][j];}
+\DoxyCodeLine{113             yp2 = yp1;}
+\DoxyCodeLine{114             yp1 = y2[i][j];}
+\DoxyCodeLine{115         \}}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordflow}{for} (i=0; i<\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}; i++)}
+\DoxyCodeLine{119         \textcolor{keywordflow}{for} (j=0; j<\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}; j++) \{}
+\DoxyCodeLine{120             imgOut[i][j] = c1 * (y1[i][j] + y2[i][j]);}
+\DoxyCodeLine{121         \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{keywordflow}{for} (j=0; j<\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}; j++) \{}
+\DoxyCodeLine{124         tm1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{125         ym1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{126         ym2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{127         \textcolor{keywordflow}{for} (i=0; i<\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}; i++) \{}
+\DoxyCodeLine{128             y1[i][j] = a5*imgOut[i][j] + a6*tm1 + b1*ym1 + b2*ym2;}
+\DoxyCodeLine{129             tm1 = imgOut[i][j];}
+\DoxyCodeLine{130             ym2 = ym1;}
+\DoxyCodeLine{131             ym1 = y1 [i][j];}
+\DoxyCodeLine{132         \}}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{keywordflow}{for} (j=0; j<\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}; j++) \{}
+\DoxyCodeLine{137         tp1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{138         tp2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{139         yp1 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{140         yp2 = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{141         \textcolor{keywordflow}{for} (i=\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}-\/1; i>=0; i-\/-\/) \{}
+\DoxyCodeLine{142             y2[i][j] = a7*tp1 + a8*tp2 + b1*yp1 + b2*yp2;}
+\DoxyCodeLine{143             tp2 = tp1;}
+\DoxyCodeLine{144             tp1 = imgOut[i][j];}
+\DoxyCodeLine{145             yp2 = yp1;}
+\DoxyCodeLine{146             yp1 = y2[i][j];}
+\DoxyCodeLine{147         \}}
+\DoxyCodeLine{148     \}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150     \textcolor{keywordflow}{for} (i=0; i<\mbox{\hyperlink{deriche_8h_affdc82a3fc2e42113b6471dd1dd02809}{\_PB\_W}}; i++)}
+\DoxyCodeLine{151         \textcolor{keywordflow}{for} (j=0; j<\mbox{\hyperlink{deriche_8h_afad8243b74e723173700f7c65b12d634}{\_PB\_H}}; j++)}
+\DoxyCodeLine{152             imgOut[i][j] = c2*(y1[i][j] + y2[i][j]);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{155 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{deriche_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{deriche_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{deriche.c@{deriche.c}!main@{main}}
+\index{main@{main}!deriche.c@{deriche.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{159 \{}
+\DoxyCodeLine{160   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{161   \textcolor{keywordtype}{int} w = \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}};}
+\DoxyCodeLine{162   \textcolor{keywordtype}{int} h = \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{165   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} alpha;}
+\DoxyCodeLine{166   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(imgIn, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h);}
+\DoxyCodeLine{167   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(imgOut, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h);}
+\DoxyCodeLine{168   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(y1, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h);}
+\DoxyCodeLine{169   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(y2, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{deriche_8h_a649b8f01fd6c0f47ff3cbddaeba63bfb}{W}}, \mbox{\hyperlink{deriche_8h_abec92cc72a096640b821b8cd56a02495}{H}}, w, h);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{173   \mbox{\hyperlink{deriche_8c_a3908bdeed0d19f5bcb2d2549cd0cc068}{init\_array}} (w, h, \&alpha, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(imgIn), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(imgOut));}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{176   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{179   \mbox{\hyperlink{deriche_8c_a7e2bc4b4c280bd4cacf6178444000688}{kernel\_deriche}} (w, h, alpha, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(imgIn), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(imgOut), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y1), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(y2));}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{182   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{183   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{186 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{187   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{deriche_8c_a6b971daff7fb75b97a5dde02524717b8}{print\_array}}(w, h, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(imgOut)));}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{190   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(imgIn);}
+\DoxyCodeLine{191   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(imgOut);}
+\DoxyCodeLine{192   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(y1);}
+\DoxyCodeLine{193   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(y2);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{196 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{deriche_8c_a6b971daff7fb75b97a5dde02524717b8}\label{deriche_8c_a6b971daff7fb75b97a5dde02524717b8}} 
+\index{deriche.c@{deriche.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!deriche.c@{deriche.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{h,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dimg\+Out, W, H, w, h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{51   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"imgOut"});}
+\DoxyCodeLine{52   \textcolor{keywordflow}{for} (i = 0; i < w; i++)}
+\DoxyCodeLine{53     \textcolor{keywordflow}{for} (j = 0; j < h; j++) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{if} ((i * h + j) \% 20 == 0) fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{55       fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, imgOut[i][j]);}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"imgOut"});}
+\DoxyCodeLine{58   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}

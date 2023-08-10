@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['seidel_2d2d_2ec_554',['seidel-2d.c',['../seidel-2d_8c.html',1,'']]],
+  ['seidel_2d2d_2eh_555',['seidel-2d.h',['../seidel-2d_8h.html',1,'']]],
+  ['stat_2epdf_556',['stat.pdf',['../stat_8pdf.html',1,'']]],
+  ['statdoom_2epdf_557',['statdoom.pdf',['../statdoom_8pdf.html',1,'']]],
+  ['statdoomnewsize_2epdf_558',['statdoomnewsize.pdf',['../statdoomnewsize_8pdf.html',1,'']]],
+  ['statextraarge_2epdf_559',['statextraarge.pdf',['../statextraarge_8pdf.html',1,'']]],
+  ['statextralarge_2epdf_560',['statextralarge.pdf',['../statextralarge_8pdf.html',1,'']]],
+  ['symm_2ec_561',['symm.c',['../symm_8c.html',1,'']]],
+  ['symm_2eh_562',['symm.h',['../symm_8h.html',1,'']]],
+  ['syr2k_2ec_563',['syr2k.c',['../syr2k_8c.html',1,'']]],
+  ['syr2k_2eh_564',['syr2k.h',['../syr2k_8h.html',1,'']]],
+  ['syr2k_5falgebraic_2ec_565',['syr2k_algebraic.c',['../syr2k__algebraic_8c.html',1,'']]],
+  ['syr2k_5fdynamic_2ec_566',['syr2k_dynamic.c',['../syr2k__dynamic_8c.html',1,'']]],
+  ['syr2k_5fstatic_2ec_567',['syr2k_static.c',['../syr2k__static_8c.html',1,'']]],
+  ['syrk_2ec_568',['syrk.c',['../syrk_8c.html',1,'']]],
+  ['syrk_2eh_569',['syrk.h',['../syrk_8h.html',1,'']]],
+  ['syrk_5falgebraic_2ec_570',['syrk_algebraic.c',['../syrk__algebraic_8c.html',1,'']]],
+  ['syrk_5fdynamic_2ec_571',['syrk_dynamic.c',['../syrk__dynamic_8c.html',1,'']]],
+  ['syrk_5fstatic_2ec_572',['syrk_static.c',['../syrk__static_8c.html',1,'']]]
+];

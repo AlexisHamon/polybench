@@ -1,0 +1,155 @@
+\hypertarget{trmm_8c}{}\doxysection{linear-\/algebra/blas/trmm/trmm.c File Reference}
+\label{trmm_8c}\index{linear-\/algebra/blas/trmm/trmm.c@{linear-\/algebra/blas/trmm/trmm.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}trmm.\+h\char`\"{}}\newline
+Include dependency graph for trmm.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trmm_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{trmm_8c_aa014b6a9ac9416ee57fa98c12d19c6f9}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(B, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n))
+\item 
+static void \mbox{\hyperlink{trmm_8c_a691320c4455a48a0e82f3ead6a6c0a37}{print\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(B, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n))
+\item 
+static void \mbox{\hyperlink{trmm_8c_a5440ce55e4012698f4257b5af7c6e185}{kernel\+\_\+trmm}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} alpha, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(A, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(B, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, m, n))
+\item 
+int \mbox{\hyperlink{trmm_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{trmm_8c_aa014b6a9ac9416ee57fa98c12d19c6f9}\label{trmm_8c_aa014b6a9ac9416ee57fa98c12d19c6f9}} 
+\index{trmm.c@{trmm.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!trmm.c@{trmm.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DB, M, N, m, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   *alpha = 1.5;}
+\DoxyCodeLine{34   \textcolor{keywordflow}{for} (i = 0; i < m; i++) \{}
+\DoxyCodeLine{35     \textcolor{keywordflow}{for} (j = 0; j < i; j++) \{}
+\DoxyCodeLine{36       A[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})((i+j) \% m)/m;}
+\DoxyCodeLine{37     \}}
+\DoxyCodeLine{38     A[i][i] = 1.0;}
+\DoxyCodeLine{39     \textcolor{keywordflow}{for} (j = 0; j < n; j++) \{}
+\DoxyCodeLine{40       B[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})((n+(i-\/j)) \% n)/n;}
+\DoxyCodeLine{41     \}}
+\DoxyCodeLine{42  \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{trmm_8c_a5440ce55e4012698f4257b5af7c6e185}\label{trmm_8c_a5440ce55e4012698f4257b5af7c6e185}} 
+\index{trmm.c@{trmm.c}!kernel\_trmm@{kernel\_trmm}}
+\index{kernel\_trmm@{kernel\_trmm}!trmm.c@{trmm.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_trmm()}{kernel\_trmm()}}
+{\footnotesize\ttfamily static void kernel\+\_\+trmm (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{alpha,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DA, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DB, M, N, m, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{comment}{//BLAS parameters}}
+\DoxyCodeLine{78 \textcolor{comment}{//SIDE   = 'L'}}
+\DoxyCodeLine{79 \textcolor{comment}{//UPLO   = 'L'}}
+\DoxyCodeLine{80 \textcolor{comment}{//TRANSA = 'T'}}
+\DoxyCodeLine{81 \textcolor{comment}{//DIAG   = 'U'}}
+\DoxyCodeLine{82 \textcolor{comment}{// => Form  B := alpha*A**T*B.}}
+\DoxyCodeLine{83 \textcolor{comment}{// A is MxM}}
+\DoxyCodeLine{84 \textcolor{comment}{// B is MxN}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{86   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; i++)}
+\DoxyCodeLine{87      \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; j++) \{}
+\DoxyCodeLine{88         \textcolor{keywordflow}{for} (k = i+1; k < \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}; k++)}
+\DoxyCodeLine{89            B[i][j] += A[k][i] * B[k][j];}
+\DoxyCodeLine{90         B[i][j] = alpha * B[i][j];}
+\DoxyCodeLine{91      \}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{trmm_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{trmm_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{trmm.c@{trmm.c}!main@{main}}
+\index{main@{main}!trmm.c@{trmm.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{98 \{}
+\DoxyCodeLine{99   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{100   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{101   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{104   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} alpha;}
+\DoxyCodeLine{105   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(A,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m,m);}
+\DoxyCodeLine{106   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(B,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},\mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}},m,n);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{109   \mbox{\hyperlink{trmm_8c_aa014b6a9ac9416ee57fa98c12d19c6f9}{init\_array}} (m, n, \&alpha, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B));}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{112   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{115   \mbox{\hyperlink{trmm_8c_a5440ce55e4012698f4257b5af7c6e185}{kernel\_trmm}} (m, n, alpha, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B));}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{118   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{119   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{122 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{123   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{trmm_8c_a691320c4455a48a0e82f3ead6a6c0a37}{print\_array}}(m, n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(B)));}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{126   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{127   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(B);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{trmm_8c_a691320c4455a48a0e82f3ead6a6c0a37}\label{trmm_8c_a691320c4455a48a0e82f3ead6a6c0a37}} 
+\index{trmm.c@{trmm.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!trmm.c@{trmm.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DB, M, N, m, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{56   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"B"});}
+\DoxyCodeLine{57   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{58     \textcolor{keywordflow}{for} (j = 0; j < n; j++) \{}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} ((i * m + j) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{60     fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, B[i][j]);}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"B"});}
+\DoxyCodeLine{63   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}

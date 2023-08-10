@@ -1,0 +1,441 @@
+\hypertarget{Nussinov_8orig_8c}{}\doxysection{medley/nussinov/\+Nussinov.orig.\+c File Reference}
+\label{Nussinov_8orig_8c}\index{medley/nussinov/Nussinov.orig.c@{medley/nussinov/Nussinov.orig.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+Include dependency graph for Nussinov.\+orig.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Nussinov_8orig_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a38ec711b4d28dca19fc935d4b9ad6124}{S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+P\+L\+A\+C\+E\+M\+E\+NT}}~0
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a126bd8da599df3f632af723c7e271468}{C\+H\+E\+C\+K\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+ES}}~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(E\+X\+PR)~\mbox{\hyperlink{Nussinov_8orig_8c_aefd78ee52bb5eeae28a3647aa90db7f4}{eassert\+\_\+func}}(\+\_\+\+\_\+\+S\+T\+R\+I\+NG(E\+X\+PR), E\+X\+PR)
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a703f5b710872bb423d53799a001e1197}{F\+O\+U\+R\+\_\+\+W\+A\+Y\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+CY}}~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a821a2d2b018346339f9205617a222101}{Z\+E\+R\+O\+\_\+\+I\+F\+\_\+\+N\+O\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+CY}}~0
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a1e7cebba8bee6b1ece2d00b9dd4a75b1}{P\+R\+I\+N\+T\+\_\+\+S\+I\+ZE}}~48  /$\ast$ print for debugging if not bigger than this $\ast$/
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a42f8c497a1968074f38bf5055c650dca}{V\+E\+R\+B\+O\+SE}}~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a1752572fb8452dc045fbbfecda039062}{V\+E\+R\+B\+O\+S\+E\+\_\+\+O\+UT}}~stdout
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_ad350bae49f72ba58d73027f1316e38b8}{S\+E\+ED}}~42
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a1890c44113d1eac6eb60f0fad4879963}{S\+L\+O\+W\+ER}}~(\mbox{\hyperlink{Nussinov_8orig_8c_a126bd8da599df3f632af723c7e271468}{C\+H\+E\+C\+K\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+ES}} $\vert$ \mbox{\hyperlink{Nussinov_8orig_8c_a42f8c497a1968074f38bf5055c650dca}{V\+E\+R\+B\+O\+SE}})
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a1aae482b6bac91a0a7b20310be0f8d85}{debug\+\_\+N}}(x,  y)~(\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]})  /$\ast$ read secretly without triggering has\+\_\+been\+\_\+read $\ast$/
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(x,  y)~(\mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(0 $<$= x \&\& x $<$ size \&\& 0 $<$= y \&\& y $<$ size), \mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]})
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{M\+A\+X\+\_\+N}}(x,  y,  v)~(\mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(0 $<$= x \&\& x $<$ size \&\& 0 $<$= y \&\& y $<$ size), ((\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]}) = \mbox{\hyperlink{Nussinov_8orig_8c_a6b918d484b1110caa2380921aff8ce5f}{max\+\_\+score}}(\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]}, v)))
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a40c6c7d12b05765fff85a52d373454ea}{M\+A\+X\+\_\+\+N\+\_\+\+D\+E\+C\+LS}}()
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_aad389d9f1e3e18f3004e409ed970caa3}{M\+A\+X\+\_\+\+N\+\_\+\+S\+T\+A\+RT}}(x,  y)
+\item 
+\#define \mbox{\hyperlink{Nussinov_8orig_8c_a5f5d373fc91d325584155727c6d2b183}{M\+A\+X\+\_\+\+N\+\_\+\+E\+ND}}(x,  y)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}{bool}}
+\item 
+typedef int \mbox{\hyperlink{Nussinov_8orig_8c_ac4eedc56fb97c6e77062f4612318a4d8}{base}}
+\item 
+typedef int \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Nussinov_8orig_8c_aefd78ee52bb5eeae28a3647aa90db7f4}{eassert\+\_\+func}} (char $\ast$expr, \mbox{\hyperlink{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}{bool}} value)
+\item 
+double \mbox{\hyperlink{Nussinov_8orig_8c_a031bf04983ed3c57b58bc372e10d06e3}{cur\+\_\+time}} (void)
+\item 
+\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} \mbox{\hyperlink{Nussinov_8orig_8c_a95698ca1e87948fc0ea067a09de056bf}{match}} (\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} b1, \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} b2)
+\item 
+\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} \mbox{\hyperlink{Nussinov_8orig_8c_a6b918d484b1110caa2380921aff8ce5f}{max\+\_\+score}} (\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} s1, \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} s2)
+\item 
+int \mbox{\hyperlink{Nussinov_8orig_8c_ac6562cbb01cc384c5d3bc6dcf4ef1260}{getint}} (char $\ast$prompt)
+\item 
+int \mbox{\hyperlink{Nussinov_8orig_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{Nussinov_8orig_8c_a3ad98e54fafae1497bd42b491d9742cc}{true}} = 1
+\item 
+const int \mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}} = 0
+\item 
+char $\ast$ \mbox{\hyperlink{Nussinov_8orig_8c_a7cc9b4ca1de829c273e3ffa10cd5e3d4}{base\+\_\+print}} \mbox{[}4\mbox{]} = \{ \char`\"{}A\char`\"{}, \char`\"{}C\char`\"{}, \char`\"{}G\char`\"{}, \char`\"{}U\char`\"{} \}
+\item 
+\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} \mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}} \mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}
+\item 
+\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} \mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}} \mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}\mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a126bd8da599df3f632af723c7e271468}\label{Nussinov_8orig_8c_a126bd8da599df3f632af723c7e271468}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!CHECK\_DEPENDENCES@{CHECK\_DEPENDENCES}}
+\index{CHECK\_DEPENDENCES@{CHECK\_DEPENDENCES}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_DEPENDENCES}{CHECK\_DEPENDENCES}}
+{\footnotesize\ttfamily \#define C\+H\+E\+C\+K\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+ES~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a1aae482b6bac91a0a7b20310be0f8d85}\label{Nussinov_8orig_8c_a1aae482b6bac91a0a7b20310be0f8d85}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!debug\_N@{debug\_N}}
+\index{debug\_N@{debug\_N}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{debug\_N}{debug\_N}}
+{\footnotesize\ttfamily \#define debug\+\_\+N(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]})  /$\ast$ read secretly without triggering has\+\_\+been\+\_\+read $\ast$/}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}\label{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!eassert@{eassert}}
+\index{eassert@{eassert}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{eassert}{eassert}}
+{\footnotesize\ttfamily \#define eassert(\begin{DoxyParamCaption}\item[{}]{E\+X\+PR }\end{DoxyParamCaption})~\mbox{\hyperlink{Nussinov_8orig_8c_aefd78ee52bb5eeae28a3647aa90db7f4}{eassert\+\_\+func}}(\+\_\+\+\_\+\+S\+T\+R\+I\+NG(E\+X\+PR), E\+X\+PR)}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a703f5b710872bb423d53799a001e1197}\label{Nussinov_8orig_8c_a703f5b710872bb423d53799a001e1197}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!FOUR\_WAY\_MAX\_WITH\_REDUNDANCY@{FOUR\_WAY\_MAX\_WITH\_REDUNDANCY}}
+\index{FOUR\_WAY\_MAX\_WITH\_REDUNDANCY@{FOUR\_WAY\_MAX\_WITH\_REDUNDANCY}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{FOUR\_WAY\_MAX\_WITH\_REDUNDANCY}{FOUR\_WAY\_MAX\_WITH\_REDUNDANCY}}
+{\footnotesize\ttfamily \#define F\+O\+U\+R\+\_\+\+W\+A\+Y\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+CY~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}\label{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!MAX\_N@{MAX\_N}}
+\index{MAX\_N@{MAX\_N}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_N}{MAX\_N}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+N(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{v }\end{DoxyParamCaption})~(\mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(0 $<$= x \&\& x $<$ size \&\& 0 $<$= y \&\& y $<$ size), ((\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]}) = \mbox{\hyperlink{Nussinov_8orig_8c_a6b918d484b1110caa2380921aff8ce5f}{max\+\_\+score}}(\mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]}, v)))}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a40c6c7d12b05765fff85a52d373454ea}\label{Nussinov_8orig_8c_a40c6c7d12b05765fff85a52d373454ea}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!MAX\_N\_DECLS@{MAX\_N\_DECLS}}
+\index{MAX\_N\_DECLS@{MAX\_N\_DECLS}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_N\_DECLS}{MAX\_N\_DECLS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+\_\+\+D\+E\+C\+LS(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a5f5d373fc91d325584155727c6d2b183}\label{Nussinov_8orig_8c_a5f5d373fc91d325584155727c6d2b183}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!MAX\_N\_END@{MAX\_N\_END}}
+\index{MAX\_N\_END@{MAX\_N\_END}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_N\_END}{MAX\_N\_END}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+\_\+\+E\+ND(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_aad389d9f1e3e18f3004e409ed970caa3}\label{Nussinov_8orig_8c_aad389d9f1e3e18f3004e409ed970caa3}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!MAX\_N\_START@{MAX\_N\_START}}
+\index{MAX\_N\_START@{MAX\_N\_START}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_N\_START}{MAX\_N\_START}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+\_\+\+S\+T\+A\+RT(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}\label{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!N@{N}}
+\index{N@{N}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily \#define N(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(\mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(0 $<$= x \&\& x $<$ size \&\& 0 $<$= y \&\& y $<$ size), \mbox{\hyperlink{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}{N\+\_\+array}}\mbox{[}x\mbox{]}\mbox{[}y\mbox{]})}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a1e7cebba8bee6b1ece2d00b9dd4a75b1}\label{Nussinov_8orig_8c_a1e7cebba8bee6b1ece2d00b9dd4a75b1}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!PRINT\_SIZE@{PRINT\_SIZE}}
+\index{PRINT\_SIZE@{PRINT\_SIZE}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{PRINT\_SIZE}{PRINT\_SIZE}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+\_\+\+S\+I\+ZE~48  /$\ast$ print for debugging if not bigger than this $\ast$/}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a38ec711b4d28dca19fc935d4b9ad6124}\label{Nussinov_8orig_8c_a38ec711b4d28dca19fc935d4b9ad6124}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!SCALAR\_REPLACEMENT@{SCALAR\_REPLACEMENT}}
+\index{SCALAR\_REPLACEMENT@{SCALAR\_REPLACEMENT}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{SCALAR\_REPLACEMENT}{SCALAR\_REPLACEMENT}}
+{\footnotesize\ttfamily \#define S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+P\+L\+A\+C\+E\+M\+E\+NT~0}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_ad350bae49f72ba58d73027f1316e38b8}\label{Nussinov_8orig_8c_ad350bae49f72ba58d73027f1316e38b8}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!SEED@{SEED}}
+\index{SEED@{SEED}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{SEED}{SEED}}
+{\footnotesize\ttfamily \#define S\+E\+ED~42}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a1890c44113d1eac6eb60f0fad4879963}\label{Nussinov_8orig_8c_a1890c44113d1eac6eb60f0fad4879963}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!SLOWER@{SLOWER}}
+\index{SLOWER@{SLOWER}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{SLOWER}{SLOWER}}
+{\footnotesize\ttfamily \#define S\+L\+O\+W\+ER~(\mbox{\hyperlink{Nussinov_8orig_8c_a126bd8da599df3f632af723c7e271468}{C\+H\+E\+C\+K\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+ES}} $\vert$ \mbox{\hyperlink{Nussinov_8orig_8c_a42f8c497a1968074f38bf5055c650dca}{V\+E\+R\+B\+O\+SE}})}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a42f8c497a1968074f38bf5055c650dca}\label{Nussinov_8orig_8c_a42f8c497a1968074f38bf5055c650dca}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!VERBOSE@{VERBOSE}}
+\index{VERBOSE@{VERBOSE}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{VERBOSE}{VERBOSE}}
+{\footnotesize\ttfamily \#define V\+E\+R\+B\+O\+SE~\mbox{\hyperlink{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a1752572fb8452dc045fbbfecda039062}\label{Nussinov_8orig_8c_a1752572fb8452dc045fbbfecda039062}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!VERBOSE\_OUT@{VERBOSE\_OUT}}
+\index{VERBOSE\_OUT@{VERBOSE\_OUT}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{VERBOSE\_OUT}{VERBOSE\_OUT}}
+{\footnotesize\ttfamily \#define V\+E\+R\+B\+O\+S\+E\+\_\+\+O\+UT~stdout}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a821a2d2b018346339f9205617a222101}\label{Nussinov_8orig_8c_a821a2d2b018346339f9205617a222101}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!ZERO\_IF\_NO\_REDUNDANCY@{ZERO\_IF\_NO\_REDUNDANCY}}
+\index{ZERO\_IF\_NO\_REDUNDANCY@{ZERO\_IF\_NO\_REDUNDANCY}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{ZERO\_IF\_NO\_REDUNDANCY}{ZERO\_IF\_NO\_REDUNDANCY}}
+{\footnotesize\ttfamily \#define Z\+E\+R\+O\+\_\+\+I\+F\+\_\+\+N\+O\+\_\+\+R\+E\+D\+U\+N\+D\+A\+N\+CY~0}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{Nussinov_8orig_8c_ac4eedc56fb97c6e77062f4612318a4d8}\label{Nussinov_8orig_8c_ac4eedc56fb97c6e77062f4612318a4d8}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!base@{base}}
+\index{base@{base}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}\label{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!bool@{bool}}
+\index{bool@{bool}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} \mbox{\Hypertarget{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}\label{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!score@{score}}
+\index{score@{score}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a031bf04983ed3c57b58bc372e10d06e3}\label{Nussinov_8orig_8c_a031bf04983ed3c57b58bc372e10d06e3}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!cur\_time@{cur\_time}}
+\index{cur\_time@{cur\_time}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{cur\_time()}{cur\_time()}}
+{\footnotesize\ttfamily double cur\+\_\+time (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111 \{}
+\DoxyCodeLine{112     \textcolor{keyword}{struct }timeval tv;}
+\DoxyCodeLine{113     \textcolor{keyword}{struct }timezone tz;}
+\DoxyCodeLine{114     gettimeofday(\&tv, \&tz);}
+\DoxyCodeLine{115     \textcolor{keywordflow}{return} tv.tv\_sec + tv.tv\_usec*1.0e-\/6;}
+\DoxyCodeLine{116 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Nussinov_8orig_8c_aefd78ee52bb5eeae28a3647aa90db7f4}\label{Nussinov_8orig_8c_aefd78ee52bb5eeae28a3647aa90db7f4}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!eassert\_func@{eassert\_func}}
+\index{eassert\_func@{eassert\_func}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{eassert\_func()}{eassert\_func()}}
+{\footnotesize\ttfamily void eassert\+\_\+func (\begin{DoxyParamCaption}\item[{char $\ast$}]{expr,  }\item[{\mbox{\hyperlink{Nussinov_8orig_8c_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{value }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{67 \{}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (!value) \{}
+\DoxyCodeLine{69     fprintf(stderr, \textcolor{stringliteral}{"assertion failed: \%s\(\backslash\)n"}, expr);}
+\DoxyCodeLine{70     exit(1);}
+\DoxyCodeLine{71     \textcolor{comment}{// printf("assertion failed: \%s\(\backslash\)n", expr);}}
+\DoxyCodeLine{72     \}}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Nussinov_8orig_8c_ac6562cbb01cc384c5d3bc6dcf4ef1260}\label{Nussinov_8orig_8c_ac6562cbb01cc384c5d3bc6dcf4ef1260}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!getint@{getint}}
+\index{getint@{getint}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{getint()}{getint()}}
+{\footnotesize\ttfamily int getint (\begin{DoxyParamCaption}\item[{char $\ast$}]{prompt }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{170 \{}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#if VERBOSE\_OUT == stderr}}
+\DoxyCodeLine{172     \textcolor{keywordtype}{char} *terminate = \textcolor{stringliteral}{"\(\backslash\)n"};}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{174     \textcolor{keywordtype}{char} *terminate = \textcolor{stringliteral}{""};}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{176     \textcolor{keywordtype}{int} result;}
+\DoxyCodeLine{177     \textcolor{keywordtype}{int} i=0;}
+\DoxyCodeLine{178     \textcolor{keywordflow}{while} (}
+\DoxyCodeLine{179         fprintf(stderr, \textcolor{stringliteral}{"\%s\%s"}, prompt, terminate),}
+\DoxyCodeLine{180         result = scanf(\textcolor{stringliteral}{"\%d"}, \&i),}
+\DoxyCodeLine{181         result != 1 \&\& result != EOF}
+\DoxyCodeLine{182     ) \{}
+\DoxyCodeLine{183         fprintf(stderr, \textcolor{stringliteral}{"Sorry, I didn't understand that...\(\backslash\)n"});}
+\DoxyCodeLine{184     \}}
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} (result == 1) \{}
+\DoxyCodeLine{186         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{187     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{188         fprintf(stderr, \textcolor{stringliteral}{"Giving up ... can't read input\(\backslash\)n"});}
+\DoxyCodeLine{189         exit(1);}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{Nussinov_8orig_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!main@{main}}
+\index{main@{main}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{195 \{}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#if ! SLOWER}}
+\DoxyCodeLine{197     \textcolor{keywordtype}{double} start\_time, end\_time; \textcolor{comment}{// , speed;}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#if ! defined size}}
+\DoxyCodeLine{200     \textcolor{keywordtype}{int} size = \mbox{\hyperlink{Nussinov_8orig_8c_ac6562cbb01cc384c5d3bc6dcf4ef1260}{getint}}(\textcolor{stringliteral}{"Enter length of random mRNA sequence (2200 is average for human mRNA): "});  \textcolor{comment}{// Average (human) mRNA length is 2200; there's one that's 5000, though}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203         \textcolor{keywordtype}{int} i, j, k=-\/1;}
+\DoxyCodeLine{204     \mbox{\hyperlink{Nussinov_8orig_8c_a40c6c7d12b05765fff85a52d373454ea}{MAX\_N\_DECLS}}();}
+\DoxyCodeLine{205     \textcolor{keywordtype}{char} *options;}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#if VERBOSE}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#if CHECK\_DEPENDENCES}}
+\DoxyCodeLine{208     options = \textcolor{stringliteral}{" [DV]"};}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{210     options = \textcolor{stringliteral}{" [V]"};}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#if CHECK\_DEPENDENCES}}
+\DoxyCodeLine{214     options = \textcolor{stringliteral}{" [D]"};}
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{216     options = \textcolor{stringliteral}{""};}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     printf(\textcolor{stringliteral}{"Running Nussinov RNA algorithm\%s for sequence of length \%d, random data with seed \%d.\(\backslash\)n"},}
+\DoxyCodeLine{221            options, size, \mbox{\hyperlink{Nussinov_8orig_8c_ad350bae49f72ba58d73027f1316e38b8}{SEED}});}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223     \textcolor{keywordflow}{if} (size > MAX\_SIZE) \{}
+\DoxyCodeLine{224         fprintf(stderr, \textcolor{stringliteral}{"size (\%d) < MAX\_SIZE (\%d)\(\backslash\)n"}, MAX\_SIZE, size);}
+\DoxyCodeLine{225         exit(1);}
+\DoxyCodeLine{226     \}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{comment}{/* seed it with a constant so we can check/compare the results */}}
+\DoxyCodeLine{229     srand(\mbox{\hyperlink{Nussinov_8orig_8c_ad350bae49f72ba58d73027f1316e38b8}{SEED}});}
+\DoxyCodeLine{230     \textcolor{keywordflow}{for} (i = 0; i < size; i++)}
+\DoxyCodeLine{231         \mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[i] = rand() \% 4;}
+\DoxyCodeLine{232     }
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#if ! SLOWER}}
+\DoxyCodeLine{234     start\_time = \mbox{\hyperlink{Nussinov_8orig_8c_a031bf04983ed3c57b58bc372e10d06e3}{cur\_time}}();}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{// "OPTION 1"}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{239     \textcolor{keywordflow}{for} (i = size-\/1; i >= 0; i-\/-\/) \{}
+\DoxyCodeLine{240         \textcolor{keywordflow}{for} (j=i+1; j<size; j++) \{}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#if VERBOSE}}
+\DoxyCodeLine{242             fprintf(\mbox{\hyperlink{Nussinov_8orig_8c_a1752572fb8452dc045fbbfecda039062}{VERBOSE\_OUT}}, \textcolor{stringliteral}{"i, j, k = \%d, \%d, \%d\(\backslash\)n"}, i, j, k); \textcolor{comment}{/* outer k is -\/1 to indicate no k */}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{244             \mbox{\hyperlink{Nussinov_8orig_8c_aad389d9f1e3e18f3004e409ed970caa3}{MAX\_N\_START}}(i, j);}
+\DoxyCodeLine{245 \textcolor{preprocessor}{\#if FOUR\_WAY\_MAX\_WITH\_REDUNDANCY}}
+\DoxyCodeLine{246             \textcolor{keywordflow}{if} (j-\/1>=0)   \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{MAX\_N}}(i, j, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(i, j-\/1));}
+\DoxyCodeLine{247             \textcolor{keywordflow}{if} (i+1<size) \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{MAX\_N}}(i, j, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(i+1, j));}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{249             \textcolor{keywordflow}{if} (j-\/1>=0 \&\& i+1<size) \{}
+\DoxyCodeLine{250               \textcolor{keywordflow}{if} (i<j-\/1) \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{MAX\_N}}(i, j, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(i+1, j-\/1)+\mbox{\hyperlink{Nussinov_8orig_8c_a95698ca1e87948fc0ea067a09de056bf}{match}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[i], \mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[j]));  \textcolor{comment}{/* don't allow adjacent elements to bond */}}
+\DoxyCodeLine{251               \textcolor{keywordflow}{else}       \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{MAX\_N}}(i, j, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(i+1, j-\/1));}
+\DoxyCodeLine{252             \}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254             \{}
+\DoxyCodeLine{255             \textcolor{keywordtype}{int} k;  \textcolor{comment}{/* local k to allow N macro to look at k and get -\/1 above and real k here */}}
+\DoxyCodeLine{256             \textcolor{keywordflow}{for} (k=i+\mbox{\hyperlink{Nussinov_8orig_8c_a821a2d2b018346339f9205617a222101}{ZERO\_IF\_NO\_REDUNDANCY}}; k<j; k++) \{}
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#if VERBOSE}}
+\DoxyCodeLine{258                 fprintf(\mbox{\hyperlink{Nussinov_8orig_8c_a1752572fb8452dc045fbbfecda039062}{VERBOSE\_OUT}}, \textcolor{stringliteral}{"i, j, k = \%d, \%d, \%d\(\backslash\)n"}, i, j, k);}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{260                 \mbox{\hyperlink{Nussinov_8orig_8c_a7f8fdd2b50cb72d15629d4618193040e}{MAX\_N}}(i, j, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(i, k)+\mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(k+1, j));}
+\DoxyCodeLine{261             \}}
+\DoxyCodeLine{262             \} \textcolor{comment}{/* end of local k */}}
+\DoxyCodeLine{263             \mbox{\hyperlink{Nussinov_8orig_8c_a5f5d373fc91d325584155727c6d2b183}{MAX\_N\_END}}(i, j);}
+\DoxyCodeLine{264         \}}
+\DoxyCodeLine{265     \}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#if !SLOWER}}
+\DoxyCodeLine{269     end\_time = \mbox{\hyperlink{Nussinov_8orig_8c_a031bf04983ed3c57b58bc372e10d06e3}{cur\_time}}();}
+\DoxyCodeLine{270     printf(\textcolor{stringliteral}{"done.\(\backslash\)nTime elapsed: \%fs\(\backslash\)n"}, end\_time-\/start\_time);}
+\DoxyCodeLine{271 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{272     printf(\textcolor{stringliteral}{"N(0, size-\/1) = \%d\(\backslash\)n"}, \mbox{\hyperlink{Nussinov_8orig_8c_a655001a6286ee25ec2b73c2d2ab65d8f}{N}}(0, size-\/1));}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     \textcolor{keywordflow}{if} (size <= \mbox{\hyperlink{Nussinov_8orig_8c_a1e7cebba8bee6b1ece2d00b9dd4a75b1}{PRINT\_SIZE}}) \{}
+\DoxyCodeLine{275         \textcolor{keywordflow}{for} (i=0; i<size; i++)}
+\DoxyCodeLine{276             printf(\textcolor{stringliteral}{"\%3s "}, \mbox{\hyperlink{Nussinov_8orig_8c_a7cc9b4ca1de829c273e3ffa10cd5e3d4}{base\_print}}[\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[i]]);}
+\DoxyCodeLine{277         printf(\textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{278         \textcolor{keywordflow}{for}(i = 0; i < size; i++) \{}
+\DoxyCodeLine{279             \textcolor{keywordflow}{for}(j = 0; j < size; j++) printf(\textcolor{stringliteral}{"\%3d "}, \mbox{\hyperlink{Nussinov_8orig_8c_a1aae482b6bac91a0a7b20310be0f8d85}{debug\_N}}(i, j));}
+\DoxyCodeLine{280             printf(\textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{281         \}}
+\DoxyCodeLine{282     \}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284     \mbox{\hyperlink{Nussinov_8orig_8c_a590bad21b2f00eeb8cb9ecc7cc6c747b}{eassert}}(k == -\/1);}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{287 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a95698ca1e87948fc0ea067a09de056bf}\label{Nussinov_8orig_8c_a95698ca1e87948fc0ea067a09de056bf}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!match@{match}}
+\index{match@{match}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{match()}{match()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}}]{b1,  }\item[{\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}}]{b2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{124 \{}
+\DoxyCodeLine{125     \textcolor{keywordflow}{return} (b1+b2) == 3 ? 1 : 0;}
+\DoxyCodeLine{126 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a6b918d484b1110caa2380921aff8ce5f}\label{Nussinov_8orig_8c_a6b918d484b1110caa2380921aff8ce5f}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!max\_score@{max\_score}}
+\index{max\_score@{max\_score}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{max\_score()}{max\_score()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} max\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}}}]{s1,  }\item[{\mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}}}]{s2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{129 \{}
+\DoxyCodeLine{130     \textcolor{keywordflow}{return} (s1 >= s2) ? s1 : s2;}
+\DoxyCodeLine{131 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{Nussinov_8orig_8c_a7cc9b4ca1de829c273e3ffa10cd5e3d4}\label{Nussinov_8orig_8c_a7cc9b4ca1de829c273e3ffa10cd5e3d4}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!base\_print@{base\_print}}
+\index{base\_print@{base\_print}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{base\_print}{base\_print}}
+{\footnotesize\ttfamily char$\ast$ base\+\_\+print\mbox{[}4\mbox{]} = \{ \char`\"{}A\char`\"{}, \char`\"{}C\char`\"{}, \char`\"{}G\char`\"{}, \char`\"{}U\char`\"{} \}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}\label{Nussinov_8orig_8c_a4bd6d4d04b1126eefee5484b1521c6f9}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!false@{false}}
+\index{false@{false}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily const int false = 0}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}\label{Nussinov_8orig_8c_ad9188a12d04fea7cf21da754b4b4200f}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!N\_array@{N\_array}}
+\index{N\_array@{N\_array}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{N\_array}{N\_array}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Nussinov_8orig_8c_a6a5834746ccbaf6411be67737a1c7987}{score}} N\+\_\+array\mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}\mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}\label{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!seq@{seq}}
+\index{seq@{seq}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} seq\mbox{[}M\+A\+X\+\_\+\+S\+I\+ZE\mbox{]}}
+
+\mbox{\Hypertarget{Nussinov_8orig_8c_a3ad98e54fafae1497bd42b491d9742cc}\label{Nussinov_8orig_8c_a3ad98e54fafae1497bd42b491d9742cc}} 
+\index{Nussinov.orig.c@{Nussinov.orig.c}!true@{true}}
+\index{true@{true}!Nussinov.orig.c@{Nussinov.orig.c}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily const int true = 1}
+

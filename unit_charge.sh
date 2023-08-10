@@ -109,22 +109,5 @@ sshpass -p "$mot_de_passe_ssh" ssh pernias@trahrhe.icube.unistra.fr "export DATA
 
 
 
-# cat /dev/null > "$exe_pluto".out
-# #on écrit à la suite du fichier result.csv
 
-# #On écrit le nom du fichier 
-# echo "#$r_basename" >> result.csv
-
-# echo "##TILE static " >> result.csv
-# $exe_pluto_static >> result.csv
-# echo "" >> result.csv
-
-# echo "##TILE dynamic " >> result.csv
-# $exe_pluto_dynamic >> result.csv
-# echo "" >> result.csv
-# echo "##ALGEBRAIC TILE " >> result.csv
-# $exe_pluto_a >> result.csv
-# #on saute 2 lignes
-# echo "" >> result.csv
-# echo "" >> result.csv
 

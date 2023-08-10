@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['n_296',['N',['../correlation_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;correlation.h'],['../covariance_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;covariance.h'],['../gemver_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;gemver.h'],['../gesummv_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;gesummv.h'],['../symm_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;symm.h'],['../syr2k_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;syr2k.h'],['../syrk_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;syrk.h'],['../trmm_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;trmm.h'],['../atax_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;atax.h'],['../bicg_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;bicg.h'],['../mvt_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;mvt.h'],['../cholesky_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;cholesky.h'],['../durbin_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;durbin.h'],['../gramschmidt_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;gramschmidt.h'],['../lu_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;lu.h'],['../ludcmp_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;ludcmp.h'],['../trisolv_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;trisolv.h'],['../floyd-warshall_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;floyd-warshall.h'],['../nussinov_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;nussinov.h'],['../Nussinov_8orig_8c.html#a655001a6286ee25ec2b73c2d2ab65d8f',1,'N():&#160;Nussinov.orig.c'],['../adi_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;adi.h'],['../heat-3d_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;heat-3d.h'],['../jacobi-1d_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;jacobi-1d.h'],['../jacobi-2d_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;jacobi-2d.h'],['../seidel-2d_8h.html#a0240ac851181b84ac374872dc5434ee4',1,'N():&#160;seidel-2d.h']]],
+  ['n_5farray_297',['N_array',['../Nussinov_8orig_8c.html#ad9188a12d04fea7cf21da754b4b4200f',1,'Nussinov.orig.c']]],
+  ['nb_5favail_5fentries_298',['nb_avail_entries',['../structpolybench__data__ptrs.html#a3d2bbdf8b76063e473fa6be1c36528c3',1,'polybench_data_ptrs']]],
+  ['nb_5fentries_299',['nb_entries',['../structpolybench__data__ptrs.html#abc2c8febf091352adbd71406f58c3432',1,'polybench_data_ptrs']]],
+  ['nb_5finitial_5ftable_5fentries_300',['NB_INITIAL_TABLE_ENTRIES',['../polybench_8c.html#ac1085f067139cab520c582888c80ba5f',1,'polybench.c']]],
+  ['ni_301',['NI',['../gemm_8h.html#a860bedb684529775463fa3a6cb467efa',1,'NI():&#160;gemm.h'],['../2mm_8h.html#a860bedb684529775463fa3a6cb467efa',1,'NI():&#160;2mm.h'],['../3mm_8h.html#a860bedb684529775463fa3a6cb467efa',1,'NI():&#160;3mm.h']]],
+  ['nj_302',['NJ',['../gemm_8h.html#a54d192202ec35a6e951846dffbbb0c0f',1,'NJ():&#160;gemm.h'],['../2mm_8h.html#a54d192202ec35a6e951846dffbbb0c0f',1,'NJ():&#160;2mm.h'],['../3mm_8h.html#a54d192202ec35a6e951846dffbbb0c0f',1,'NJ():&#160;3mm.h']]],
+  ['nk_303',['NK',['../gemm_8h.html#ad7c4af50d6edb05be6d9179037157a37',1,'NK():&#160;gemm.h'],['../2mm_8h.html#ad7c4af50d6edb05be6d9179037157a37',1,'NK():&#160;2mm.h'],['../3mm_8h.html#ad7c4af50d6edb05be6d9179037157a37',1,'NK():&#160;3mm.h']]],
+  ['nl_304',['NL',['../2mm_8h.html#a4fc34b120ed3bd1120c1eb36abbcd6af',1,'NL():&#160;2mm.h'],['../3mm_8h.html#a4fc34b120ed3bd1120c1eb36abbcd6af',1,'NL():&#160;3mm.h']]],
+  ['nm_305',['NM',['../3mm_8h.html#a845196f46a897dd3c2996fc3e45f2161',1,'3mm.h']]],
+  ['np_306',['NP',['../doitgen_8h.html#ab04c88bedc6b2be8ddfe7aa8d3e93f06',1,'doitgen.h']]],
+  ['nq_307',['NQ',['../doitgen_8h.html#a68c2775fc4d7385df9c7bb96d23b482b',1,'doitgen.h']]],
+  ['nr_308',['NR',['../doitgen_8h.html#af146485306ae74a2edf18636300fd107',1,'doitgen.h']]],
+  ['nussinov_2ec_309',['nussinov.c',['../nussinov_8c.html',1,'']]],
+  ['nussinov_2eh_310',['nussinov.h',['../nussinov_8h.html',1,'']]],
+  ['nussinov_2eorig_2ec_311',['Nussinov.orig.c',['../Nussinov_8orig_8c.html',1,'']]],
+  ['nx_312',['NX',['../fdtd-2d_8h.html#a4a9d32ff035c82119003134767948ebf',1,'fdtd-2d.h']]],
+  ['ny_313',['NY',['../fdtd-2d_8h.html#a652e87ecc9140879666ae9d6bf4ca893',1,'fdtd-2d.h']]]
+];

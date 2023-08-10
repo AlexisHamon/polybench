@@ -1,0 +1,155 @@
+\hypertarget{doitgen_8c}{}\doxysection{linear-\/algebra/kernels/doitgen/doitgen.c File Reference}
+\label{doitgen_8c}\index{linear-\/algebra/kernels/doitgen/doitgen.c@{linear-\/algebra/kernels/doitgen/doitgen.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}doitgen.\+h\char`\"{}}\newline
+Include dependency graph for doitgen.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{doitgen_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{doitgen_8c_a895be05df83f9ce0da58003a31a73668}{init\+\_\+array}} (int nr, int nq, int np, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a384142d2b68b06ec4a8bb3529d1f9fd3}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3D}}(A, \mbox{\hyperlink{doitgen_8h_af146485306ae74a2edf18636300fd107}{NR}}, \mbox{\hyperlink{doitgen_8h_a68c2775fc4d7385df9c7bb96d23b482b}{NQ}}, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, nr, nq, np), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(C4, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, np, np))
+\item 
+static void \mbox{\hyperlink{doitgen_8c_a4c0cf852da32643e3c0a2d9994dfc60d}{print\+\_\+array}} (int nr, int nq, int np, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a384142d2b68b06ec4a8bb3529d1f9fd3}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3D}}(A, \mbox{\hyperlink{doitgen_8h_af146485306ae74a2edf18636300fd107}{NR}}, \mbox{\hyperlink{doitgen_8h_a68c2775fc4d7385df9c7bb96d23b482b}{NQ}}, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, nr, nq, np))
+\item 
+void \mbox{\hyperlink{doitgen_8c_ac588621816f013191afe03c655b506f8}{kernel\+\_\+doitgen}} (int nr, int nq, int np, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a384142d2b68b06ec4a8bb3529d1f9fd3}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3D}}(A, \mbox{\hyperlink{doitgen_8h_af146485306ae74a2edf18636300fd107}{NR}}, \mbox{\hyperlink{doitgen_8h_a68c2775fc4d7385df9c7bb96d23b482b}{NQ}}, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, nr, nq, np), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(C4, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, np, np), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(sum, \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}}, np))
+\item 
+int \mbox{\hyperlink{doitgen_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{doitgen_8c_a895be05df83f9ce0da58003a31a73668}\label{doitgen_8c_a895be05df83f9ce0da58003a31a73668}} 
+\index{doitgen.c@{doitgen.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!doitgen.c@{doitgen.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{nr,  }\item[{int}]{nq,  }\item[{int}]{np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3DA, N\+R, N\+Q, N\+P, nr, nq, np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DC4, N\+P, N\+P, np, np }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keywordflow}{for} (i = 0; i < nr; i++)}
+\DoxyCodeLine{33     \textcolor{keywordflow}{for} (j = 0; j < nq; j++)}
+\DoxyCodeLine{34       \textcolor{keywordflow}{for} (k = 0; k < np; k++)}
+\DoxyCodeLine{35     A[i][j][k] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}) ((i*j + k)\%np) / np;}
+\DoxyCodeLine{36   \textcolor{keywordflow}{for} (i = 0; i < np; i++)}
+\DoxyCodeLine{37     \textcolor{keywordflow}{for} (j = 0; j < np; j++)}
+\DoxyCodeLine{38       C4[i][j] = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}) (i*j \% np) / np;}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{doitgen_8c_ac588621816f013191afe03c655b506f8}\label{doitgen_8c_ac588621816f013191afe03c655b506f8}} 
+\index{doitgen.c@{doitgen.c}!kernel\_doitgen@{kernel\_doitgen}}
+\index{kernel\_doitgen@{kernel\_doitgen}!doitgen.c@{doitgen.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_doitgen()}{kernel\_doitgen()}}
+{\footnotesize\ttfamily void kernel\+\_\+doitgen (\begin{DoxyParamCaption}\item[{int}]{nr,  }\item[{int}]{nq,  }\item[{int}]{np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3DA, N\+R, N\+Q, N\+P, nr, nq, np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2DC4, N\+P, N\+P, np, np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dsum, N\+P, np }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{69 \{}
+\DoxyCodeLine{70   \textcolor{keywordtype}{int} r, q, p, s;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{73   \textcolor{keywordflow}{for} (r = 0; r < \mbox{\hyperlink{doitgen_8h_ade7fe780e303fc89f61ca459a950b4e8}{\_PB\_NR}}; r++)}
+\DoxyCodeLine{74     \textcolor{keywordflow}{for} (q = 0; q < \mbox{\hyperlink{doitgen_8h_a9410cf1fedb3e9692e7110660eed5431}{\_PB\_NQ}}; q++)  \{}
+\DoxyCodeLine{75       \textcolor{keywordflow}{for} (p = 0; p < \mbox{\hyperlink{doitgen_8h_a8b7fd3d396f8184e84f359fcfc886691}{\_PB\_NP}}; p++)  \{}
+\DoxyCodeLine{76     sum[p] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{77     \textcolor{keywordflow}{for} (s = 0; s < \mbox{\hyperlink{doitgen_8h_a8b7fd3d396f8184e84f359fcfc886691}{\_PB\_NP}}; s++)}
+\DoxyCodeLine{78       sum[p] += A[r][q][s] * C4[s][p];}
+\DoxyCodeLine{79       \}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{for} (p = 0; p < \mbox{\hyperlink{doitgen_8h_a8b7fd3d396f8184e84f359fcfc886691}{\_PB\_NP}}; p++)}
+\DoxyCodeLine{81     A[r][q][p] = sum[p];}
+\DoxyCodeLine{82     \}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{doitgen_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{doitgen_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{doitgen.c@{doitgen.c}!main@{main}}
+\index{main@{main}!doitgen.c@{doitgen.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{89 \{}
+\DoxyCodeLine{90   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{91   \textcolor{keywordtype}{int} nr = \mbox{\hyperlink{doitgen_8h_af146485306ae74a2edf18636300fd107}{NR}};}
+\DoxyCodeLine{92   \textcolor{keywordtype}{int} nq = \mbox{\hyperlink{doitgen_8h_a68c2775fc4d7385df9c7bb96d23b482b}{NQ}};}
+\DoxyCodeLine{93   \textcolor{keywordtype}{int} np = \mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{96   \mbox{\hyperlink{polybench_8h_a48ca0b8224da37e17ff21ea63e562835}{POLYBENCH\_3D\_ARRAY\_DECL}}(A,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{doitgen_8h_af146485306ae74a2edf18636300fd107}{NR}},\mbox{\hyperlink{doitgen_8h_a68c2775fc4d7385df9c7bb96d23b482b}{NQ}},\mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}},nr,nq,np);}
+\DoxyCodeLine{97   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(sum,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}},np);}
+\DoxyCodeLine{98   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(C4,\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}},\mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}},\mbox{\hyperlink{doitgen_8h_ab04c88bedc6b2be8ddfe7aa8d3e93f06}{NP}},np,np);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{101   \mbox{\hyperlink{doitgen_8c_a895be05df83f9ce0da58003a31a73668}{init\_array}} (nr, nq, np,}
+\DoxyCodeLine{102           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A),}
+\DoxyCodeLine{103           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(C4));}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{106   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{109   \mbox{\hyperlink{doitgen_8c_ac588621816f013191afe03c655b506f8}{kernel\_doitgen}} (nr, nq, np,}
+\DoxyCodeLine{110           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A),}
+\DoxyCodeLine{111           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(C4),}
+\DoxyCodeLine{112           \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(sum));}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{115   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{116   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{119 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{120   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{doitgen_8c_a4c0cf852da32643e3c0a2d9994dfc60d}{print\_array}}(nr, nq, np,  \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(A)));}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{123   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(A);}
+\DoxyCodeLine{124   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(sum);}
+\DoxyCodeLine{125   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(C4);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{doitgen_8c_a4c0cf852da32643e3c0a2d9994dfc60d}\label{doitgen_8c_a4c0cf852da32643e3c0a2d9994dfc60d}} 
+\index{doitgen.c@{doitgen.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!doitgen.c@{doitgen.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{nr,  }\item[{int}]{nq,  }\item[{int}]{np,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+3DA, N\+R, N\+Q, N\+P, nr, nq, np }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{51   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"A"});}
+\DoxyCodeLine{52   \textcolor{keywordflow}{for} (i = 0; i < nr; i++)}
+\DoxyCodeLine{53     \textcolor{keywordflow}{for} (j = 0; j < nq; j++)}
+\DoxyCodeLine{54       \textcolor{keywordflow}{for} (k = 0; k < np; k++) \{}
+\DoxyCodeLine{55     \textcolor{keywordflow}{if} ((i*nq*np+j*np+k) \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{56     fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, A[i][j][k]);}
+\DoxyCodeLine{57       \}}
+\DoxyCodeLine{58   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"A"});}
+\DoxyCodeLine{59   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{60 \}}
+
+\end{DoxyCode}

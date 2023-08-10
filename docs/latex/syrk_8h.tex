@@ -1,0 +1,115 @@
+\hypertarget{syrk_8h}{}\doxysection{linear-\/algebra/blas/syrk/syrk.h File Reference}
+\label{syrk_8h}\index{linear-\/algebra/blas/syrk/syrk.h@{linear-\/algebra/blas/syrk/syrk.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syrk_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{syrk_8h_af1fea01b66d380c67909932dc0407e9b}{L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}}
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}~1000
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a0240ac851181b84ac374872dc5434ee4}{N}}~1200
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a3f866ae062cf636470daf7cb2e638040}{\+\_\+\+P\+B\+\_\+M}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m)
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a19a82c0bf6c35c019099272810ba2262}{\+\_\+\+P\+B\+\_\+N}}~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}},n)
+\item 
+\#define \mbox{\hyperlink{syrk_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}{D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}}
+\item 
+\#define \mbox{\hyperlink{syrk_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}~double
+\item 
+\#define \mbox{\hyperlink{syrk_8h_abc5889bc2dd57793cca91186bb8b123e}{D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER}}~\char`\"{}\%0.\+2lf \char`\"{}
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a97278ab00623feea0773db50c6e0620a}{S\+C\+A\+L\+A\+R\+\_\+\+V\+AL}}(x)~x
+\item 
+\#define \mbox{\hyperlink{syrk_8h_a65511cd52aff76924048f73e9776065e}{S\+Q\+R\+T\+\_\+\+F\+UN}}(x)~sqrt(x)
+\item 
+\#define \mbox{\hyperlink{syrk_8h_ae43361b6f20a4f37371b5a711b971d05}{E\+X\+P\+\_\+\+F\+UN}}(x)~exp(x)
+\item 
+\#define \mbox{\hyperlink{syrk_8h_ab7c71c79fb86e94ff65d36e81007167f}{P\+O\+W\+\_\+\+F\+UN}}(x,  y)~pow(x,y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{syrk_8h_a3f866ae062cf636470daf7cb2e638040}\label{syrk_8h_a3f866ae062cf636470daf7cb2e638040}} 
+\index{syrk.h@{syrk.h}!\_PB\_M@{\_PB\_M}}
+\index{\_PB\_M@{\_PB\_M}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_M}{\_PB\_M}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+M~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}},m)}
+
+\mbox{\Hypertarget{syrk_8h_a19a82c0bf6c35c019099272810ba2262}\label{syrk_8h_a19a82c0bf6c35c019099272810ba2262}} 
+\index{syrk.h@{syrk.h}!\_PB\_N@{\_PB\_N}}
+\index{\_PB\_N@{\_PB\_N}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{\_PB\_N}{\_PB\_N}}
+{\footnotesize\ttfamily \#define \+\_\+\+P\+B\+\_\+N~\mbox{\hyperlink{polybench_8h_a28e99a69d6262547ef85d11225f64ce2}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+\+L\+O\+O\+P\+\_\+\+B\+O\+U\+ND}}(\mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}},n)}
+
+\mbox{\Hypertarget{syrk_8h_abc5889bc2dd57793cca91186bb8b123e}\label{syrk_8h_abc5889bc2dd57793cca91186bb8b123e}} 
+\index{syrk.h@{syrk.h}!DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}}
+\index{DATA\_PRINTF\_MODIFIER@{DATA\_PRINTF\_MODIFIER}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_PRINTF\_MODIFIER}{DATA\_PRINTF\_MODIFIER}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+P\+R\+I\+N\+T\+F\+\_\+\+M\+O\+D\+I\+F\+I\+ER~\char`\"{}\%0.\+2lf \char`\"{}}
+
+\mbox{\Hypertarget{syrk_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}\label{syrk_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}} 
+\index{syrk.h@{syrk.h}!DATA\_TYPE@{DATA\_TYPE}}
+\index{DATA\_TYPE@{DATA\_TYPE}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE}{DATA\_TYPE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+PE~double}
+
+\mbox{\Hypertarget{syrk_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}\label{syrk_8h_aeb07fe8d6a43a90d3bfa7e5c22906f2b}} 
+\index{syrk.h@{syrk.h}!DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}}
+\index{DATA\_TYPE\_IS\_DOUBLE@{DATA\_TYPE\_IS\_DOUBLE}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_TYPE\_IS\_DOUBLE}{DATA\_TYPE\_IS\_DOUBLE}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+S\+\_\+\+D\+O\+U\+B\+LE}
+
+\mbox{\Hypertarget{syrk_8h_ae43361b6f20a4f37371b5a711b971d05}\label{syrk_8h_ae43361b6f20a4f37371b5a711b971d05}} 
+\index{syrk.h@{syrk.h}!EXP\_FUN@{EXP\_FUN}}
+\index{EXP\_FUN@{EXP\_FUN}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{EXP\_FUN}{EXP\_FUN}}
+{\footnotesize\ttfamily \#define E\+X\+P\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~exp(x)}
+
+\mbox{\Hypertarget{syrk_8h_af1fea01b66d380c67909932dc0407e9b}\label{syrk_8h_af1fea01b66d380c67909932dc0407e9b}} 
+\index{syrk.h@{syrk.h}!LARGE\_DATASET@{LARGE\_DATASET}}
+\index{LARGE\_DATASET@{LARGE\_DATASET}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{LARGE\_DATASET}{LARGE\_DATASET}}
+{\footnotesize\ttfamily \#define L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+S\+ET}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} \mbox{\Hypertarget{syrk_8h_a52037c938e3c1b126c6277da5ca689d0}\label{syrk_8h_a52037c938e3c1b126c6277da5ca689d0}} 
+\index{syrk.h@{syrk.h}!M@{M}}
+\index{M@{M}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily \#define M~1000}
+
+\mbox{\Hypertarget{syrk_8h_a0240ac851181b84ac374872dc5434ee4}\label{syrk_8h_a0240ac851181b84ac374872dc5434ee4}} 
+\index{syrk.h@{syrk.h}!N@{N}}
+\index{N@{N}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily \#define N~1200}
+
+\mbox{\Hypertarget{syrk_8h_ab7c71c79fb86e94ff65d36e81007167f}\label{syrk_8h_ab7c71c79fb86e94ff65d36e81007167f}} 
+\index{syrk.h@{syrk.h}!POW\_FUN@{POW\_FUN}}
+\index{POW\_FUN@{POW\_FUN}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{POW\_FUN}{POW\_FUN}}
+{\footnotesize\ttfamily \#define P\+O\+W\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~pow(x,y)}
+
+\mbox{\Hypertarget{syrk_8h_a97278ab00623feea0773db50c6e0620a}\label{syrk_8h_a97278ab00623feea0773db50c6e0620a}} 
+\index{syrk.h@{syrk.h}!SCALAR\_VAL@{SCALAR\_VAL}}
+\index{SCALAR\_VAL@{SCALAR\_VAL}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{SCALAR\_VAL}{SCALAR\_VAL}}
+{\footnotesize\ttfamily \#define S\+C\+A\+L\+A\+R\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~x}
+
+\mbox{\Hypertarget{syrk_8h_a65511cd52aff76924048f73e9776065e}\label{syrk_8h_a65511cd52aff76924048f73e9776065e}} 
+\index{syrk.h@{syrk.h}!SQRT\_FUN@{SQRT\_FUN}}
+\index{SQRT\_FUN@{SQRT\_FUN}!syrk.h@{syrk.h}}
+\doxysubsubsection{\texorpdfstring{SQRT\_FUN}{SQRT\_FUN}}
+{\footnotesize\ttfamily \#define S\+Q\+R\+T\+\_\+\+F\+UN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~sqrt(x)}
+

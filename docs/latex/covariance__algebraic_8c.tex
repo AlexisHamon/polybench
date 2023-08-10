@@ -1,0 +1,731 @@
+\hypertarget{covariance__algebraic_8c}{}\doxysection{all-\/charges/covariance\+\_\+algebraic.c File Reference}
+\label{covariance__algebraic_8c}\index{all-\/charges/covariance\_algebraic.c@{all-\/charges/covariance\_algebraic.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtclock.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+0.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+2.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+3.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+4.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+5.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+6.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bench\+\_\+pluto\+\_\+a.\+c.\+trahrhe.\+7.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$omp.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}covariance.\+h\char`\"{}}\newline
+Include dependency graph for covariance\+\_\+algebraic.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{covariance__algebraic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{covariance__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}~256
+\item 
+\#define \mbox{\hyperlink{covariance__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}{ceild}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))
+\item 
+\#define \mbox{\hyperlink{covariance__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}{floord}}(n,  d)~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))
+\item 
+\#define \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(x,  y)~((x) $>$ (y) ? (x) \+: (y))
+\item 
+\#define \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(x,  y)~((x) $<$ (y) ? (x) \+: (y))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{covariance__algebraic_8c_acaace34572d6dc7f8731421331792322}{init\+\_\+array}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m))
+\item 
+static void \mbox{\hyperlink{covariance__algebraic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\+\_\+array}} (int m, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m))
+\item 
+static void \mbox{\hyperlink{covariance__algebraic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\+\_\+covariance}} (int m, int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} float\+\_\+n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(data, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(cov, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(mean, \mbox{\hyperlink{gramschmidt_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m))
+\item 
+int \mbox{\hyperlink{covariance__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\+\_\+start}}
+\item 
+double \mbox{\hyperlink{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\+\_\+start}}
+\item 
+int \mbox{\hyperlink{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\+\_\+\+Thread\+Count}}
+\item 
+double \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\+\_\+time\+\_\+threads}} \mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{covariance__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}\label{covariance__algebraic_8c_a02cb22b8de73c973c34d9ae442caff61}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!ceild@{ceild}}
+\index{ceild@{ceild}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{ceild}{ceild}}
+{\footnotesize\ttfamily \#define ceild(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n)) / (d)) \+: ((n) + (d)-\/1) / (d))}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}\label{covariance__algebraic_8c_a11f332c4883a9bfc609f8d1264d38d17}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!floord@{floord}}
+\index{floord@{floord}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{floord}{floord}}
+{\footnotesize\ttfamily \#define floord(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{d }\end{DoxyParamCaption})~(((n) $<$ 0) ? -\/((-\/(n) + (d)-\/1) / (d)) \+: (n) / (d))}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}\label{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!max@{max}}
+\index{max@{max}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $>$ (y) ? (x) \+: (y))}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}\label{covariance__algebraic_8c_a8b5173357adb02a86c027316e0acdfa0}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!MAX\_THREADS@{MAX\_THREADS}}
+\index{MAX\_THREADS@{MAX\_THREADS}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_THREADS}{MAX\_THREADS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS~256}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}\label{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!min@{min}}
+\index{min@{min}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((x) $<$ (y) ? (x) \+: (y))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{covariance__algebraic_8c_acaace34572d6dc7f8731421331792322}\label{covariance__algebraic_8c_acaace34572d6dc7f8731421331792322}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{61                                                                  \{}
+\DoxyCodeLine{62   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   *float\_n = (\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})n;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}; i++)}
+\DoxyCodeLine{67     \textcolor{keywordflow}{for} (j = 0; j < \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}; j++)}
+\DoxyCodeLine{68       \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[i][j] = ((\mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}})i * j) / \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{69 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__algebraic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}\label{covariance__algebraic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!kernel\_covariance@{kernel\_covariance}}
+\index{kernel\_covariance@{kernel\_covariance}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_covariance()}{kernel\_covariance()}}
+{\footnotesize\ttfamily static void kernel\+\_\+covariance (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{float\+\_\+n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Ddata, N, M, n, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dmean, M, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{95                                                                   \{}
+\DoxyCodeLine{96   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} t1, t2, t3, t4, t5, t6, t7;}
+\DoxyCodeLine{99   \textcolor{keywordtype}{int} lb, ub, lbp, ubp, lb2, ub2;}
+\DoxyCodeLine{100   \textcolor{keyword}{register} \textcolor{keywordtype}{int} lbv, ubv;}
+\DoxyCodeLine{101   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L0, t0\_pcmax, alb0, aub0, aub0t;}
+\DoxyCodeLine{102   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L1, t1\_pcmax, alb1, aub1, aub1t;}
+\DoxyCodeLine{103   \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} TILE\_VOL\_L2, t2\_pcmax, alb2, aub2, aub2t;}
+\DoxyCodeLine{104   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_a116711ad6f2b92af5972ea27e59c5381}{i4\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{105   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{106   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{107   ;}
+\DoxyCodeLine{108   lbp = 0;}
+\DoxyCodeLine{109   ubp = aub0t;}
+\DoxyCodeLine{110 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{111 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{112 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{114 \{}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{    t5, t6, t7)}}
+\DoxyCodeLine{119   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{120     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_a13f9c94d7b89f9caa12ccdd2baa5fb60}{i4\_trahrhe\_i4}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{121     aub0 =}
+\DoxyCodeLine{122         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_a13f9c94d7b89f9caa12ccdd2baa5fb60}{i4\_trahrhe\_i4}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{123         1;}
+\DoxyCodeLine{124     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{125       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{128       fprintf(stderr,}
+\DoxyCodeLine{129               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{130               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{131               TILE\_VOL\_L0);}
+\DoxyCodeLine{132       exit(1);}
+\DoxyCodeLine{133     \};}
+\DoxyCodeLine{134     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_aab9e4b1c25216c9f2399e976ed3129b9}{j4\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{135     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{136     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{137     ;}
+\DoxyCodeLine{138     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{139       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_ae608aafdb9b31a98ddf16a611971099c}{j4\_trahrhe\_j4}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{140       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_82_8h_ae608aafdb9b31a98ddf16a611971099c}{j4\_trahrhe\_j4}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{141                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{142              1;}
+\DoxyCodeLine{143       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{144         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{145       \}}
+\DoxyCodeLine{146       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{147         fprintf(stderr,}
+\DoxyCodeLine{148                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{149                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{150                 TILE\_VOL\_L1);}
+\DoxyCodeLine{151         exit(1);}
+\DoxyCodeLine{152       \};}
+\DoxyCodeLine{153       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, aub1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t4++) \{}
+\DoxyCodeLine{154         lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(alb1, t4);}
+\DoxyCodeLine{155         ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{157         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{158           cov[t4][t5] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{159           ;}
+\DoxyCodeLine{160         \}}
+\DoxyCodeLine{161       \}}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163   \}}
+\DoxyCodeLine{164 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{165 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{166 \}}
+\DoxyCodeLine{167   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a5eeb7eb8b493273d1ad1c9c59474a638}{j0\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{168   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{169   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{170   ;}
+\DoxyCodeLine{171   lbp = 0;}
+\DoxyCodeLine{172   ubp = aub0t;}
+\DoxyCodeLine{173 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{174 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{175 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{177 \{}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, t3, t4, t5, t6, t7)}}
+\DoxyCodeLine{181   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{182     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a6aa7c4bb0333f7c3d7675e3af523dd16}{j0\_trahrhe\_j0}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{183     aub0 =}
+\DoxyCodeLine{184         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_86_8h_a6aa7c4bb0333f7c3d7675e3af523dd16}{j0\_trahrhe\_j0}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{185         1;}
+\DoxyCodeLine{186     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{187       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{188     \}}
+\DoxyCodeLine{189     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{190       fprintf(stderr,}
+\DoxyCodeLine{191               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{192               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{193               TILE\_VOL\_L0);}
+\DoxyCodeLine{194       exit(1);}
+\DoxyCodeLine{195     \};}
+\DoxyCodeLine{196     lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{197     ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{199     \textcolor{keywordflow}{for} (t3 = lbv; t3 <= ubv; t3++) \{}
+\DoxyCodeLine{200       mean[t3] = \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(0.0);}
+\DoxyCodeLine{201       ;}
+\DoxyCodeLine{202     \}}
+\DoxyCodeLine{203   \}}
+\DoxyCodeLine{204 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{205 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{206 \}}
+\DoxyCodeLine{207   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a0c805e60ff844bd6f118bcce49ed0a60}{j1\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{208   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{209   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{210   ;}
+\DoxyCodeLine{211   lbp = 0;}
+\DoxyCodeLine{212   ubp = aub0t;}
+\DoxyCodeLine{213 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{214 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{215 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{217 \{}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{    t5, t6, t7)}}
+\DoxyCodeLine{222   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{223     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a351b68cddd2bc23ebad3e216011b1ead}{j1\_trahrhe\_j1}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{224     aub0 =}
+\DoxyCodeLine{225         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a351b68cddd2bc23ebad3e216011b1ead}{j1\_trahrhe\_j1}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{226         1;}
+\DoxyCodeLine{227     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{228       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{229     \}}
+\DoxyCodeLine{230     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{231       fprintf(stderr,}
+\DoxyCodeLine{232               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{233               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{234               TILE\_VOL\_L0);}
+\DoxyCodeLine{235       exit(1);}
+\DoxyCodeLine{236     \};}
+\DoxyCodeLine{237     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a9f514b45515b7fdb6f467630aeaf0292}{i1\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{238     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{239     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{240     ;}
+\DoxyCodeLine{241     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{242       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{243       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_80_8h_a6f79f3ca75c1189bdb46765bafb1b549}{i1\_trahrhe\_i1}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{244                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{245              1;}
+\DoxyCodeLine{246       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{247         aub1 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{248       \}}
+\DoxyCodeLine{249       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{250         fprintf(stderr,}
+\DoxyCodeLine{251                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{252                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{253                 TILE\_VOL\_L1);}
+\DoxyCodeLine{254         exit(1);}
+\DoxyCodeLine{255       \};}
+\DoxyCodeLine{256       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1); t4 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t4++) \{}
+\DoxyCodeLine{257         lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{258         ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{260         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{261           mean[t5] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5];}
+\DoxyCodeLine{262           ;}
+\DoxyCodeLine{263         \}}
+\DoxyCodeLine{264       \}}
+\DoxyCodeLine{265     \}}
+\DoxyCodeLine{266   \}}
+\DoxyCodeLine{267 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{268 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{269 \}}
+\DoxyCodeLine{270   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_af7f9755bc883cc0d082c1679efd7fd46}{j2\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{271   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{272   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{273   ;}
+\DoxyCodeLine{274   lbp = 0;}
+\DoxyCodeLine{275   ubp = aub0t;}
+\DoxyCodeLine{276 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{277 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{278 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{280 \{}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, t3, t4, t5, t6, t7)}}
+\DoxyCodeLine{284   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{285     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_a57a5df692e461d5f96c3175b9ebde16d}{j2\_trahrhe\_j2}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{286     aub0 =}
+\DoxyCodeLine{287         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_87_8h_a57a5df692e461d5f96c3175b9ebde16d}{j2\_trahrhe\_j2}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{288         1;}
+\DoxyCodeLine{289     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{290       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{291     \}}
+\DoxyCodeLine{292     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{293       fprintf(stderr,}
+\DoxyCodeLine{294               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{295               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{296               TILE\_VOL\_L0);}
+\DoxyCodeLine{297       exit(1);}
+\DoxyCodeLine{298     \};}
+\DoxyCodeLine{299     lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0);}
+\DoxyCodeLine{300     ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{302     \textcolor{keywordflow}{for} (t3 = lbv; t3 <= ubv; t3++) \{}
+\DoxyCodeLine{303       mean[t3] /= float\_n;}
+\DoxyCodeLine{304       ;}
+\DoxyCodeLine{305     \}}
+\DoxyCodeLine{306   \}}
+\DoxyCodeLine{307 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{308 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{309 \}}
+\DoxyCodeLine{310   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0819f57253cb8ee95704c45faa70dd65}{i3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{311   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{312   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{313   ;}
+\DoxyCodeLine{314   lbp = 0;}
+\DoxyCodeLine{315   ubp = aub0t;}
+\DoxyCodeLine{316 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{317 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{318 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{320 \{}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{    t5, t6, t7)}}
+\DoxyCodeLine{325   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{326     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{327     aub0 =}
+\DoxyCodeLine{328         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_aeef9cd32a19c8c7744da4dc3c2b3c92a}{i3\_trahrhe\_i3}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{329         1;}
+\DoxyCodeLine{330     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{331       aub0 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{332     \}}
+\DoxyCodeLine{333     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{334       fprintf(stderr,}
+\DoxyCodeLine{335               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{336               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{337               TILE\_VOL\_L0);}
+\DoxyCodeLine{338       exit(1);}
+\DoxyCodeLine{339     \};}
+\DoxyCodeLine{340     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_a0d8adfdb708c96f66777fad47073c954}{j3\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{341     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{342     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{343     ;}
+\DoxyCodeLine{344     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{345       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{346       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_81_8h_ac41f554682d2690d91f30ae3c2cdbd4c}{j3\_trahrhe\_j3}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{347                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{348              1;}
+\DoxyCodeLine{349       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{350         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{351       \}}
+\DoxyCodeLine{352       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{353         fprintf(stderr,}
+\DoxyCodeLine{354                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{355                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{356                 TILE\_VOL\_L1);}
+\DoxyCodeLine{357         exit(1);}
+\DoxyCodeLine{358       \};}
+\DoxyCodeLine{359       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t4++) \{}
+\DoxyCodeLine{360         lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb1);}
+\DoxyCodeLine{361         ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{363         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{364           \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t4][t5] -\/= mean[t5];}
+\DoxyCodeLine{365           ;}
+\DoxyCodeLine{366         \}}
+\DoxyCodeLine{367       \}}
+\DoxyCodeLine{368     \}}
+\DoxyCodeLine{369   \}}
+\DoxyCodeLine{370 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{371 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{372 \}}
+\DoxyCodeLine{373   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_a3e3c6b3c5d20fd597ecb90933ca29d24}{i5\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{374   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{375   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{376   ;}
+\DoxyCodeLine{377   lbp = 0;}
+\DoxyCodeLine{378   ubp = aub0t;}
+\DoxyCodeLine{379 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{380 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{381 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{383 \{}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, alb2,      \(\backslash\)}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{    aub2, TILE\_VOL\_L2, aub2t, t2\_pcmax, t3, t4, t5, t6, t7)}}
+\DoxyCodeLine{388   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{389     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_a257c4aadb5ac1625b7cfb5761c5da574}{i5\_trahrhe\_i5}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{390     aub0 =}
+\DoxyCodeLine{391         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_a257c4aadb5ac1625b7cfb5761c5da574}{i5\_trahrhe\_i5}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{392         1;}
+\DoxyCodeLine{393     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{394       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{395     \}}
+\DoxyCodeLine{396     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{397       fprintf(stderr,}
+\DoxyCodeLine{398               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{399               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{400               TILE\_VOL\_L0);}
+\DoxyCodeLine{401       exit(1);}
+\DoxyCodeLine{402     \};}
+\DoxyCodeLine{403     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_810_8h_add1cfc49f594236641b919cdd5149f8f}{j5\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{404     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{405     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{406     ;}
+\DoxyCodeLine{407     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{408       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_810_8h_a420145662ff278c094897217aa9e521f}{j5\_trahrhe\_j5}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{409       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_810_8h_a420145662ff278c094897217aa9e521f}{j5\_trahrhe\_j5}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{410                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{411              1;}
+\DoxyCodeLine{412       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{413         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{414       \}}
+\DoxyCodeLine{415       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{416         fprintf(stderr,}
+\DoxyCodeLine{417                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{418                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{419                 TILE\_VOL\_L1);}
+\DoxyCodeLine{420         exit(1);}
+\DoxyCodeLine{421       \};}
+\DoxyCodeLine{422       t2\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_af86bb139066c92853e4586211d9a335c}{k5\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0, alb1, aub1);}
+\DoxyCodeLine{423       TILE\_VOL\_L2 = t2\_pcmax / DIV2;}
+\DoxyCodeLine{424       aub2t = DIV2 -\/ 1;}
+\DoxyCodeLine{425       ;}
+\DoxyCodeLine{426       \textcolor{keywordflow}{for} (t4 = 0; t4 <= aub2t; t4++) \{}
+\DoxyCodeLine{427         alb2 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_a2f28d6f6cc64a929bee569474dd6882f}{k5\_trahrhe\_k5}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t4)*TILE\_VOL\_L2, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0,}
+\DoxyCodeLine{428                              alb1, aub1);}
+\DoxyCodeLine{429         aub2 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_83_8h_a2f28d6f6cc64a929bee569474dd6882f}{k5\_trahrhe\_k5}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t4) + 1) * TILE\_VOL\_L2, t2\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{430                              \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0, alb1, aub1) -\/}
+\DoxyCodeLine{431                1;}
+\DoxyCodeLine{432         \textcolor{keywordflow}{if} (t4 == aub2t) \{}
+\DoxyCodeLine{433           aub2 = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1;}
+\DoxyCodeLine{434         \}}
+\DoxyCodeLine{435         \textcolor{keywordflow}{if} (aub2 < alb2) \{}
+\DoxyCodeLine{436           fprintf(stderr,}
+\DoxyCodeLine{437                   \textcolor{stringliteral}{"The tile volume of level 2 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{438                   \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{439                   TILE\_VOL\_L2);}
+\DoxyCodeLine{440           exit(1);}
+\DoxyCodeLine{441         \};}
+\DoxyCodeLine{442         \textcolor{keywordflow}{for} (t5 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t5 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, aub1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t5++) \{}
+\DoxyCodeLine{443           \textcolor{keywordflow}{for} (t6 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb2); t6 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub2, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}} -\/ 1); t6++) \{}
+\DoxyCodeLine{444             lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(alb1, t5);}
+\DoxyCodeLine{445             ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{447             \textcolor{keywordflow}{for} (t7 = lbv; t7 <= ubv; t7++) \{}
+\DoxyCodeLine{448               cov[t5][t7] += \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t5] * \mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}[t6][t7];}
+\DoxyCodeLine{449               ;}
+\DoxyCodeLine{450             \}}
+\DoxyCodeLine{451           \}}
+\DoxyCodeLine{452         \}}
+\DoxyCodeLine{453       \}}
+\DoxyCodeLine{454     \}}
+\DoxyCodeLine{455   \}}
+\DoxyCodeLine{456 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{457 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{458 \}}
+\DoxyCodeLine{459   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_84_8h_ac16dd97f8396825d76ed12d9eaa0f42c}{i6\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{460   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{461   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{462   ;}
+\DoxyCodeLine{463   lbp = 0;}
+\DoxyCodeLine{464   ubp = aub0t;}
+\DoxyCodeLine{465 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{466 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{467 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{469 \{}
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{    t5, t6, t7)}}
+\DoxyCodeLine{474   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{475     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_84_8h_a81e4541d75849743d036212411be26ef}{i6\_trahrhe\_i6}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{476     aub0 =}
+\DoxyCodeLine{477         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_84_8h_a81e4541d75849743d036212411be26ef}{i6\_trahrhe\_i6}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{478         1;}
+\DoxyCodeLine{479     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{480       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{481     \}}
+\DoxyCodeLine{482     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{483       fprintf(stderr,}
+\DoxyCodeLine{484               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{485               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{486               TILE\_VOL\_L0);}
+\DoxyCodeLine{487       exit(1);}
+\DoxyCodeLine{488     \};}
+\DoxyCodeLine{489     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_811_8h_aa74e3db17fbab9793dd28cfed539fe13}{j6\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{490     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{491     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{492     ;}
+\DoxyCodeLine{493     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{494       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_811_8h_aaf3f7a59c1778d5760753c48c48cf3a4}{j6\_trahrhe\_j6}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{495       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_811_8h_aaf3f7a59c1778d5760753c48c48cf3a4}{j6\_trahrhe\_j6}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{496                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{497              1;}
+\DoxyCodeLine{498       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{499         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{500       \}}
+\DoxyCodeLine{501       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{502         fprintf(stderr,}
+\DoxyCodeLine{503                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{504                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{505                 TILE\_VOL\_L1);}
+\DoxyCodeLine{506         exit(1);}
+\DoxyCodeLine{507       \};}
+\DoxyCodeLine{508       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, aub1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t4++) \{}
+\DoxyCodeLine{509         lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(alb1, t4);}
+\DoxyCodeLine{510         ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{512         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{513           cov[t4][t5] /= (float\_n -\/ \mbox{\hyperlink{correlation_8h_a97278ab00623feea0773db50c6e0620a}{SCALAR\_VAL}}(1.0));}
+\DoxyCodeLine{514           ;}
+\DoxyCodeLine{515         \}}
+\DoxyCodeLine{516       \}}
+\DoxyCodeLine{517     \}}
+\DoxyCodeLine{518   \}}
+\DoxyCodeLine{519 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{520 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{521 \}}
+\DoxyCodeLine{522   t0\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_85_8h_accd3861db339bfd1fe3651361765a042}{i7\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{523   TILE\_VOL\_L0 = t0\_pcmax / DIV0;}
+\DoxyCodeLine{524   aub0t = DIV0 -\/ 1;}
+\DoxyCodeLine{525   ;}
+\DoxyCodeLine{526   lbp = 0;}
+\DoxyCodeLine{527   ubp = aub0t;}
+\DoxyCodeLine{528 \textcolor{comment}{/* Premier appel à la fonction rtclock */}}
+\DoxyCodeLine{529 \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}} = \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{530 \textcolor{comment}{/*On ajoute la clause "shared(\_time\_threads) firstprivate(t\_start)" et le nowait*/}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{\#pragma omp parallel shared(\_time\_threads) firstprivate(t\_start)}}
+\DoxyCodeLine{532 \{}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#pragma omp for nowait firstprivate(TILE\_VOL\_L0, aub0t, t0\_pcmax) private(   \(\backslash\)}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{    lbv, ubv, alb0, aub0, alb1, aub1, TILE\_VOL\_L1, aub1t, t1\_pcmax, t3, t4,    \(\backslash\)}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{    t5, t6, t7)}}
+\DoxyCodeLine{537   \textcolor{keywordflow}{for} (t2 = lbp; t2 <= ubp; t2++) \{}
+\DoxyCodeLine{538     alb0 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_85_8h_a1b79f62c8f6c8f6a3e10b81836fa6043}{i7\_trahrhe\_i7}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t2)*TILE\_VOL\_L0, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}});}
+\DoxyCodeLine{539     aub0 =}
+\DoxyCodeLine{540         \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_85_8h_a1b79f62c8f6c8f6a3e10b81836fa6043}{i7\_trahrhe\_i7}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t2) + 1) * TILE\_VOL\_L0, t0\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) -\/}
+\DoxyCodeLine{541         1;}
+\DoxyCodeLine{542     \textcolor{keywordflow}{if} (t2 == aub0t) \{}
+\DoxyCodeLine{543       aub0 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{544     \}}
+\DoxyCodeLine{545     \textcolor{keywordflow}{if} (aub0 < alb0) \{}
+\DoxyCodeLine{546       fprintf(stderr,}
+\DoxyCodeLine{547               \textcolor{stringliteral}{"The tile volume of level 0 (\%ld) seems too small, raise it and "}}
+\DoxyCodeLine{548               \textcolor{stringliteral}{"try again\(\backslash\)n"},}
+\DoxyCodeLine{549               TILE\_VOL\_L0);}
+\DoxyCodeLine{550       exit(1);}
+\DoxyCodeLine{551     \};}
+\DoxyCodeLine{552     t1\_pcmax = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_812_8h_a292d9d8d408057aedd11ca30a5615842}{j7\_Ehrhart}}(\mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{553     TILE\_VOL\_L1 = t1\_pcmax / DIV1;}
+\DoxyCodeLine{554     aub1t = DIV1 -\/ 1;}
+\DoxyCodeLine{555     ;}
+\DoxyCodeLine{556     \textcolor{keywordflow}{for} (t3 = 0; t3 <= aub1t; t3++) \{}
+\DoxyCodeLine{557       alb1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_812_8h_a010cd864b4d0f04e722d66a09a6dc849}{j7\_trahrhe\_j7}}(\mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}((t3)*TILE\_VOL\_L1, 1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}}, \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0);}
+\DoxyCodeLine{558       aub1 = \mbox{\hyperlink{bench__pluto__a_8c_8trahrhe_812_8h_a010cd864b4d0f04e722d66a09a6dc849}{j7\_trahrhe\_j7}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(((t3) + 1) * TILE\_VOL\_L1, t1\_pcmax), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}},}
+\DoxyCodeLine{559                            \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}, alb0, aub0) -\/}
+\DoxyCodeLine{560              1;}
+\DoxyCodeLine{561       \textcolor{keywordflow}{if} (t3 == aub1t) \{}
+\DoxyCodeLine{562         aub1 = \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1;}
+\DoxyCodeLine{563       \}}
+\DoxyCodeLine{564       \textcolor{keywordflow}{if} (aub1 < alb1) \{}
+\DoxyCodeLine{565         fprintf(stderr,}
+\DoxyCodeLine{566                 \textcolor{stringliteral}{"The tile volume of level 1 (\%ld) seems too small, raise it "}}
+\DoxyCodeLine{567                 \textcolor{stringliteral}{"and try again\(\backslash\)n"},}
+\DoxyCodeLine{568                 TILE\_VOL\_L1);}
+\DoxyCodeLine{569         exit(1);}
+\DoxyCodeLine{570       \};}
+\DoxyCodeLine{571       \textcolor{keywordflow}{for} (t4 = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(0, alb0); t4 <= \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(\mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub0, aub1), \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1); t4++) \{}
+\DoxyCodeLine{572         lbv = \mbox{\hyperlink{covariance__algebraic_8c_ac39d9cef6a5e030ba8d9e11121054268}{max}}(alb1, t4);}
+\DoxyCodeLine{573         ubv = \mbox{\hyperlink{covariance__algebraic_8c_abb702d8b501669a23aa0ab3b281b9384}{min}}(aub1, \mbox{\hyperlink{correlation_8h_a3f866ae062cf636470daf7cb2e638040}{\_PB\_M}} -\/ 1);}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#pragma GCC ivdep}}
+\DoxyCodeLine{575         \textcolor{keywordflow}{for} (t5 = lbv; t5 <= ubv; t5++) \{}
+\DoxyCodeLine{576           cov[t5][t4] = cov[t4][t5];}
+\DoxyCodeLine{577           ;}
+\DoxyCodeLine{578         \}}
+\DoxyCodeLine{579       \}}
+\DoxyCodeLine{580     \}}
+\DoxyCodeLine{581   \}}
+\DoxyCodeLine{582 \textcolor{comment}{/*Collecte des temps de chaque thread */}}
+\DoxyCodeLine{583 \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[omp\_get\_thread\_num()] += \mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}() -\/ \mbox{\hyperlink{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}{t\_start}};}
+\DoxyCodeLine{584 \}}
+\DoxyCodeLine{585 \textcolor{comment}{/* Affichage des temps d'exécution */}}
+\DoxyCodeLine{586 \mbox{\hyperlink{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}()-\/\mbox{\hyperlink{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}; }
+\DoxyCodeLine{587 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}};i++)\{}
+\DoxyCodeLine{588 printf(\textcolor{stringliteral}{"\%0.6lf \(\backslash\)n"}, \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[i]);}
+\DoxyCodeLine{589 \}}
+\DoxyCodeLine{590  printf(\textcolor{stringliteral}{"\#\#Execution time \(\backslash\)n"});}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{covariance__algebraic_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!main@{main}}
+\index{main@{main}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{594                                 \{}
+\DoxyCodeLine{595 \mbox{\hyperlink{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}} = atoi(getenv(\textcolor{stringliteral}{"OMP\_NUM\_THREADS"}));}
+\DoxyCodeLine{596   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} \_i=0; \_i<\mbox{\hyperlink{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}{\_ThreadCount}}; \_i++) \mbox{\hyperlink{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}{\_time\_threads}}[\_i]=0.0; \textcolor{comment}{/*initialisation du tableau des mesures à 0 */}}
+\DoxyCodeLine{597   \textcolor{comment}{/* temps d'exécution totale */}}
+\DoxyCodeLine{598   \mbox{\hyperlink{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}{tall\_start}}=\mbox{\hyperlink{rtclock_8h_a2112336335c7b47b334b6d55b7e3085a}{rtclock}}();}
+\DoxyCodeLine{599 }
+\DoxyCodeLine{600   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{601   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{602   \textcolor{keywordtype}{int} m = \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}};}
+\DoxyCodeLine{603 }
+\DoxyCodeLine{604   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{605   \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}} float\_n;}
+\DoxyCodeLine{606   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, n, m);}
+\DoxyCodeLine{607   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(cov, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m, m);}
+\DoxyCodeLine{608   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(mean, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a52037c938e3c1b126c6277da5ca689d0}{M}}, m);}
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{611   \mbox{\hyperlink{covariance__algebraic_8c_acaace34572d6dc7f8731421331792322}{init\_array}}(m, n, \&float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}));}
+\DoxyCodeLine{612 }
+\DoxyCodeLine{613   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{614   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{615 }
+\DoxyCodeLine{616   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{617   \mbox{\hyperlink{covariance__algebraic_8c_a5c81795e4ab2ae3369bf9b868b7edbb0}{kernel\_covariance}}(m, n, float\_n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}}), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov),}
+\DoxyCodeLine{618                     \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(mean));}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{621   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{622   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{623 }
+\DoxyCodeLine{624   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{625 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{626   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{covariance__algebraic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}{print\_array}}(m, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(cov)));}
+\DoxyCodeLine{627 }
+\DoxyCodeLine{628   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{629   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(\mbox{\hyperlink{namespaceget__best_a484384c5e6f37fe1c8b7031305d556e2}{data}});}
+\DoxyCodeLine{630   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(cov);}
+\DoxyCodeLine{631   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(mean);}
+\DoxyCodeLine{632 }
+\DoxyCodeLine{633   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{634 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{covariance__algebraic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}\label{covariance__algebraic_8c_a5871173ca5b1dc97ddb81212bdd2e09e}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dcov, M, M, m, m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75 \{}
+\DoxyCodeLine{76   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{79   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{80   \textcolor{keywordflow}{for} (i = 0; i < m; i++)}
+\DoxyCodeLine{81     \textcolor{keywordflow}{for} (j = 0; j < m; j++) \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{if} ((i * m + j) \% 20 == 0)}
+\DoxyCodeLine{83         fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{84       fprintf(\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, cov[i][j]);}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"cov"});}
+\DoxyCodeLine{87   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{88 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}\label{covariance__algebraic_8c_a79cfc1c26fb53e77b30da28d44b8923e}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!\_ThreadCount@{\_ThreadCount}}
+\index{\_ThreadCount@{\_ThreadCount}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_ThreadCount}{\_ThreadCount}}
+{\footnotesize\ttfamily int \+\_\+\+Thread\+Count}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}\label{covariance__algebraic_8c_a2607998c9a8b7aa2f430820e3d39e28c}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!\_time\_threads@{\_time\_threads}}
+\index{\_time\_threads@{\_time\_threads}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{\_time\_threads}{\_time\_threads}}
+{\footnotesize\ttfamily double \+\_\+time\+\_\+threads\mbox{[}\mbox{\hyperlink{bench__pluto__static_8c_a8b5173357adb02a86c027316e0acdfa0}{M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}}\mbox{]}}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}\label{covariance__algebraic_8c_a1b01a4354147da92a548ea1a5f96d592}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!t\_start@{t\_start}}
+\index{t\_start@{t\_start}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{t\_start}{t\_start}}
+{\footnotesize\ttfamily double t\+\_\+start}
+
+\mbox{\Hypertarget{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}\label{covariance__algebraic_8c_ab7cf3c1910f08cc61cbc53ad9cd4193b}} 
+\index{covariance\_algebraic.c@{covariance\_algebraic.c}!tall\_start@{tall\_start}}
+\index{tall\_start@{tall\_start}!covariance\_algebraic.c@{covariance\_algebraic.c}}
+\doxysubsubsection{\texorpdfstring{tall\_start}{tall\_start}}
+{\footnotesize\ttfamily double tall\+\_\+start}
+

@@ -1,0 +1,196 @@
+\hypertarget{nussinov_8c}{}\doxysection{medley/nussinov/nussinov.c File Reference}
+\label{nussinov_8c}\index{medley/nussinov/nussinov.c@{medley/nussinov/nussinov.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$polybench.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nussinov.\+h\char`\"{}}\newline
+Include dependency graph for nussinov.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{nussinov_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nussinov_8c_a905be3e487cb0658cb6f2c7142e61298}{match}}(b1,  b2)~(((b1)+(b2)) == 3 ? 1 \+: 0)
+\item 
+\#define \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\+\_\+score}}(s1,  s2)~((s1 $>$= s2) ? s1 \+: s2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef char \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{nussinov_8c_a657d5c5e82438963506db8100d4b7b8d}{init\+\_\+array}} (int n, \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(table, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{nussinov_8c_ad2f8d6c550e679bbee0a05be9679b9c2}{print\+\_\+array}} (int n, \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(table, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+static void \mbox{\hyperlink{nussinov_8c_a51b94dd8ad8f00a06612af1123a3222c}{kernel\+\_\+nussinov}} (int n, \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} \mbox{\hyperlink{polybench_8h_a1f5fe8486b9a09d0dbf629d656bdc3d8}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1D}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n), \mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{polybench_8h_a5b598b2869483a39b4de35e1b549320e}{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2D}}(table, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{seidel-2d_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n))
+\item 
+int \mbox{\hyperlink{nussinov_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nussinov_8c_a905be3e487cb0658cb6f2c7142e61298}\label{nussinov_8c_a905be3e487cb0658cb6f2c7142e61298}} 
+\index{nussinov.c@{nussinov.c}!match@{match}}
+\index{match@{match}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{match}{match}}
+{\footnotesize\ttfamily \#define match(\begin{DoxyParamCaption}\item[{}]{b1,  }\item[{}]{b2 }\end{DoxyParamCaption})~(((b1)+(b2)) == 3 ? 1 \+: 0)}
+
+\mbox{\Hypertarget{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}\label{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}} 
+\index{nussinov.c@{nussinov.c}!max\_score@{max\_score}}
+\index{max\_score@{max\_score}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{max\_score}{max\_score}}
+{\footnotesize\ttfamily \#define max\+\_\+score(\begin{DoxyParamCaption}\item[{}]{s1,  }\item[{}]{s2 }\end{DoxyParamCaption})~((s1 $>$= s2) ? s1 \+: s2)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}\label{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}} 
+\index{nussinov.c@{nussinov.c}!base@{base}}
+\index{base@{base}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily typedef char \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}}
+
+This version is stamped on May 10, 2016
+
+Contact\+: Louis-\/\+Noel Pouchet $<$pouchet.\+ohio-\/state.\+edu$>$ Tomofumi Yuki $<$tomofumi.\+yuki.\+fr$>$
+
+Web address\+: \href{http://polybench.sourceforge.net}{\texttt{ http\+://polybench.\+sourceforge.\+net}} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nussinov_8c_a657d5c5e82438963506db8100d4b7b8d}\label{nussinov_8c_a657d5c5e82438963506db8100d4b7b8d}} 
+\index{nussinov.c@{nussinov.c}!init\_array@{init\_array}}
+\index{init\_array@{init\_array}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{init\_array()}{init\_array()}}
+{\footnotesize\ttfamily static void init\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dseq, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dtable, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{comment}{//base is AGCT/0..3}}
+\DoxyCodeLine{38   \textcolor{keywordflow}{for} (i=0; i <n; i++) \{}
+\DoxyCodeLine{39      \mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[i] = (\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}})((i+1)\%4);}
+\DoxyCodeLine{40   \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keywordflow}{for} (i=0; i <n; i++)}
+\DoxyCodeLine{43      \textcolor{keywordflow}{for} (j=0; j <n; j++)}
+\DoxyCodeLine{44        table[i][j] = 0;}
+\DoxyCodeLine{45 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nussinov_8c_a51b94dd8ad8f00a06612af1123a3222c}\label{nussinov_8c_a51b94dd8ad8f00a06612af1123a3222c}} 
+\index{nussinov.c@{nussinov.c}!kernel\_nussinov@{kernel\_nussinov}}
+\index{kernel\_nussinov@{kernel\_nussinov}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{kernel\_nussinov()}{kernel\_nussinov()}}
+{\footnotesize\ttfamily static void kernel\+\_\+nussinov (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+1Dseq, N, n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dtable, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82 \{}
+\DoxyCodeLine{83   \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#pragma scop}}
+\DoxyCodeLine{86  \textcolor{keywordflow}{for} (i = \mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}-\/1; i >= 0; i-\/-\/) \{}
+\DoxyCodeLine{87   \textcolor{keywordflow}{for} (j=i+1; j<\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}; j++) \{}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} (j-\/1>=0)}
+\DoxyCodeLine{90       table[i][j] = \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\_score}}(table[i][j], table[i][j-\/1]);}
+\DoxyCodeLine{91    \textcolor{keywordflow}{if} (i+1<\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}})}
+\DoxyCodeLine{92       table[i][j] = \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\_score}}(table[i][j], table[i+1][j]);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    \textcolor{keywordflow}{if} (j-\/1>=0 \&\& i+1<\mbox{\hyperlink{correlation_8h_a19a82c0bf6c35c019099272810ba2262}{\_PB\_N}}) \{}
+\DoxyCodeLine{95      \textcolor{comment}{/* don't allow adjacent elements to bond */}}
+\DoxyCodeLine{96      \textcolor{keywordflow}{if} (i<j-\/1)}
+\DoxyCodeLine{97         table[i][j] = \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\_score}}(table[i][j], table[i+1][j-\/1]+\mbox{\hyperlink{nussinov_8c_a905be3e487cb0658cb6f2c7142e61298}{match}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[i], \mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}[j]));}
+\DoxyCodeLine{98      \textcolor{keywordflow}{else}}
+\DoxyCodeLine{99         table[i][j] = \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\_score}}(table[i][j], table[i+1][j-\/1]);}
+\DoxyCodeLine{100    \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{keywordflow}{for} (k=i+1; k<j; k++) \{}
+\DoxyCodeLine{103       table[i][j] = \mbox{\hyperlink{nussinov_8c_a01c45f71a21de02a432ad4358fbddddc}{max\_score}}(table[i][j], table[i][k] + table[k+1][j]);}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105   \}}
+\DoxyCodeLine{106  \}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#pragma endscop}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nussinov_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{nussinov_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{nussinov.c@{nussinov.c}!main@{main}}
+\index{main@{main}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{113 \{}
+\DoxyCodeLine{114   \textcolor{comment}{/* Retrieve problem size. */}}
+\DoxyCodeLine{115   \textcolor{keywordtype}{int} n = \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \textcolor{comment}{/* Variable declaration/allocation. */}}
+\DoxyCodeLine{118   \mbox{\hyperlink{polybench_8h_a660bc5d150876262caa4e2f3c2c43442}{POLYBENCH\_1D\_ARRAY\_DECL}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}, \mbox{\hyperlink{nussinov_8c_a718f7f0d03118430ee19a4fb24c52343}{base}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n);}
+\DoxyCodeLine{119   \mbox{\hyperlink{polybench_8h_a432ff6c61c13fc43b7d67870ef9567f2}{POLYBENCH\_2D\_ARRAY\_DECL}}(table, \mbox{\hyperlink{correlation_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{DATA\_TYPE}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{correlation_8h_a0240ac851181b84ac374872dc5434ee4}{N}}, n, n);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121   \textcolor{comment}{/* Initialize array(s). */}}
+\DoxyCodeLine{122   \mbox{\hyperlink{nussinov_8c_a657d5c5e82438963506db8100d4b7b8d}{init\_array}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(table));}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \textcolor{comment}{/* Start timer. */}}
+\DoxyCodeLine{125   \mbox{\hyperlink{polybench_8h_a18efdc34f53f0c4838d2e10e87b46878}{polybench\_start\_instruments}};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127   \textcolor{comment}{/* Run kernel. */}}
+\DoxyCodeLine{128   \mbox{\hyperlink{nussinov_8c_a51b94dd8ad8f00a06612af1123a3222c}{kernel\_nussinov}} (n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}}), \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(table));}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130   \textcolor{comment}{/* Stop and print timer. */}}
+\DoxyCodeLine{131   \mbox{\hyperlink{polybench_8h_ab48df70ee81cd49ac171106c70e74372}{polybench\_stop\_instruments}};}
+\DoxyCodeLine{132   \mbox{\hyperlink{polybench_8h_a21d4fe351c2c1d9194b351f8ab85ca87}{polybench\_print\_instruments}};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \textcolor{comment}{/* Prevent dead-\/code elimination. All live-\/out data must be printed}}
+\DoxyCodeLine{135 \textcolor{comment}{     by the function call in argument. */}}
+\DoxyCodeLine{136   \mbox{\hyperlink{polybench_8h_a7eb1277e0e809c948eb96083ea01912e}{polybench\_prevent\_dce}}(\mbox{\hyperlink{nussinov_8c_ad2f8d6c550e679bbee0a05be9679b9c2}{print\_array}}(n, \mbox{\hyperlink{polybench_8h_a5da04baf906e3df5258b2bc797f086bb}{POLYBENCH\_ARRAY}}(table)));}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138   \textcolor{comment}{/* Be clean. */}}
+\DoxyCodeLine{139   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(\mbox{\hyperlink{Nussinov_8orig_8c_a9e687c4730a8629cd38892adf55e58a4}{seq}});}
+\DoxyCodeLine{140   \mbox{\hyperlink{polybench_8h_a4eec535f1b7320ae7d043a185e63dbe7}{POLYBENCH\_FREE\_ARRAY}}(table);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{143 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nussinov_8c_ad2f8d6c550e679bbee0a05be9679b9c2}\label{nussinov_8c_ad2f8d6c550e679bbee0a05be9679b9c2}} 
+\index{nussinov.c@{nussinov.c}!print\_array@{print\_array}}
+\index{print\_array@{print\_array}!nussinov.c@{nussinov.c}}
+\doxysubsubsection{\texorpdfstring{print\_array()}{print\_array()}}
+{\footnotesize\ttfamily static void print\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\mbox{\hyperlink{seidel-2d_8h_afb8c72ce35c4a1f4a2588d6573e54aa1}{D\+A\+T\+A\+\_\+\+T\+Y\+PE}} }]{P\+O\+L\+Y\+B\+E\+N\+C\+H\+\_\+2Dtable, N, N, n, n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55   \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{56   \textcolor{keywordtype}{int} t = 0;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \mbox{\hyperlink{polybench_8h_a6ea3f4519ed2bd38c61129dac9dd53b2}{POLYBENCH\_DUMP\_START}};}
+\DoxyCodeLine{59   \mbox{\hyperlink{polybench_8h_ab1864862ffcef9a07b405ea34521be40}{POLYBENCH\_DUMP\_BEGIN}}(\textcolor{stringliteral}{"table"});}
+\DoxyCodeLine{60   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{}
+\DoxyCodeLine{61     \textcolor{keywordflow}{for} (j = i; j < n; j++) \{}
+\DoxyCodeLine{62       \textcolor{keywordflow}{if} (t \% 20 == 0) fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \textcolor{stringliteral}{"\(\backslash\)n"});}
+\DoxyCodeLine{63       fprintf (\mbox{\hyperlink{polybench_8h_a30b841e2000bd3f3c59be9b3905cb037}{POLYBENCH\_DUMP\_TARGET}}, \mbox{\hyperlink{correlation_8h_abc5889bc2dd57793cca91186bb8b123e}{DATA\_PRINTF\_MODIFIER}}, table[i][j]);}
+\DoxyCodeLine{64       t++;}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66   \}}
+\DoxyCodeLine{67   \mbox{\hyperlink{polybench_8h_af722ea20d07fa3f451f9e7054611bdd9}{POLYBENCH\_DUMP\_END}}(\textcolor{stringliteral}{"table"});}
+\DoxyCodeLine{68   \mbox{\hyperlink{polybench_8h_aea9208c8524edb29d1315bf6b431ab2a}{POLYBENCH\_DUMP\_FINISH}};}
+\DoxyCodeLine{69 \}}
+
+\end{DoxyCode}
