@@ -107,12 +107,12 @@ Calcul de l'équilibre de charge</h2>
 <div class="line">make all</div>
 </div><!-- fragment --><p>on peut générer les temps d'exécution des threads pour un seul fichier avec la commande suivante : </p><div class="fragment"><div class="line">./unit_charge &lt;fichier&gt;</div>
 </div><!-- fragment --><p>On peut aussi générer les données pour les fichiers <a class="el" href="gemm_8c.html">gemm.c</a> <a class="el" href="gemver_8c.html">gemver.c</a> <a class="el" href="gesummv_8c.html">gesummv.c</a> <a class="el" href="syr2k_8c.html">syr2k.c</a> <a class="el" href="syrk_8c.html">syrk.c</a> <a class="el" href="trmm_8c.html">trmm.c</a> <a class="el" href="2mm_8c.html">2mm.c</a> <a class="el" href="3mm_8c.html">3mm.c</a> <a class="el" href="atax_8c.html">atax.c</a> <a class="el" href="bicg_8c.html">bicg.c</a> <a class="el" href="mvt_8c.html">mvt.c</a> <a class="el" href="correlation_8c.html">correlation.c</a> et <a class="el" href="covariance_8c.html">covariance.c</a> avec la commande suivante : </p><div class="fragment"><div class="line">./all_unit_charge</div>
-</div><!-- fragment --><p>On a ainsi généré un fichier <b>result.csv</b> sur la machine TRAHRHE. On peut le copier sur notre machine avec la commande : </p><div class="fragment"><div class="line">scp trahrhe.icube.unistra.fr:eqCharge/polybench/result.csv &lt;chemin_vers_le_dossier_polybench&gt;</div>
+</div><!-- fragment --><p>On a ainsi généré un fichier <b><a class="el" href="result_8csv.html">result.csv</a></b> sur la machine TRAHRHE. On peut le copier sur notre machine avec la commande : </p><div class="fragment"><div class="line">scp trahrhe.icube.unistra.fr:eqCharge/polybench/result.csv &lt;chemin_vers_le_dossier_polybench&gt;</div>
 </div><!-- fragment --><p>Ensuite on peut traiter les données grâce au script <a class="el" href="generate__stat_8sh.html">generate_stat.sh</a>. On exécute cette commande : </p><div class="fragment"><div class="line">cat result.csv | ./generate_stat.sh</div>
-</div><!-- fragment --><p>Ainsi on a généré un fichier pdf <b><a class="el" href="stat_8pdf.html">stat.pdf</a></b> avec les histogrammes et les statistiques. Pour calculer l'équilibre de charge en dataset DOOM il faut changer la variable TESTS en TESTSDOOM dans <a class="el" href="all__unit__charges_8sh.html">all_unit_charges.sh</a> </p>
+</div><!-- fragment --><p>Ainsi on a généré un fichier pdf <b>stat.pdf</b> avec les histogrammes et les statistiques. Pour calculer l'équilibre de charge en dataset DOOM il faut changer la variable TESTS en TESTSDOOM dans <a class="el" href="all__unit__charges_8sh.html">all_unit_charges.sh</a> </p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Métriques d'équilibre de charge</h1>
-<p>Avant de commencer à mettre en place l'automatisation des mesures il faut comprendre ce qu'est l'équilibre de charge et quelles sont les métriques pertinentes à utilisées. Ces métriques apparaissent souvent dans la littérature du thread load balancing. <br  />
+<p>Avant de commencer à mettre en place l'automatisation des mesures il faut comprendre quelles sont les métriques pertinentes à utiliser. Ces métriques apparaissent souvent dans la littérature du thread load balancing. <br  />
  On se réfère à l'article <em>Quantifying the effectiveness of load balance algorithms</em> de Olga Pearce et T. Gamblin,. <br  />
  Cet article introduit plusieurs métriques :</p><ul>
 <li>Percent Imbalance Metric \((\frac{x_{max}}{\overline{x}}-1)\times100\)</li>
@@ -123,7 +123,7 @@ Métriques d'équilibre de charge</h1>
 </ul>
 <p>On peut interpréter la skewness comme un coefficient d'asymétrie plus le nombre est proche de zéro plus la distribution est symétrique. Le kurtosis correspond à un coefficient d'applatissement, il caractérise la proportion des queues de la distribution (les valeurs extremums). Si le kurtosis est supérieur à zéro il y a une majorité de valeurs élevées, s'il y a une majorité de valeurs faibles le kurtosis sera inférieur à zéro. L'écart-type caractérise l'écart absolue des valeurs à la moyenne. <br  />
  Le Percent Imbalance Metric indique l'écart entre la valeur maximal et la moyenne. <br  />
- J'utiliserai plutôt le coefficient de variation $ \frac{\sigma}{\overline{x}} $ que l'écart-type qui ne prend pas en compte l'ordre de grandeur des valeurs et le coefficient de Gini qui caractérise bien l'écart entre chaque valeur \( \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} \). </p>
+ J'utiliserai plutôt le coefficient de variation \( \frac{\sigma}{\overline{x}} \) que l'écart-type qui ne prend pas en compte l'ordre de grandeur des valeurs et le coefficient de Gini qui caractérise bien l'écart entre chaque valeur \( \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} \). </p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Mise en place du script d'automatisation de calcul de charges</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>
@@ -132,7 +132,7 @@ Repère des zones de collecte des temps</h2>
 <div class="line">for ( i = 0 ; i &lt; N ; i++ ) {</div>
 <div class="line">    ...</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>Le soucis ici est que l'on ne peut faire la collecte des temps en fin de boucle \(for \) car la synchronisation sera faite. Il faut donc modifier les sections parallèles en : </p><div class="fragment"><div class="line">#pragma omp parallel</div>
+</div><!-- fragment --><p>La problématique ici est que l'on ne peut faire la collecte des temps en fin de boucle \(for \) car la synchronisation sera faite. Il faut donc modifier les sections parallèles en : </p><div class="fragment"><div class="line">#pragma omp parallel</div>
 <div class="line">{</div>
 <div class="line">#pragma omp for schedule(static) nowait</div>
 <div class="line">for ( i = 0 ; i &lt; N ; i++ ) {</div>

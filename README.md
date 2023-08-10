@@ -39,7 +39,7 @@ cat result.csv | ./generate_stat.sh
 Ainsi on a généré un fichier pdf **stat.pdf** avec les histogrammes et les statistiques.
 Pour calculer l'équilibre de charge en dataset DOOM il faut changer la variable TESTS en TESTSDOOM dans all_unit_charges.sh
 ##Métriques d'équilibre de charge
-Avant de commencer à mettre en place l'automatisation des mesures il faut comprendre ce qu'est l'équilibre de charge et quelles sont les métriques pertinentes à utilisées. Ces métriques apparaissent souvent dans la littérature du thread load balancing.  
+Avant de commencer à mettre en place l'automatisation des mesures il faut comprendre quelles sont les métriques pertinentes à utiliser. Ces métriques apparaissent souvent dans la littérature du thread load balancing.  
 On se réfère à l'article *Quantifying the effectiveness of load balance algorithms* de Olga Pearce et T. Gamblin,.  
 Cet article introduit plusieurs métriques : 
     - Percent Imbalance Metric @f$(\frac{x_{max}}{\overline{x}}-1)\times100@f$
@@ -52,7 +52,7 @@ Avec @f$x_i@f$ le temps de travail du thread @f$i@f$, @f$\overline{x}@f$ le temp
 
 On peut interpréter la skewness comme un coefficient d'asymétrie plus le nombre est proche de zéro plus la distribution est symétrique. Le kurtosis correspond à un coefficient d'applatissement, il caractérise la proportion des queues de la distribution (les valeurs extremums). Si le kurtosis est supérieur à zéro il y a une majorité de valeurs élevées, s'il y a une majorité de valeurs faibles le kurtosis sera inférieur à zéro. L'écart-type caractérise l'écart absolue des valeurs à la moyenne.   
 Le Percent Imbalance Metric indique l'écart entre la valeur maximal et la moyenne.  
-J'utiliserai plutôt le coefficient de variation $ \frac{\sigma}{\overline{x}} $ que l'écart-type qui ne prend pas en compte l'ordre de grandeur des valeurs et le coefficient de Gini qui caractérise bien l'écart entre chaque valeur @f$ \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} @f$.
+J'utiliserai plutôt le coefficient de variation @f$ \frac{\sigma}{\overline{x}} @f$ que l'écart-type qui ne prend pas en compte l'ordre de grandeur des valeurs et le coefficient de Gini qui caractérise bien l'écart entre chaque valeur @f$ \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |x_i - x_j|}{2n^2\overline{x}} @f$.
 ##Mise en place du script d'automatisation de calcul de charges
 ###Repère des zones de collecte des temps
 On souhaite modifier le programme parallélisé pour en sortie donner les temps de travail de chaque thread. Il faut donc repérer les section parallèle dans les programmes. 
@@ -64,7 +64,7 @@ for ( i = 0 ; i < N ; i++ ) {
 }
 
 ```
-Le soucis ici est que l'on ne peut faire la collecte des temps en fin de boucle  @f$for @f$ car la synchronisation sera faite. Il faut donc modifier les sections parallèles en : 
+La problématique ici est que l'on ne peut faire la collecte des temps en fin de boucle  @f$for @f$ car la synchronisation sera faite. Il faut donc modifier les sections parallèles en : 
 ```
 #pragma omp parallel
 {

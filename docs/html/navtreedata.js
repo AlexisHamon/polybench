@@ -75,7 +75,7 @@ var NAVTREEINDEX =
 "durbin_8h.html#a97278ab00623feea0773db50c6e0620a",
 "globals_defs_d.html",
 "polybench_8c.html#a190e04d323c8412519ef8b7460e278d7",
-"trisolv_8c.html#a3c04138a5bfe5d72780bb7e82a18e627"
+"trisolv_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

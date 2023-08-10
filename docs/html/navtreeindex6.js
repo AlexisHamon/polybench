@@ -1,8 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"trisolv_8c.html#a3c04138a5bfe5d72780bb7e82a18e627":[3,0,2,2,5,0,2],
-"trisolv_8c.html#a6ab7f31ab1668da4727a946e53d747e2":[3,0,2,2,5,0,3],
-"trisolv_8c.html#a7a078d61d4747f8c2a4d9b967239290d":[3,0,2,2,5,0,1],
 "trisolv_8h.html":[3,0,2,2,5,1],
 "trisolv_8h.html#a0240ac851181b84ac374872dc5434ee4":[3,0,2,2,5,1,6],
 "trisolv_8h.html#a19a82c0bf6c35c019099272810ba2262":[3,0,2,2,5,1,0],
@@ -76,6 +73,6 @@ var NAVTREEINDEX6 =
 "trmm__static_8c.html#ab7cf3c1910f08cc61cbc53ad9cd4193b":[3,0,0,38,12],
 "trmm__static_8c.html#abb702d8b501669a23aa0ab3b281b9384":[3,0,0,38,4],
 "trmm__static_8c.html#ac39d9cef6a5e030ba8d9e11121054268":[3,0,0,38,2],
-"unit__charge_8sh.html":[3,0,22],
-"unit__test_8sh.html":[3,0,23]
+"unit__charge_8sh.html":[3,0,19],
+"unit__test_8sh.html":[3,0,20]
 };
