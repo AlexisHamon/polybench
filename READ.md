@@ -14,13 +14,14 @@ On obtient dans le terminal les résultats de la comparaison des matrices du fic
 
 ### Calcul de l'équilibre de charge
 
-Le programme exécute les fichiers parallélisés sur la machine TRAHRHE de 64 coeurs. Il faut donc dans le fichier unit_charge.sh mettre son mot de passe et son identifiant de connexion et cloner ce git dans un dossier eqCharge. Il est aussi possible de mettre le mot de passe de pernias@trahrhe.icube.unistra.fr. 
+Le programme exécute les fichiers parallélisés sur la machine TRAHRHE de 64 coeurs. Il faut donc dans le fichier unit_charge.sh mettre son mot de passe et son identifiant de connexion et cloner ce git dans un dossier eqCharge. Il est aussi possible de mettre le mot de passe de pernias@trahrhe.icube.unistra.fr.  
+Ensuite il est nécessaire d'avoir les dossiers mark5 et mark6 dans le même dossier que polybench pour le calcul des tailles optimales.  
 Ensuite après avoir compilé avec 
 ```
 make clean
 make all
 ```
-on peut générer les temps d'exécution des threads pour un seul fichier avec la commande suivante :
+on peut générer les temps de travail des threads pour un seul fichier avec la commande suivante :
 ```
 ./unit_charge <fichier>
 ```
